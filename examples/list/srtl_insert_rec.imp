@@ -1,0 +1,18 @@
+
+loc srtl_insert_rec(loc x, int k)
+requires sll^(x)
+ensures ( sll^(resultloc) & (len^(resultloc) i= (old(len^(x)) + 1)) )
+	& ( (min^(resultloc) i= ((old(k) < old(min^(x))) ? old(k) : old(min^(x)))) & (max^(resultloc) i= ((old(max^(x)) < old(k)) ? old(k) : old(max^(x)))) )
+{
+    if (cond(1)) {
+	loc ??? := new;
+        return ???;
+    }
+    else {
+        statement(1);
+        loc ??? := srtl_insert_rec(???, ??);
+        statement(1);
+	return ???;
+    }
+}
+

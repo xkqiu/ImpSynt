@@ -1,0 +1,21 @@
+
+loc bst_remove_root_rec(loc root, int k)
+requires ( bst^(root) & (root |-> int key: k) )
+	& (~ (root l= nil))
+ensures ( ( bst^(resultloc) & (size^(resultloc) i= (old(size^(root)) - 1)) ) & ( (old(size^(root)) i= 1) |
+	(   ( (max^(resultloc) <= old(max^(root))) & ( (min^(resultloc) i= old(min^(root))) | (~ (min^(resultloc) <= old(min^(root))))) ) &
+		(  ( (old(k) i= old(min^(root))) | (min^(resultloc) i= old(min^(root))) ) &
+		( (old(k) i= old(max^(root))) | (max^(resultloc) i= old(max^(root))) )  )   )	
+	) )
+
+{
+    if (cond(1)) return ???;
+    else if (cond(1)) return ???;
+    else {
+        statement(2);
+        loc ??? := bst_remove_root_rec(???, ??);
+        statement(1);
+        return ???;
+    }
+}
+

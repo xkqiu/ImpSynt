@@ -1,0 +1,78 @@
+pragma options "--slv-simiters 10 --bnd-inbits 2 --bnd-inline-amnt 3 --bnd-unroll-amnt 3 ";
+
+int TIMESIZE = 4;
+int BOUND = 3;
+int INTMAX = 7;
+int HEAPSIZE = 4;
+int LOCVARSIZE = 3;
+int INTVARSIZE = 1;
+int MBUDGET = 1;
+
+include "header/lseg_header.skh";
+
+int old_sll, old_len, old_min, old_max;
+
+int newer_sll, newer_max;
+
+void rec_list_find_max_rec(int x, int recret, ref int rv, ref bit[HEAPSIZE-1] new_symbolic, ref int[HEAPSIZE-1] new_next, ref int[HEAPSIZE-1] new_supernext, ref int[HEAPSIZE-1] new_key) {
+
+	assertPost(pre_cond_list_find_max_rec(x));
+
+	snapshot_list_find_max_rec(x, newer_sll, newer_max);
+
+	havoc(locvars[x], new_symbolic, new_next, new_supernext, new_key);
+
+	intvars[recret] = rv;
+
+	assumePre(post_cond_list_find_max_rec(recret, x, newer_max));
+}
+
+int rank_func_list_find_max_rec = {| 1 |}; //len, min or max
+
+void snapshot_list_find_max_rec(int x, ref int osll, ref int omax) {
+	osll = sll_comp(locvars[x]);
+	omax = max_comp(locvars[x]);
+}
+
+bit pre_cond_list_find_max_rec(int x) {
+	return tree_inv(x);
+}
+
+bit post_cond_list_find_max_rec(int r, int x, ref int old_max_x) {
+	return intvars[r] == old_max_x;
+}
+
+harness void list_find_max_rec(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive, int ret_value, bit[HEAPSIZE-1] new_symbolic, int[HEAPSIZE-1] new_next, int[HEAPSIZE-1] new_supernext, int[HEAPSIZE-1] new_key) {
+
+	int[HEAPSIZE-1] lleft = {};
+	int[HEAPSIZE-1] lright = {};
+	init(llocvars, lintvars, lnext, lsupernext, lleft, lright, lkey, lsymbolic, lactive);
+
+	assume(basic_assumptions() && basic_axioms());
+
+	assume pre_cond_list_find_max_rec(2);
+
+	snapshot_list_find_max_rec(2, old_sll, old_max);
+
+	ranking_snapshot(rank_func_list_find_max_rec, 2);
+
+	if (basic_cond(2, 1)) 	{
+	statement(1, 1, 1, 0);
+
+	}
+
+	else 	{
+	statement(1, 1, 1, 0);
+	int rank_var_for_call_0 = gen_non_zero(2);
+	assertPost(ranking_decreases(rank_func_list_find_max_rec, rank_var_for_call_0));
+	rec_list_find_max_rec(rank_var_for_call_0, gen_all(1), ret_value, new_symbolic, new_next, new_supernext, new_key);
+	if (basic_cond(2, 1)) 	statement(1, 1, 1, 0);
+
+
+	}
+
+	ret_int(gen_all(1));
+
+	assertPost(post_cond_list_find_max_rec(ret, 2, old_max));
+
+}

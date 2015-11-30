@@ -1,0 +1,19 @@
+
+int list_find_max_iter(loc x)
+requires tree^(x)
+ensures resultint i= old(max^(x))
+{
+    /*
+	v1 = v2;
+	k0 = 0;
+	while (v1 != null) {
+		//inv: maxseg(2, 1) == k0 && old_max == max_comp(2)
+		if (v1 == null || v1.key >= k0) k0 = v1.key;
+		v1 = v1.next;
+	}
+	return k0;
+	*/
+    simple-loop(1, 1, 1);
+    return ??;
+}
+

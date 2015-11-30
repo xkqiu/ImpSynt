@@ -1,0 +1,24 @@
+loc srtl_reverse_iter(loc x)
+requires sll^(x)
+ensures ( rsll^(resultloc) & (len^(resultloc) i= old(len^(x))) )
+	& ( (min^(resultloc) i= old(min^(x))) & (max^(resultloc) i= old(max^(x))) )
+{
+	/*
+	v1 = nil;
+	v2 = nil;
+	while (v3 != 0) {
+		//inv: len(v2) + len(v3) == oldlen
+			&& min(min(v2), min(v3)) == oldmin
+			&& max(max(v2), max(v3)) == oldmax
+			sll(v3) && rsll(v2) && max(v2) <= min(v3) && disjoint(v2, v3)
+		v1 = v2;
+		v2 = v3;
+		v3 = v3.next;
+		v2.next = v1;
+	}
+	return v2;
+	*/
+    loop(3, 0, 4);
+    return ???;
+}
+

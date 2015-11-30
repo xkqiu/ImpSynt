@@ -1,0 +1,170 @@
+pragma options "--slv-simiters 10 --bnd-inbits 2 --bnd-inline-amnt 4 --bnd-unroll-amnt 4 ";
+
+int TIMESIZE = 4;
+int BOUND = 4;
+int INTMAX = 7;
+int HEAPSIZE = 5;
+int LOCVARSIZE = 4;
+int INTVARSIZE = 1;
+int MBUDGET = 1;
+
+include "header/lseg_header.skh";
+
+int old_sll, old_k, old_len, old_min, old_max;
+
+int rank_func_srtl_insert_iter = {| 1 |}; //len, min or max
+
+void snapshot_srtl_insert_iter(int x, int k, ref int ok, ref int osll, ref int olen, ref int omin, ref int omax) {
+	osll = sll_comp(locvars[x]);
+	olen = len_comp(locvars[x]);
+	omin = min_comp(locvars[x]);
+	omax = max_comp(locvars[x]);
+	ok = intvars[k];
+}
+
+bit pre_cond_srtl_insert_iter(int x, int k) {
+	return sll_inv(x);
+}
+
+bit post_cond_srtl_insert_iter(int r, int x, int k, ref int old_len_x, ref int old_min_x, ref int old_max_x, int old_k) {
+	return (sll_inv(r) && (len_equal_inv(r, (old_len_x + 1)))) && ((min_equal_inv(r, ((old_k < old_min_x) ? old_k : old_min_x))) && (max_equal_inv(r, ((old_max_x < old_k) ? old_k : old_max_x))));
+}
+
+bit cond0() {
+	return basic_branch_cond(3, 3, 1, 0);
+}
+
+harness void srtl_insert_iter__0(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive, int ret_value, bit[HEAPSIZE-1] new_symbolic, int[HEAPSIZE-1] new_next, int[HEAPSIZE-1] new_supernext, int[HEAPSIZE-1] new_key) {
+
+	int[HEAPSIZE-1] lleft = {};
+	int[HEAPSIZE-1] lright = {};
+	init(llocvars, lintvars, lnext, lsupernext, lleft, lright, lkey, lsymbolic, lactive);
+
+	assume(basic_assumptions() && basic_axioms());
+
+	assume pre_cond_srtl_insert_iter(3, 0);
+
+	snapshot_srtl_insert_iter(3, 0, old_k, old_sll, old_len, old_min, old_max);
+
+	ranking_snapshot(rank_func_srtl_insert_iter, 3);
+
+	assume cond0();
+
+	create_node(gen_non_zero(2), 3, 1);
+	ret_loc(gen_non_zero(3));
+
+	assertPost(post_cond_srtl_insert_iter(ret, 3, 0, old_len, old_min, old_max, old_k));
+
+}
+int rank_var_srtl_insert_iter = {| 1 | 2 |};
+
+bit preserve_sll = true;
+bit preserve_len = true;
+bit preserve_min = true;
+bit preserve_max = true;
+
+bit preserve_k = 1;
+
+void guess_ranking_srtl_insert_iter() {
+	assume rank_var_srtl_insert_iter>0 && rank_var_srtl_insert_iter<LOCVARSIZE;
+	ranking_snapshot(rank_func_srtl_insert_iter, rank_var_srtl_insert_iter);
+}
+
+bit loop_preserves_srtl_insert_iter() {
+	bit single = true;
+	int comp1 = gen_non_zero(1);
+	int comp2 = gen_non_zero(1)+1;
+	return (preserve_sll ? sll_equal_inv(LOCVARSIZE-1) : true)
+	  && (preserve_len ? len_preserve_inv(LOCVARSIZE-1, old_len, comp1, comp2, single) : true)
+	  && (preserve_min ? min_preserve_inv(LOCVARSIZE-1, old_min, comp1, comp2, single) : true)
+	  && (preserve_max ? max_preserve_inv(LOCVARSIZE-1, old_max, comp1, comp2, single) : true)
+	  && (preserve_k ? intvars[0] == old_k : true)
+	;
+}
+
+bit loop_inv_srtl_insert_iter() {
+	return loop_preserves_srtl_insert_iter()
+	 && any_pred(2, 0, 1, 1)
+	 && any_pred(2, 0, 1, 1)
+	 && any_pred(2, 0, 1, 1);
+}
+
+bit loop_inv_pre_srtl_insert_iter() {
+	return loop_inv_srtl_insert_iter();
+}
+
+bit loop_inv_post_srtl_insert_iter() {
+	return loop_inv_srtl_insert_iter()
+	  && ranking_decreases(rank_func_srtl_insert_iter, rank_var_srtl_insert_iter);
+}
+
+bit loop_cond_srtl_insert_iter() {
+	return cond_for_loop(2, 3, 1);
+}
+
+harness void before_loop_srtl_insert_iter(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive) {
+
+	int[HEAPSIZE-1] lleft = {};
+	int[HEAPSIZE-1] lright = {};
+	init(llocvars, lintvars, lnext, lsupernext, lleft, lright, lkey, lsymbolic, lactive);
+
+	assume(basic_assumptions() && basic_axioms());
+	assume pre_cond_srtl_insert_iter(3, 0);
+	snapshot_srtl_insert_iter(3, 0, old_k, old_sll, old_len, old_min, old_max);
+
+	assume !cond0();
+
+	update_locvar(1, LOCVARSIZE-1, INTVARSIZE);
+	update_locvar(2, LOCVARSIZE-1, INTVARSIZE);
+
+	assertPost(loop_inv_pre_srtl_insert_iter());
+}
+
+harness void iterate_srtl_insert_iter(int lold_sll, int lold_len, int lold_min, int lold_max, int lold_k, int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive) {
+
+	int[HEAPSIZE-1] lleft = {};
+	int[HEAPSIZE-1] lright = {};
+	init(llocvars, lintvars, lnext, lsupernext, lleft, lright, lkey, lsymbolic, lactive);
+
+	old_sll = lold_sll;
+	old_len = lold_len;
+	old_min = lold_min;
+	old_max = lold_max;
+	old_k = lold_k;
+
+	assume(basic_assumptions() && basic_axioms());
+	assume loop_inv_pre_srtl_insert_iter();
+	assume loop_cond_srtl_insert_iter();
+	guess_ranking_srtl_insert_iter();
+
+	update_locvar(1, 2, 0);
+	update_locvar(2, 2, 0);
+
+	assertPost(loop_inv_post_srtl_insert_iter());
+}
+
+harness void after_loop_srtl_insert_iter(int lold_sll, int lold_len, int lold_min, int lold_max, int lold_k, int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive) {
+
+	int[HEAPSIZE-1] lleft = {};
+	int[HEAPSIZE-1] lright = {};
+	init(llocvars, lintvars, lnext, lsupernext, lleft, lright, lkey, lsymbolic, lactive);
+
+	old_sll = lold_sll;
+	old_len = lold_len;
+	old_min = lold_min;
+	old_max = lold_max;
+	old_k = lold_k;
+
+	assume(basic_assumptions() && basic_axioms());
+	assume loop_inv_pre_srtl_insert_iter();
+	assume !loop_cond_srtl_insert_iter();
+
+	create_node(gen_non_zero(2), 3, 1);
+
+	statement(2, 0, 1, 1);
+
+	ret_loc(gen_non_zero(3));
+
+	assertPost(post_cond_srtl_insert_iter(ret, 3, 0, old_len, old_min, old_max, old_k));
+}
+

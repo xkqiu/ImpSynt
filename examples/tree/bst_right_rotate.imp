@@ -1,0 +1,20 @@
+
+loc bst_right_rotate(loc root, loc lchild)
+requires ( bst^(root) & (root |-> loc left: lchild) )
+	& (~ (lchild l= nil))
+ensures ( ( bst^(resultloc) & (resultloc |-> loc right: root) ) & (root l= old(root)) )
+	& ( (min^(resultloc) i= old(min^(root))) & (max^(resultloc) i= old(max^(root))) )	
+
+{
+	/*
+	loc temp := rchild.left;
+	root.right := temp;
+	rchild.left := root;
+	return rchild;
+	*/
+    loc ??? := ???.??;
+    loc ???.?? := ???;
+    loc ???.?? := ???;
+    return ???;
+}
+
