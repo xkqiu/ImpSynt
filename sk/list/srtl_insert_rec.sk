@@ -1,0 +1,127 @@
+pragma options "--slv-simiters 4 --bnd-inbits 3 --bnd-inline-amnt 7 --bnd-unroll-amnt 3 ";
+
+int TIMESIZE = 4;
+int BOUND = 3;
+int INTMAX = 7;
+int HEAPSIZE = 4;
+int LOCVARSIZE = 3;
+int INTVARSIZE = 1;
+int MBUDGET = 1;
+
+include "header/lseg_header.skh";
+
+int old_k, old_sll, old_len, old_min, old_max, old_size, old_height, old_lenseg, old_minseg, old_maxseg;
+
+int newer_k, newer_sll, newer_len, newer_min, newer_max;
+
+void rec_srtl_insert_rec(int x, int k, int recret, ref bit[HEAPSIZE-1] new_symbolic, ref int[HEAPSIZE-1] new_next, ref int[HEAPSIZE-1] new_supernext, ref int[HEAPSIZE-1] new_key) {
+
+	assertPost(pre_cond_srtl_insert_rec(x, k));
+
+	snapshot_srtl_insert_rec(x, k, newer_k, newer_sll, newer_len, newer_min, newer_max);
+
+	locvars[recret] = havoc(locvars[x], new_symbolic, new_next, new_supernext, new_key);
+
+	assumePre(post_cond_srtl_insert_rec(recret, x, k, newer_len, newer_min, newer_max, newer_k));
+}
+
+int rank_func_srtl_insert_rec = 
+LEN;
+
+void snapshot_srtl_insert_rec(int x, int k, ref int ok, ref int osll, ref int olen, ref int omin, ref int omax) {
+	olen = len_comp(locvars[x]);
+	omin = min_comp(locvars[x]);
+	omax = max_comp(locvars[x]);
+	ok = intvars[k];
+}
+
+bit pre_cond_srtl_insert_rec(int x, int k) {
+	return sll_inv(x);
+}
+
+bit post_cond_srtl_insert_rec(int r, int x, int k, ref int old_len_x, ref int old_min_x, ref int old_max_x, int old_k) {
+	return (sll_inv(r) && (len_equal_inv(r, (old_len_x + 1)))) && ((min_equal_inv(r, ((old_k < old_min_x) ? old_k : old_min_x))) && (max_equal_inv(r, ((old_max_x < old_k) ? old_k : old_max_x))));
+}
+
+bit cond0() {
+	return basic_branch_cond0(2, 2, 1, 0);
+}
+
+harness void srtl_insert_rec__0(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive, int ret_value, bit[HEAPSIZE-1] new_symbolic, int[HEAPSIZE-1] new_next, int[HEAPSIZE-1] new_supernext, int[HEAPSIZE-1] new_key) {
+
+	int[HEAPSIZE-1] lleft = {};
+	int[HEAPSIZE-1] lright = {};
+	init(llocvars, lintvars, lnext, lsupernext, lleft, lright, lkey, lsymbolic, lactive);
+
+	assume(basic_assumptions() && basic_axioms());
+
+	assume pre_cond_srtl_insert_rec(2, 0);
+
+	snapshot_srtl_insert_rec(2, 0, old_k, old_sll, old_len, old_min, old_max);
+
+	ranking_snapshot(rank_func_srtl_insert_rec, 2, 1);
+
+	assume cond0();
+
+	create_node0(loc_id0(1), 2, 1);
+	ret_loc(loc_id1(2));
+
+	assertPost(post_cond_srtl_insert_rec(ret, 2, 0, old_len, old_min, old_max, old_k));
+
+}
+harness void srtl_insert_rec__1(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive, int ret_value, bit[HEAPSIZE-1] new_symbolic, int[HEAPSIZE-1] new_next, int[HEAPSIZE-1] new_supernext, int[HEAPSIZE-1] new_key) {
+
+	int[HEAPSIZE-1] lleft = {};
+	int[HEAPSIZE-1] lright = {};
+	init(llocvars, lintvars, lnext, lsupernext, lleft, lright, lkey, lsymbolic, lactive);
+
+	assume(basic_assumptions() && basic_axioms());
+
+	assume pre_cond_srtl_insert_rec(2, 0);
+
+	snapshot_srtl_insert_rec(2, 0, old_k, old_sll, old_len, old_min, old_max);
+
+	ranking_snapshot(rank_func_srtl_insert_rec, 2, 1);
+
+	assume !cond0();
+
+	statement0(1, 0, 1, 1);
+	int rank_var_for_call_0 = loc_id2(2);
+	assertPost(ranking_decreases(rank_func_srtl_insert_rec, rank_var_for_call_0, 1));
+	rec_srtl_insert_rec(rank_var_for_call_0, int_id0(1), loc_id3(1), new_symbolic, new_next, new_supernext, new_key);
+	statement1(1, 0, 1, 1);
+	ret_loc(loc_id4(2));
+
+	assertPost(post_cond_srtl_insert_rec(ret, 2, 0, old_len, old_min, old_max, old_k));
+
+}
+void statement0(int locrange, int intrange, int locrange2, int intrange2) { 
+	statement(locrange, intrange, locrange2, intrange2);
+}
+void statement1(int locrange, int intrange, int locrange2, int intrange2) { 
+	statement(locrange, intrange, locrange2, intrange2);
+}
+bit basic_branch_cond0(int locrange, int locstart, int intrange, int intstart) { 
+	return basic_branch_cond(locrange, locstart, intrange, intstart);
+}
+int loc_id0(int locrange) { 
+	return gen_non_zero(locrange);
+}
+int loc_id1(int locrange) { 
+	return gen_non_zero(locrange);
+}
+int loc_id2(int locrange) { 
+	return gen_non_zero(locrange);
+}
+int loc_id3(int locrange) { 
+	return gen_non_zero(locrange);
+}
+int loc_id4(int locrange) { 
+	return gen_non_zero(locrange);
+}
+int int_id0(int intrange) { 
+	return gen_all(intrange);
+}
+void create_node0(int v, int locrange, int intrange) { 
+	create_node(v, locrange, intrange);
+}

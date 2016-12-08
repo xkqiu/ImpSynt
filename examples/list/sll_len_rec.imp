@@ -1,7 +1,7 @@
 
 int list_comp_len_rec(loc x)
 requires tree^(x)
-ensures resultint i= old(len^(x))
+ensures (resultint i= old(len^(x))) & tree^(x)
 {
     if (cond(1)) {
         statement(1);

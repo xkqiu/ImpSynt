@@ -11,8 +11,7 @@ include "header/aux.skh";
 #define LENSEGEQ 6
 #define MAXLEQMIN 7
 #define RSLL 8
-#define RSLLSEG 9
-#define DISJ 10
+#define DISJ 9
 
 
 bit sll(int l, int t);
@@ -134,8 +133,7 @@ int len_comp(int l) {
 int len_recursive(int l1, int l2, int bnd) {
 	if (l1 < 0 || l1 >= HEAPSIZE || l2 < 0 || l2 >= HEAPSIZE) return -1;
 	else if (!active[l1] || !active[l2]) return -1;
-	//workaround
-	else if (l1 == l2) return (l1 == 0 || next[l1] != l1) ? 0 : 1;
+	else if (l1 == l2) return 0;
 	//not sure
 	else if (l1 == 0) return -1;
 	else if(bnd < 0){ return -1; }
@@ -144,8 +142,7 @@ int len_recursive(int l1, int l2, int bnd) {
 			if (l2 == 0) return len_history(l1, ts);
 			else return -1;
 		}
-		//workaround
-		else if (l2 == next[l1]) return (l2 == 0 || next[l2] != l2) ? 1 : 2;
+		else if (l2 == next[l1]) return 1;
 		else if (0 == next[l1]) return -1;
 		else if (0 < next[l1] && next[l1] < HEAPSIZE) return len_recursive(next[l1], l2, bnd-1) + 1;
 		else if (l2 == supernext[l1]) return lenseg_history(l1, ts);
@@ -192,8 +189,7 @@ int minseg_comp(int l1, int l2) {
 int minseg_recursive(int l1, int l2, int bnd) {
 	if (l1 < 0 || l1 >= HEAPSIZE) return INTMAX;
 	else if (!active[l1]) return INTMAX;
-	//workaround
-	else if (l1 == l2) return (l1 == 0 || next[l1] != l1) ? INTMAX : key[l1];
+	else if (l1 == l2) return INTMAX;
 	//not sure
 	else if (l1 == 0) return INTMAX;
 	else if(bnd < 0) return -1;
@@ -202,7 +198,7 @@ int minseg_recursive(int l1, int l2, int bnd) {
 			if (l2 == 0) return min_history(l1, ts);
 			else return -1;
 		}
-		else if (l2 == next[l1]) return (l2 == 0 || next[l2] != l2 || key[l1] <= key[l2]) ? key[l1] : key[l2];
+		else if (l2 == next[l1]) return key[l1];
 		else if (0 == next[l1]) return -1;
 		else if (0 < next[l1] && next[l1] < HEAPSIZE) {
 			int r = minseg_recursive(next[l1], l2, bnd-1);
@@ -246,7 +242,7 @@ int maxseg_comp(int l1, int l2) {
 int maxseg_recursive(int l1, int l2, int bnd) {
 	if (l1 < 0 || l1 >= HEAPSIZE || l2 < 0 || l2 >= HEAPSIZE) return -1;
 	else if (!active[l1] || !active[l2]) return -1;
-	else if (l1 == l2) return (l1 == 0 || next[l1] != l1) ? 0 : key[l1];
+	else if (l1 == l2) return 0;
 	//not sure
 	else if (l1 == 0) return 0;
 	else if (bnd < 0) return -1;
@@ -255,7 +251,7 @@ int maxseg_recursive(int l1, int l2, int bnd) {
 			if (l2 == 0) return max_history(l1, ts);
 			else return -1;
 		}
-		else if (l2 == next[l1]) return (l2 == 0 || next[l2] != l2 || key[l2] <= key[l1]) ? key[l1] : key[l2];
+		else if (l2 == next[l1]) return key[l1];
 		else if (0 == next[l1]) return -1;
 		else if (0 < next[l1] && next[l1] < HEAPSIZE) {
 			int r = maxseg_recursive(next[l1], l2, bnd-1);
@@ -313,6 +309,7 @@ bit check_p_treeness(int t1, int t2, ref bit[HEAPSIZE] m, int bnd) {
 	if(bnd < 0) { return 0; }
 	else if (t1<0 || t1>=HEAPSIZE || t2<0 || t2>=HEAPSIZE) return false;
 	else if (!active[t1] || !active[t2]) return false;
+	
     else if (t1 == t2) return true;
     else if (t1 == 0) return false;
     else if (symbolic[t1]) {
@@ -383,8 +380,7 @@ bit disjoint(int r1, int r2, int r3, int r4) {
 	bit[HEAPSIZE] temp2 = 0;
 	compute_reach(r2, r4, temp2);
 	// still not sure how to handle the disjointness of (a, a) and (a, b)
-	if (r1 != r2 && (temp1[r2] || temp2[r1])) return false;
-	if (r1 == r2 && next[r1] == r1) return false;
+	if (temp1[r2] || temp2[r1]) return false;
 	for (int idx = 1; idx < HEAPSIZE; idx++) {
 		if (temp1[idx] && temp2[idx]) return false;
 	}
@@ -711,25 +707,19 @@ bit intderef_lt_var(int c1, int c2) {
 
 generator bit cond_for_loop(int looplocrange, int locrange, int intrange) {
 	//int choice = {| INTDEREFLT | LOCEQ |};
-
-	//Assuming always checking the last loop-related variable?
-	int v = looplocrange; //gen_non_zero(looplocrange);
-	bit d = ??;
-	if (intrange == 0) d = false;
-	if (d) { //(choice == INTDEREFLT) {
+	int v = gen_non_zero(looplocrange);
+	if (??) { //(choice == INTDEREFLT) {
 		assert intrange > 0;
 		return (!locvar_eq(v, 0)) && intderef_lt_var(v, gen_all(intrange));
 	}
 	else { //if (choice == LOCEQ) {
-		return !locvar_eq(v, looplocrange + gen_non_zero(locrange));
+		return !locvar_eq(v, gen_all(locrange+1));
 	}
 }
 
 generator bit positive_cond(int v, int locrange, int intrange) {
 	//int choice = {| INTDEREFLT | LOCEQ |};
-	bit d = ??;
-	if (intrange == 0) d = false;
-	if (d) { //(choice == INTDEREFLT) {
+	if (??) { //(choice == INTDEREFLT) {
 		assert intrange > 0;
 		int rrr = gen_all(intrange);
 		return (!locvar_eq(v, 0)) && intderef_lt_var(v, rrr);
@@ -741,9 +731,7 @@ generator bit positive_cond(int v, int locrange, int intrange) {
 
 generator bit positive_branch_cond(int v, int locrange, int locstart, int intrange, int intstart) {
 	//int choice = {| INTDEREFLT | LOCEQ |};
-	bit d = ??;
-	if (intrange == 0) d = false;
-	if (d) { //(choice == INTDEREFLT) {
+	if (??) { //(choice == INTDEREFLT) {
 		assert intrange > 0;
 		return (!locvar_eq(v, 0)) && intderef_lt_var(v, gen_range(intstart, intrange));
 	}
@@ -837,22 +825,19 @@ generator void statement(int locrange, int intrange, int locrange2, int intrange
 }
 
 generator void mutate_statement(int v, int locrange, int intrange) {
-	bit st_choice = ??;
-	if (intrange == 0) st_choice = false;
-	if (st_choice) {
-		assert intrange > 0;
-		intMutate(v, gen_all(intrange));
-	}
-	else {
+	int st_choice = {| LOCMUTATE | INTMUTATE |};
+	if (st_choice == LOCMUTATE) {
 		assert locrange > 0;
 		locMutate(v, gen_non_zero(locrange), NEXT);
+	}
+	else if (st_choice == INTMUTATE) {
+		assert locrange > 0;
+		intMutate(v, gen_all(intrange));
 	}
 }
 
 generator void non_mutate_statement(int locrange, int intrange) {
 	int st_choice = {| LOCDEREF | INTDEREF | LOCASSGN | INTASSGN |};
-	if (intrange == 0) assert st_choice != INTDEREF && st_choice != INTASSGN;
-
 	if (st_choice == LOCDEREF) {
 		assert locrange > 0;
 		assert malloc_budget > 0;
@@ -881,9 +866,7 @@ generator void update_locvar_statement(int v, int locrange) {
 		assert locrange > 0;
 		//assert malloc_budget > 0;
 		//malloc_budget--;
-
-		//should mutate gen_non_zero(locrange), but let me assume mutation is only for itself now..
-		locderef2var(v, v);
+		locderef2var(gen_non_zero(locrange), v);
 	}
 	else { //if (st_choice == LOCASSGN) {
 		assert locrange > 0;
@@ -1029,7 +1012,7 @@ bit ranking_decreases(int rec, int v, int v2) {
 	int new_ranking = -1;
 	if (rec == LEN || rec == MAX || rec == MIN) {
 		if (!(locvars[v] >= 0 && locvars[v] < HEAPSIZE)) return (ranking == 0);
-		//else if (!treeness(locvars[v])) return (ranking == 0);
+		else if (!treeness(locvars[v])) return (ranking == 0);
 		else if (rec == LEN) new_ranking = len_comp(locvars[v]);
 		else if (rec == MAX) new_ranking = max_comp(locvars[v]);
 		else if (rec == MIN) new_ranking = min_comp(locvars[v]);
@@ -1037,7 +1020,7 @@ bit ranking_decreases(int rec, int v, int v2) {
 	else if (rec == LENSEG || rec == MAXSEG || rec == MINSEG) {
 		if (!(locvars[v] >= 0 && locvars[v] < HEAPSIZE)) return (ranking == 0);
 		else if (!(locvars[v2] >= 0 && locvars[v2] < HEAPSIZE)) return (ranking == 0);
-		//else if (!p_treeness(locvars[v], locvars[v2])) return (ranking == 0);
+		else if (!p_treeness(locvars[v], locvars[v2])) return (ranking == 0);
 		else if (rec == LENSEG) new_ranking = lenseg_comp(locvars[v], locvars[v2]);
 		else if (rec == MAXSEG) new_ranking = maxseg_comp(locvars[v], locvars[v2]);
 		else if (rec == MINSEG) new_ranking = minseg_comp(locvars[v], locvars[v2]);
@@ -1077,7 +1060,10 @@ bit sllseg_inv(int v1, int v2) {
 	assert v2>0 && v2<LOCVARSIZE;
 	if (!(locvars[v1] >= 0 && locvars[v1] < HEAPSIZE 
 	&& locvars[v2] >= 0 && locvars[v2] < HEAPSIZE)) return false;
-	return (p_treeness(locvars[v1], locvars[v2]) && sllseg_comp(locvars[v1], locvars[v2]));
+	else if (locvars[v1] == locvars[v2]) return (locvars[v2] != 0 &&
+			(treeness(locvars[v2]) || (!p_treeness(locvars[v1], locvars[v2]))));
+	else return (!p_treeness(locvars[v1], locvars[v2]))
+	|| ((!p_treeness(locvars[v2], locvars[v1])) && sllseg_comp(locvars[v1], locvars[v2]));
 }
 
 bit rsllseg_inv(int v1, int v2) {
@@ -1085,7 +1071,10 @@ bit rsllseg_inv(int v1, int v2) {
 	assert v2>0 && v2<LOCVARSIZE;
 	if (!(locvars[v1] >= 0 && locvars[v1] < HEAPSIZE
 	&& locvars[v2] >= 0 && locvars[v2] < HEAPSIZE)) return false;
-	return (p_treeness(locvars[v1], locvars[v2]) && rsllseg_comp(locvars[v1], locvars[v2]));
+	else if (locvars[v1] == locvars[v2]) return (locvars[v2] != 0  &&
+			(treeness(locvars[v2]) || (!p_treeness(locvars[v1], locvars[v2]))));
+	else return (!p_treeness(locvars[v1], locvars[v2]))
+	|| ((!p_treeness(locvars[v2], locvars[v1])) && rsllseg_comp(locvars[v1], locvars[v2]));
 }
 
 bit sll_equal_inv(int v) {
@@ -1112,11 +1101,11 @@ bit max_equal_inv(int v, int val) {
 	else return treeness(locvars[v]) && max_comp(locvars[v]) == val;
 }
 
-bit len_preserve_inv(int val, int v1, int v2, int v3, bit single) {
+bit len_preserve_inv(int val, int v1, int v2, bit single) {
 	assert v1>0 && v1<LOCVARSIZE;
 	if (!(locvars[v1] >= 0 && locvars[v1] < HEAPSIZE)) return false;
 	else if (single)
-		return treeness(locvars[v3]) && len_comp(locvars[v3]) == val;
+		return treeness(locvars[v1]) && len_comp(locvars[v1]) == val;
 	else {
 		//int v1 = gen_non_zero(looplocrange-1);
 		//int v2 = gen_non_zero(looplocrange-1)+1;
@@ -1146,20 +1135,23 @@ bit lenseg_preserve_inv(int val, int v1, int v2, int v3, int v4, bit single) {
 		assert v4>=0 && v4<LOCVARSIZE;
 		if (! (locvars[v2] >= 0 && locvars[v2] < HEAPSIZE
 		&& locvars[v4] >= 0 && locvars[v4] < HEAPSIZE)) return false;
-		else if (p_treeness(locvars[v1], locvars[v3]) && p_treeness(locvars[v2], locvars[v4])) {
-			int l1 = lenseg_comp(locvars[v1], locvars[v3]);
-			int l2 = lenseg_comp(locvars[v2], locvars[v4]);
+		else {
+			//if (locvars[v1] == 0 && locvars[v3] != 0) l1 = 0;
+			//else if (p_treeness(locvars[v1], locvars[v3]))
+			int l1 = (p_treeness(locvars[v1], locvars[v3])) ? lenseg_comp(locvars[v1], locvars[v3]) : 0;
+			//if (locvars[v2] == 0 && locvars[v4] != 0) l2 = 0;
+			//else if (p_treeness(locvars[v2], locvars[v4]))
+			int l2 = (p_treeness(locvars[v2], locvars[v4])) ? lenseg_comp(locvars[v2], locvars[v4]) : 0;
 			return l1 + l2 == val;
 		}
-		else return false;
 	}
 }
 
-bit min_preserve_inv(int val, int v1, int v2, int v3, bit single) {
+bit min_preserve_inv(int val, int v1, int v2, bit single) {
 	assert v1>0 && v1<LOCVARSIZE;
 	if (!(locvars[v1] >= 0 && locvars[v1] < HEAPSIZE)) return false;
 	else if (single)
-		return treeness(locvars[v3]) && min_comp(locvars[v3]) == val;
+		return treeness(locvars[v1]) && min_comp(locvars[v1]) == val;
 	else {
 		//int v1 = gen_non_zero(looplocrange-1);
 		//int v2 = gen_non_zero(looplocrange-1)+1;
@@ -1189,20 +1181,23 @@ bit minseg_preserve_inv(int val, int v1, int v2, int v3, int v4, bit single) {
 		assert v4>=0 && v4<LOCVARSIZE;
 		if (! (locvars[v2] >= 0 && locvars[v2] < HEAPSIZE
 		&& locvars[v4] >= 0 && locvars[v4] < HEAPSIZE)) return false;
-		else if (p_treeness(locvars[v1], locvars[v3]) && p_treeness(locvars[v2], locvars[v4])) {
+		else {
+			//if (locvars[v1] == 0 && locvars[v3] != 0) m1 = INTMAX;
+			//else if (p_treeness(locvars[v1], locvars[v3]))
 			int m1 = (p_treeness(locvars[v1], locvars[v3])) ? minseg_comp(locvars[v1], locvars[v3]) : INTMAX;
+			//if (locvars[v2] == 0 && locvars[v4] != 0) m2 = INTMAX;
+			//else if (p_treeness(locvars[v2], locvars[v4]))
 			int m2 = (p_treeness(locvars[v2], locvars[v4])) ? minseg_comp(locvars[v2], locvars[v4]) : INTMAX;
 			return (m1 <= m2 ? m1 : m2) == val;
 		}
-		else return false;
 	}
 }
 
-bit max_preserve_inv(int val, int v1, int v2, int v3, bit single) {
+bit max_preserve_inv(int val, int v1, int v2, bit single) {
 	assert v1>0 && v1<LOCVARSIZE;
 	if (!(locvars[v1] >= 0 && locvars[v1] < HEAPSIZE)) return false;
 	else if (single)
-		return treeness(locvars[v3]) && max_comp(locvars[v3]) == val;
+		return treeness(locvars[v1]) && max_comp(locvars[v1]) == val;
 	else {
 		//int v1 = gen_non_zero(looplocrange-1);
 		//int v2 = gen_non_zero(looplocrange-1)+1;
@@ -1232,12 +1227,15 @@ bit maxseg_preserve_inv(int val, int v1, int v2, int v3, int v4, bit single) {
 		assert v4>=0 && v4<LOCVARSIZE;
 		if (! (locvars[v2] >= 0 && locvars[v2] < HEAPSIZE
 		&& locvars[v4] >= 0 && locvars[v4] < HEAPSIZE)) return false;
-		else if (p_treeness(locvars[v1], locvars[v3]) && p_treeness(locvars[v2], locvars[v4])) {
+		else {
+			//if (locvars[v1] == 0 && locvars[v3] != 0) m1 = 0;
+			//else if (p_treeness(locvars[v1], locvars[v3]))
 			int m1 = (p_treeness(locvars[v1], locvars[v3])) ? maxseg_comp(locvars[v1], locvars[v3]) : 0;
+			//if (locvars[v2] == 0 && locvars[v4] != 0) m2 = 0;
+			//else if (p_treeness(locvars[v2], locvars[v4]))
 			int m2 = (p_treeness(locvars[v2], locvars[v4])) ? maxseg_comp(locvars[v2], locvars[v4]) : 0;
 			return (m1 <= m2 ? m2 : m1) == val;
 		}
-		else return false;
 	}
 }
 
@@ -1286,10 +1284,12 @@ bit max_leq_min_inv(int v1, int v2, int v3, int v4) {
 	&& locvars[v2] >= 0 && locvars[v2] < HEAPSIZE
 	&& locvars[v3] >= 0 && locvars[v3] < HEAPSIZE
 	&& locvars[v4] >= 0 && locvars[v4] < HEAPSIZE)) return false;
-	return (!p_treeness(locvars[v1], locvars[v3])) || (!p_treeness(locvars[v2], locvars[v4]))
-			|| maxseg_comp(locvars[v1], locvars[v3]) <= minseg_comp(locvars[v2], locvars[v4]);
-	//return (p_treeness(locvars[v1], locvars[v3])) && (p_treeness(locvars[v2], locvars[v4]))
-	//	&& maxseg_comp(locvars[v1], locvars[v3]) <= minseg_comp(locvars[v2], locvars[v4]);
+	//else if ((locvars[v1] == 0 && locvars[v3] != 0)
+	//		|| (locvars[v2] == 0 && locvars[v4] != 0)) return true;
+	//else if ((locvars[v1] == 0 && locvars[v3] == 0)
+	//		|| (locvars[v2] == 0 && locvars[v4] == 0)) return false;
+	return (!p_treeness(locvars[v1], locvars[3])) || (!p_treeness(locvars[v2], locvars[v4]))
+		|| maxseg_comp(locvars[v1], locvars[v3]) <= minseg_comp(locvars[v2], locvars[v4]);
 }
 
 bit disj_inv(int v1, int v2, int v3, int v4) {
@@ -1301,10 +1301,12 @@ bit disj_inv(int v1, int v2, int v3, int v4) {
 	&& locvars[v2] >= 0 && locvars[v2] < HEAPSIZE
 	&& locvars[v3] >= 0 && locvars[v3] < HEAPSIZE
 	&& locvars[v4] >= 0 && locvars[v4] < HEAPSIZE)) return false;
-	return (!p_treeness(locvars[v1], locvars[v3])) || (!p_treeness(locvars[v2], locvars[v4]))
-			|| disjoint(locvars[v1], locvars[v2], locvars[v3], locvars[v4]);
-	//return (p_treeness(locvars[v1], locvars[v3])) && (p_treeness(locvars[v2], locvars[v4]))
-	//	&& disjoint(locvars[v1], locvars[v2], locvars[v3], locvars[v4]);
+	//else if ((locvars[v1] == 0 && locvars[v3] != 0)
+	//		|| (locvars[v2] == 0 && locvars[v4] != 0)) return true;
+	//else if ((locvars[v1] == 0 && locvars[v3] == 0)
+	//		|| (locvars[v2] == 0 && locvars[v4] == 0)) return false;
+	return (!p_treeness(locvars[v1], locvars[3])) || (!p_treeness(locvars[v2], locvars[v4]))
+		|| disjoint(locvars[v1], locvars[v2], locvars[v3], locvars[v4]);
 }
 
 bit key_disj_inv(bit asst) {
@@ -1327,34 +1329,25 @@ generator bit predicate(int pred, int locrange, int intrange, int locrange2, int
 		return rsll_inv(aux_loc_var);
 	}
 	else {
-		int aux_loc_var2 = locrange + gen_non_zero(locrange2);
+		int aux_loc_var2 = gen_non_zero(locrange+locrange2);
 		int aux_loc_var3 = gen_non_zero(locrange);
-		int aux_loc_var4 = locrange + gen_non_zero(locrange2);
+		int aux_loc_var4 = gen_non_zero(locrange+locrange2);
 		assert aux_loc_var < aux_loc_var2;
-		assert aux_loc_var != aux_loc_var3;
-		bit d = ??;
 		if (pred == NEXTTO) {
-			//assert aux_loc_var2 <= locrange;
-			if (d) return nextTo(aux_loc_var, aux_loc_var3);
-			else return nextTo(aux_loc_var2, aux_loc_var4);
+			assert aux_loc_var2 <= locrange;
+			return nextTo(aux_loc_var, aux_loc_var2);
 		}
 		else if (pred == MAXLEQMIN) {
-			//assert aux_loc_var2 <= locrange;
-			assert aux_loc_var2 != aux_loc_var4;
-			return max_leq_min_inv(aux_loc_var, aux_loc_var3, aux_loc_var2, aux_loc_var4);
+			assert aux_loc_var2 <= locrange;
+			return max_leq_min_inv(aux_loc_var, aux_loc_var2, aux_loc_var3, aux_loc_var4);
 		}
 		else if (pred == DISJ) {
-			//assert aux_loc_var2 <= locrange;
-			assert aux_loc_var2 != aux_loc_var4;
-			return disj_inv(aux_loc_var, aux_loc_var3, aux_loc_var2, aux_loc_var4);
+			assert aux_loc_var2 <= locrange;
+			return disj_inv(aux_loc_var, aux_loc_var2, aux_loc_var3, aux_loc_var4);
 		}
 		else if (pred == SLLSEG) {
-			if (d) return sllseg_inv(aux_loc_var2, aux_loc_var);
-			else return sllseg_inv(aux_loc_var, aux_loc_var2);
-		}
-		else if (pred == RSLLSEG) {
-			if (d) return rsllseg_inv(aux_loc_var2, aux_loc_var);
-			else return rsllseg_inv(aux_loc_var, aux_loc_var2);
+			if (??) return sllseg_inv(aux_loc_var2, aux_loc_var);
+			else sllseg_inv(aux_loc_var, aux_loc_var2);
 		}
 		else {
 			assert intrange+intrange2 > 0;
@@ -1363,15 +1356,15 @@ generator bit predicate(int pred, int locrange, int intrange, int locrange2, int
 				return keyLeqTo(aux_loc_var, aux_int_var);
 			}
 			else if (pred == LENSEGEQ) {
-				if (d) return lenseg_equal_inv(aux_loc_var2, aux_loc_var, intvars[aux_int_var]);
-				else return lenseg_equal_inv(aux_loc_var, aux_loc_var2, intvars[aux_int_var]);
+				if (??) return lenseg_equal_inv(aux_loc_var2, aux_loc_var, intvars[aux_int_var]);
+				else return lenseg_equal_inv(aux_loc_var, aux_loc_var2, {| intvars[aux_int_var] | -1 |});
 			}
 			else if (pred == MAXSEGEQ) {
-				if (d) return maxseg_equal_inv(aux_loc_var2, aux_loc_var, intvars[aux_int_var]);
+				if (??) return maxseg_equal_inv(aux_loc_var2, aux_loc_var, intvars[aux_int_var]);
 				else return maxseg_equal_inv(aux_loc_var, aux_loc_var2, intvars[aux_int_var]);
 			}
 			else if (pred == MINSEGEQ) {
-				if (d) return minseg_equal_inv(aux_loc_var2, aux_loc_var, intvars[aux_int_var]);
+				if (??) return minseg_equal_inv(aux_loc_var2, aux_loc_var, intvars[aux_int_var]);
 				else return minseg_equal_inv(aux_loc_var, aux_loc_var2, intvars[aux_int_var]);
 			}
 			else return false;
@@ -1380,8 +1373,7 @@ generator bit predicate(int pred, int locrange, int intrange, int locrange2, int
 }
 
 generator bit any_pred(int locrange, int intrange, int locrange2, int intrange2) {
-	if (intrange+intrange2 <= 0) return predicate({| SLL | SLLSEG | NEXTTO | MAXLEQMIN | RSLL | RSLLSEG | DISJ |}, locrange, intrange, locrange2, intrange2);
-	else return predicate({| SLL | SLLSEG | NEXTTO | KEYLEQTO | MAXSEGEQ | MINSEGEQ | LENSEGEQ | MAXLEQMIN | RSLL | RSLLSEG | DISJ |}, locrange, intrange, locrange2, intrange2);
+	return predicate({| SLL | SLLSEG | NEXTTO | KEYLEQTO | MAXSEGEQ | MINSEGEQ | LENSEGEQ | MAXLEQMIN | RSLL | DISJ |}, locrange, intrange, locrange2, intrange2);
 }
 
 generator bit any_literal(int locrange, int intrange, int locrange2, int intrange2) {

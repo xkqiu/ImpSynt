@@ -30,6 +30,7 @@ import java.util.LinkedList;
   public HashMap<String, CommonTree> body = new HashMap<String, CommonTree>();
   public HashMap<String, Pair<CommonTree, CommonTree>> requires_ensures = new HashMap<String, Pair<CommonTree, CommonTree>>();
   public HashMap<String, HashSet<String>> olds = new HashMap<String, HashSet<String>>();
+  public HashMap<String, HashSet<String>> preRecs = new HashMap<String, HashSet<String>>();
   public HashMap<String, HashSet<String>> postRecs = new HashMap<String, HashSet<String>>();
   public HashMap<String, Pair<CommonTree, CommonTree>> pre_post = new HashMap<String, Pair<CommonTree, CommonTree>>();
   public HashMap<String, HashSet<String>> derefVar = new HashMap<String, HashSet<String>>();
@@ -42,6 +43,7 @@ import java.util.LinkedList;
   String currentMtd = "";
   public HashMap<Integer, HashSet<String>> currentMod;
   public HashSet<String> currentOlds;
+  public HashSet<String> currentPreRecs;
   public HashSet<String> currentPostRecs;
   public boolean oldOn = false;
   public HashMap<String, HashMap<Integer, HashSet<String>>> modifiedVar = new HashMap<String, HashMap<Integer, HashSet<String>>>();
@@ -63,7 +65,7 @@ import java.util.LinkedList;
 
 public
 program
-    :   ^(PROG recDecl* formDecl* methodDef* bbDef*)
+    :   ^(PROG recDecl* formDecl* methodDef*)
     ;
 
 recDecl
@@ -411,8 +413,12 @@ methodDef
         currentOlds = new HashSet<String>();
       }
       methodArgs 
+      {
+        currentPreRecs = new HashSet<String>();
+      }
       requires 
       {
+        preRecs.put($ID.text, currentPreRecs);
         currentPostRecs = new HashSet<String>();
       }
       ensures
@@ -458,45 +464,7 @@ ensures returns [CommonTree value]
     :   ^('ensures' p=formula) { $value = (CommonTree)p.getTree(); }
   ;
 
-bbDef
-    :   ^(
-        'bb'
-      ID
-      {
-          currentDef = "";
-        currentVar = "";
-        currentSecondVar = "";
-          currentBB = $ID.text;
-        secondArg.put($ID.text, new HashSet<String>());
-        derefVar.put($ID.text, new HashSet<String>());
-        locVars.put($ID.text, new HashSet<String>());
-        intVars.put($ID.text, new HashSet<String>());
-        sVars.put($ID.text, new HashSet<String>());
-        lsVars.put($ID.text, new HashSet<String>());
-        msVars.put($ID.text, new HashSet<String>());
-        currentMod = new HashMap<Integer, HashSet<String>>();
-        callCount = 0;
-        currentMod.put(callCount, new HashSet<String>());
-        comms.put($ID.text, new LinkedList<CommonTree>());
-      }
-      pre
-      post
-      basicBlock
-     )
-       {
-         pre_post.put($ID.text, new Pair<CommonTree, CommonTree>($pre.value, $post.value));
-       modifiedVar.put($ID.text, currentMod);
-       segNum.put($ID.text, ++callCount);
-     }
-  ;
 
-pre returns [CommonTree value]
-    :   ^('pre' p=formula) { $value = (CommonTree)p.getTree(); }
-  ;
-
-post returns [CommonTree value]
-    :   ^('post' p=formula) { $value = (CommonTree)p.getTree(); }
-  ;
 
 methodBody
     :
@@ -528,15 +496,6 @@ conditional
 el
     :
     ^('else' statement)
-    ;
-
-basicBlock
-    :   ^(
-        BB
-      (p=command {
-          if (comms.containsKey(currentBB)) comms.get(currentBB).add((CommonTree)p.getTree());
-      })*
-     )
     ;
 
 command
@@ -710,9 +669,10 @@ atomForm
   |   TRUE
   |   EMP
   |   RESULTFORM
-  |   bVar
+  |   relRec
   |   rec
   |   {oldOn = true;} ^(OLD formula) {oldOn = false;}
+  |   bVar
   ;
 
 pointsTo
@@ -827,11 +787,15 @@ relRec
     { 
       if ((!$p.value.equals("nil")) && (!currentBB.equals("")))
         secondArg.get(currentBB).add($p.value);
+      if (currentPreRecs != null) currentPreRecs.add($ID.text);
+      if (currentPostRecs != null) currentPostRecs.add($ID.text);
+      if (oldOn) currentOlds.add($ID.text);
     })
   ;
   
 rec
     :   ^(REC ID locTerm) {
+            if (currentPreRecs != null) currentPreRecs.add($ID.text);
             if (currentPostRecs != null) currentPostRecs.add($ID.text);
             if (oldOn) currentOlds.add($ID.text);
             }
@@ -839,6 +803,7 @@ rec
   
 iRec
     :   ^(IREC ID locTerm) {
+            if (currentPreRecs != null) currentPreRecs.add($ID.text);
             if (currentPostRecs != null) currentPostRecs.add($ID.text);
             if (oldOn) currentOlds.add($ID.text);
             }
@@ -849,6 +814,9 @@ biRec
     { 
       if ((!$p.value.equals("nil")) && (!currentBB.equals("")))
         secondArg.get(currentBB).add($p.value);
+      if (currentPreRecs != null) currentPreRecs.add($ID.text);
+      if (currentPostRecs != null) currentPostRecs.add($ID.text);
+      if (oldOn) currentOlds.add($ID.text);
     })
   ;
   

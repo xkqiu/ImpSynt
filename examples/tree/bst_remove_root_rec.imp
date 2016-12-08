@@ -1,4 +1,18 @@
 
+/*
+v1 = v3.left;
+v2 = v3.right;
+if (v1 == null) return v2;
+else if (v2 == null) return v1;
+else {
+	v2 = v1.right;
+	v3.left = v2;
+	v2 = remove_root(v3, k0);
+	v1.right = v2;
+	return v1;
+}
+*/
+
 loc bst_remove_root_rec(loc root, int k)
 requires ( bst^(root) & (root |-> int key: k) )
 	& (~ (root l= nil))
@@ -9,6 +23,7 @@ ensures ( ( bst^(resultloc) & (size^(resultloc) i= (old(size^(root)) - 1)) ) & (
 	) )
 
 {
+    statement(2);
     if (cond(1)) return ???;
     else if (cond(1)) return ???;
     else {

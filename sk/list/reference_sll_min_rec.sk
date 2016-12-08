@@ -56,22 +56,30 @@ harness void list_find_min_rec(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintv
 
 	ranking_snapshot(rank_func_list_find_min_rec, 2, 1);
 
-	if (basic_cond0(2, 2)) 	{
-	statement0(1, 2, 1, 0);
-	statement1(1, 2, 1, 0);
-
+	//if (basic_cond0(2, 2)) 	{
+	if (locvar_eq(2, 0)) {
+	intVarAssign(0, 0, 7);
+	//assertPost(post_cond_list_find_min_rec(ret, 2, old_min));
 	}
 
 	else 	{
-	statement2(1, 2, 1, 0);
+	statement0(1, 2, 1, 0);
+	//locderef2var(2, 1);
 	int rank_var_for_call_0 = loc_id0(2);
 	assertPost(ranking_decreases(rank_func_list_find_min_rec, rank_var_for_call_0, 1));
 	rec_list_find_min_rec(rank_var_for_call_0, int_id0(2), ret_value, new_symbolic, new_next, new_supernext, new_key);
-	if (basic_cond1(2, 2)) 	statement3(1, 2, 1, 0);
+	//rec_list_find_min_rec(rank_var_for_call_0, 0, ret_value, new_symbolic, new_next, new_supernext, new_key);
+	if (basic_cond1(2, 2)) statement1(1, 2, 1, 0);
+	//if ((!locvar_eq(2, 0)) && intderef_lt_var(2, 0))
+		//intderef2var(2, 0);
 
+	//assertPost(next[locvars[2]] == locvars[1]);
+	//assertPost(post_cond_list_find_min_rec(ret, 2, old_min));
+	//assertPost(tree_inv(2) && (intvars[0] == old_min));
 
 	}
 
+	//ret_loc(1);
 	ret_int(0);
 
 	assertPost(post_cond_list_find_min_rec(ret, 2, old_min));
@@ -81,12 +89,6 @@ void statement0(int locrange, int intrange, int locrange2, int intrange2) {
 	statement(locrange, intrange, locrange2, intrange2);
 }
 void statement1(int locrange, int intrange, int locrange2, int intrange2) { 
-	statement(locrange, intrange, locrange2, intrange2);
-}
-void statement2(int locrange, int intrange, int locrange2, int intrange2) { 
-	statement(locrange, intrange, locrange2, intrange2);
-}
-void statement3(int locrange, int intrange, int locrange2, int intrange2) { 
 	statement(locrange, intrange, locrange2, intrange2);
 }
 bit basic_cond0(int locrange, int intrange) { 

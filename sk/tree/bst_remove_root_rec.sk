@@ -47,7 +47,7 @@ bit cond0() {
 	return basic_branch_cond(4, 4, 2, 1);
 }
 
-harness void bst_remove_root_rec__0(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lleft, int[HEAPSIZE-1] lright, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive) {
+harness void bst_remove_root_rec__0(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lleft, int[HEAPSIZE-1] lright, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive,int ret_value, bit[HEAPSIZE-1] new_symbolic, int[HEAPSIZE-1] new_left, int[HEAPSIZE-1] new_right, int[HEAPSIZE-1] new_key) {
 
 	int[HEAPSIZE-1] lnext = {};
 	int[HEAPSIZE-1] lsupernext = {};
@@ -72,7 +72,7 @@ bit cond1() {
 	return basic_branch_cond(4, 4, 2, 1);
 }
 
-harness void bst_remove_root_rec__1(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lleft, int[HEAPSIZE-1] lright, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive) {
+harness void bst_remove_root_rec__1(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lleft, int[HEAPSIZE-1] lright, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive,int ret_value, bit[HEAPSIZE-1] new_symbolic, int[HEAPSIZE-1] new_left, int[HEAPSIZE-1] new_right, int[HEAPSIZE-1] new_key) {
 
 	int[HEAPSIZE-1] lnext = {};
 	int[HEAPSIZE-1] lsupernext = {};
@@ -95,7 +95,7 @@ harness void bst_remove_root_rec__1(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] 
 	assertPost(post_cond_bst_remove_root_rec(ret, 4, 1, old_min, old_max, old_size, old_k));
 
 }
-harness void bst_remove_root_rec__2(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lleft, int[HEAPSIZE-1] lright, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive) {
+harness void bst_remove_root_rec__2(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lleft, int[HEAPSIZE-1] lright, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive,int ret_value, bit[HEAPSIZE-1] new_symbolic, int[HEAPSIZE-1] new_left, int[HEAPSIZE-1] new_right, int[HEAPSIZE-1] new_key) {
 
 	int[HEAPSIZE-1] lnext = {};
 	int[HEAPSIZE-1] lsupernext = {};
@@ -117,7 +117,7 @@ harness void bst_remove_root_rec__2(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] 
 	statement(3, 1, 1, 1);
 	int rank_var_for_call_0 = gen_non_zero(4);
 	assertPost(ranking_decreases(rank_func_bst_remove_root_rec, rank_var_for_call_0));
-	rec_bst_remove_root_rec(rank_var_for_call_0, gen_all(2), gen_non_zero(3), new_symbolic, new_next, new_supernext, new_key);
+	rec_bst_remove_root_rec(rank_var_for_call_0, gen_all(2), gen_non_zero(3), new_symbolic, new_left, new_right, new_key);
 	statement(3, 1, 1, 1);
 	ret_loc(gen_non_zero(4));
 

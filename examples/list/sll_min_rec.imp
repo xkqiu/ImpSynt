@@ -1,16 +1,16 @@
 
 int list_find_min_rec(loc x)
 requires tree^(x)
-ensures resultint i= old(min^(x))
+ensures tree^(x) & (resultint i= old(min^(x)))
 {
     if (cond(1)) {
-        statement(1);
+        statement(2);
     }
     else {
-        statement(1);
+	statement(1);
         int ?? := list_find_min_rec(???);
         if (cond(1)) statement(1);
     }
-    return ??;
+    return i_0;
 }
 

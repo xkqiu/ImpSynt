@@ -18,8 +18,8 @@ IVAR; LVAR; BVAR; SVAR; LSVAR; MSVAR; CONS;} // imaginary token
 
 public
 program
-    :   recDecl* formDecl* methodDef* bbDef*
-      -> ^(PROG recDecl* formDecl* methodDef* bbDef*)
+    :   recDecl* formDecl* methodDef*
+      -> ^(PROG recDecl* formDecl* methodDef*)
     ;
 
 formDecl
@@ -48,18 +48,7 @@ ensures
     :   'ensures'^ formula
   ;
 
-bbDef
-    :   'bb' ID ':' pre post '{' basicBlock '}'
-      -> ^('bb' ID pre post ^(BB basicBlock))
-  ;
 
-pre
-    :   'pre'^ ':'! formula ';'!
-  ;
-
-post
-    :   'post'^ ':'! formula ';'!
-  ;
 
 methodBody
     :   statement*
@@ -94,11 +83,6 @@ conditional
 el
     :
     'else'^ statement
-    ;
-
-basicBlock
-    :   (command ';')*
-      -> ^(BB command*)
     ;
     
 
@@ -306,10 +290,10 @@ atomForm
   |   TRUE
   |   EMP
   |   RESULTFORM
-  |   bVar
-  |   rec
   |   relRec
+  |   rec
   |   OLD^ '('! formula ')'!
+  |   bVar
   ;
 
 pointsTo
@@ -340,9 +324,9 @@ atomIntTerm
     :  '(' intTerm ')' -> ^(ATOMINT intTerm)  
   |   INT
   |   RESULTINT
-  |   iVar
   |   iRec
   |   biRec
+  |   iVar
   |   BOT
   |   TOP
   |   OLD^ '('! intTerm ')'!
@@ -474,7 +458,7 @@ func
   ;
 
 relRec
-    :   ID '!' '(' locTerm ',' locTerm ')' -> ^(RELREC ID locTerm locTerm)
+    :   ID '^' '(' locTerm ',' locTerm ')' -> ^(RELREC ID locTerm locTerm)
   ;
 
 rec
@@ -486,7 +470,7 @@ iRec
   ;
 
 biRec
-    :   ID '!' '(' locTerm ',' locTerm ')' -> ^(BIREC ID locTerm locTerm)
+    :   ID '^' '(' locTerm ',' locTerm ')' -> ^(BIREC ID locTerm locTerm)
   ;
 
 sRec
@@ -494,7 +478,7 @@ sRec
   ;
 
 bsRec
-    :   ID '!' '(' locTerm ',' locTerm ')' -> ^(BSREC ID locTerm locTerm)
+    :   ID '^' '(' locTerm ',' locTerm ')' -> ^(BSREC ID locTerm locTerm)
   ;
 
 lsRec

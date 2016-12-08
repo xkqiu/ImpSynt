@@ -1,16 +1,16 @@
-pragma options "--slv-simiters 10 --bnd-inbits 2 --bnd-inline-amnt 3 --bnd-unroll-amnt 3 ";
+pragma options "--slv-simiters 10 --bnd-inbits 3 --bnd-inline-amnt 5 --bnd-unroll-amnt 3 ";
 
 int TIMESIZE = 4;
 int BOUND = 3;
 int INTMAX = 7;
 int HEAPSIZE = 4;
 int LOCVARSIZE = 3;
-int INTVARSIZE = 1;
+int INTVARSIZE = 2;
 int MBUDGET = 1;
 
 include "header/lseg_header.skh";
 
-int old_sll, old_len, old_min, old_max;
+int old_sll, old_len, old_min, old_max, old_size, old_height, old_lenseg, old_minseg, old_maxseg;
 
 int newer_sll, newer_max;
 
@@ -27,10 +27,9 @@ void rec_list_find_max_rec(int x, int recret, ref int rv, ref bit[HEAPSIZE-1] ne
 	assumePre(post_cond_list_find_max_rec(recret, x, newer_max));
 }
 
-int rank_func_list_find_max_rec = {| 1 |}; //len, min or max
+int rank_func_list_find_max_rec = {| LEN | LENSEG |}; //len, min or max
 
 void snapshot_list_find_max_rec(int x, ref int osll, ref int omax) {
-	osll = sll_comp(locvars[x]);
 	omax = max_comp(locvars[x]);
 }
 
@@ -39,7 +38,7 @@ bit pre_cond_list_find_max_rec(int x) {
 }
 
 bit post_cond_list_find_max_rec(int r, int x, ref int old_max_x) {
-	return intvars[r] == old_max_x;
+	return (intvars[r] == old_max_x) && tree_inv(x);
 }
 
 harness void list_find_max_rec(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive, int ret_value, bit[HEAPSIZE-1] new_symbolic, int[HEAPSIZE-1] new_next, int[HEAPSIZE-1] new_supernext, int[HEAPSIZE-1] new_key) {
@@ -54,25 +53,49 @@ harness void list_find_max_rec(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintv
 
 	snapshot_list_find_max_rec(2, old_sll, old_max);
 
-	ranking_snapshot(rank_func_list_find_max_rec, 2);
+	ranking_snapshot(rank_func_list_find_max_rec, 2, 1);
 
-	if (basic_cond(2, 1)) 	{
-	statement(1, 1, 1, 0);
+	if (basic_cond0(2, 2)) 	{
+	statement0(1, 2, 1, 0);
 
 	}
 
 	else 	{
-	statement(1, 1, 1, 0);
-	int rank_var_for_call_0 = gen_non_zero(2);
-	assertPost(ranking_decreases(rank_func_list_find_max_rec, rank_var_for_call_0));
-	rec_list_find_max_rec(rank_var_for_call_0, gen_all(1), ret_value, new_symbolic, new_next, new_supernext, new_key);
-	if (basic_cond(2, 1)) 	statement(1, 1, 1, 0);
+	statement1(1, 2, 1, 0);
+	int rank_var_for_call_0 = loc_id0(2);
+	assertPost(ranking_decreases(rank_func_list_find_max_rec, rank_var_for_call_0, 1));
+	rec_list_find_max_rec(rank_var_for_call_0, int_id0(2), ret_value, new_symbolic, new_next, new_supernext, new_key);
+	if (basic_cond1(2, 2)) 	statement2(1, 2, 1, 0);
 
 
 	}
 
-	ret_int(gen_all(1));
+	ret_int(int_id1(2));
 
 	assertPost(post_cond_list_find_max_rec(ret, 2, old_max));
 
+}
+void statement0(int locrange, int intrange, int locrange2, int intrange2) { 
+	statement(locrange, intrange, locrange2, intrange2);
+}
+void statement1(int locrange, int intrange, int locrange2, int intrange2) { 
+	statement(locrange, intrange, locrange2, intrange2);
+}
+void statement2(int locrange, int intrange, int locrange2, int intrange2) { 
+	statement(locrange, intrange, locrange2, intrange2);
+}
+bit basic_cond0(int locrange, int intrange) { 
+	return basic_cond(locrange, intrange);
+}
+bit basic_cond1(int locrange, int intrange) { 
+	return basic_cond(locrange, intrange);
+}
+int loc_id0(int locrange) { 
+	return gen_non_zero(locrange);
+}
+int int_id0(int intrange) { 
+	return gen_all(intrange);
+}
+int int_id1(int intrange) { 
+	return gen_all(intrange);
 }

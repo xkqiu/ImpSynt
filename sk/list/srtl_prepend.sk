@@ -1,0 +1,60 @@
+pragma options "--slv-simiters 10 --bnd-inbits 3 --bnd-inline-amnt 4 --bnd-unroll-amnt 2 ";
+
+int TIMESIZE = 4;
+int BOUND = 2;
+int INTMAX = 7;
+int HEAPSIZE = 3;
+int LOCVARSIZE = 3;
+int INTVARSIZE = 1;
+int MBUDGET = 1;
+
+include "header/lseg_header.skh";
+
+int old_k, old_sll, old_len, old_min, old_max, old_size, old_height, old_lenseg, old_minseg, old_maxseg;
+
+int rank_func_srtl_prepend = {| LEN | LENSEG |}; //len, min or max
+
+void snapshot_srtl_prepend(int x, int k, ref int ok, ref int osll, ref int olen, ref int omin, ref int omax) {
+	olen = len_comp(locvars[x]);
+	omin = min_comp(locvars[x]);
+	omax = max_comp(locvars[x]);
+	ok = intvars[k];
+}
+
+bit pre_cond_srtl_prepend(int x, int k) {
+	return sll_inv(x) && (intvars[k] <= min_comp(locvars[x]));
+}
+
+bit post_cond_srtl_prepend(int r, int x, int k, ref int old_len_x, ref int old_min_x, ref int old_max_x, int old_k) {
+	return (sll_inv(r) && (len_equal_inv(r, (old_len_x + 1)))) && ((min_equal_inv(r, ((old_k < old_min_x) ? old_k : old_min_x))) && (max_equal_inv(r, ((old_max_x < old_k) ? old_k : old_max_x))));
+}
+
+harness void srtl_prepend(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive, int ret_value, bit[HEAPSIZE-1] new_symbolic, int[HEAPSIZE-1] new_next, int[HEAPSIZE-1] new_supernext, int[HEAPSIZE-1] new_key) {
+
+	int[HEAPSIZE-1] lleft = {};
+	int[HEAPSIZE-1] lright = {};
+	init(llocvars, lintvars, lnext, lsupernext, lleft, lright, lkey, lsymbolic, lactive);
+
+	assume(basic_assumptions() && basic_axioms());
+
+	assume pre_cond_srtl_prepend(2, 0);
+
+	snapshot_srtl_prepend(2, 0, old_k, old_sll, old_len, old_min, old_max);
+
+	ranking_snapshot(rank_func_srtl_prepend, 2, 1);
+
+	create_node0(loc_id0(1), 2, 1);
+	ret_loc(loc_id1(2));
+
+	assertPost(post_cond_srtl_prepend(ret, 2, 0, old_len, old_min, old_max, old_k));
+
+}
+int loc_id0(int locrange) { 
+	return gen_non_zero(locrange);
+}
+int loc_id1(int locrange) { 
+	return gen_non_zero(locrange);
+}
+void create_node0(int v, int locrange, int intrange) { 
+	create_node(v, locrange, intrange);
+}

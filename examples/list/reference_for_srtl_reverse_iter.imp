@@ -1,0 +1,24 @@
+loc test(loc x, loc y)
+requires lseg^(x,y)
+ensures ( (lseg^(resultloc, x) & (resultloc l= y)) & (lenseg^(resultloc, x) i= old(lenseg^(x, y))) )
+	& ( (minseg^(resultloc, x) i= old(minseg^(x, y))) & (maxseg^(resultloc, x) i= old(maxseg^(x, y))) )
+{
+	loc v1 := nil;
+	loc v2 := nil;
+	loc v3 := x;
+	while (! (v3 l== nil || v3 l== y)) {
+		//inv: len(v2) + len(v3) == oldlen
+		//	&& min(min(v2), min(v3)) == oldmin
+		//	&& max(max(v2), max(v3)) == oldmax
+		//	sll(v3) && rsll(v2) && max(v2) <= min(v3) && disjoint(v2, v3)
+		loc v1 := v2;
+		loc v2 := v3;
+		loc v3 := v3.next;
+		loc v2.next := v1;
+	}
+	return v2;
+	
+    //loop(3, 0, 3);
+    //return ???;
+}
+

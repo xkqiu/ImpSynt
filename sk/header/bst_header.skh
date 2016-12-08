@@ -834,7 +834,7 @@ generator bit positive_branch_cond(int v, int locrange, int locstart, int intran
 		return (!locvar_eq(v, 0)) && intderef_lt_var(v, gen_range(intstart, intrange));
 	}
 	else { //if (choice == LOCEQ) {
-		return locvar_eq(v, gen_range(locstart, locrange+1));
+		return locvar_eq(v, {| 0 | gen_range(locstart, locrange+1) |});
 	}
 }
 

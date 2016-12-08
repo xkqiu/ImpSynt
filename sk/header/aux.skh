@@ -9,6 +9,9 @@ int LEN = 1;
 int MAX = 2;
 int MIN = 3;
 int SIZE = 4;
+int LENSEG = 5;
+int MAXSEG = 6;
+int MINSEG = 7;
 
 int MALLOC = 0;
 int LOCDEREF = 1;
@@ -198,7 +201,7 @@ void intMutate(int c1, int c2) {
 
 
 bit locvar_eq(int c1, int c2) {
-	/* pick two loc vars, then choice2 = choice.next */
+	/* pick two loc vars, then choice2 = choice */
 	int choice = c1;
 	assert choice > 0;
 	assert choice < LOCVARSIZE;
@@ -210,7 +213,7 @@ bit locvar_eq(int c1, int c2) {
 }
 
 bit intvar_eq(int c1, int c2) {
-	/* pick two loc vars, then choice2 = choice.next */
+	/* pick two loc vars, then choice2 = choice */
 	int choice = c1;
 	assert choice > 0;
 	assert choice < INTVARSIZE;

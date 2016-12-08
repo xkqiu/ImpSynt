@@ -1,7 +1,7 @@
 
 int list_find_max_rec(loc x)
 requires tree^(x)
-ensures resultint i= old(max^(x))
+ensures (resultint i= old(max^(x))) & tree^(x)
 {
     if (cond(1)) {
         statement(1);
