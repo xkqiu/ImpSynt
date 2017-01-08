@@ -3,7 +3,8 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="ImpSynt">
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="ImpSynt">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
@@ -27,6 +28,14 @@
         <pathelement location="bin"/>
     </path>
     <path id="run.program find_rec.bootclasspath"/>
+    <path id="antlr-path">
+        <fileset dir="antlr">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    <manifestclasspath property="lib" jarfile="NaturalSynthesis.jar">
+        <classpath refid="antlr-path"/>
+    </manifestclasspath>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
@@ -53,6 +62,14 @@
             <src path="grammar"/>
             <classpath refid="ImpSynt.classpath"/>
         </javac>
+    </target>
+    <target name ="compile" description="Create a jar">
+        <jar destfile="NaturalSynthesis.jar" includes="*.class" basedir="bin">
+        	<manifest>
+        	    <attribute name="Main-Class" value="NaturalSynthesis"/>
+        		<attribute name="Class-Path" value="${lib}"/>
+        	</manifest>
+    	</jar>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target name="bst_left_rotate">
