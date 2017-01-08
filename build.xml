@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="ImpSynt">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="ImpSynt.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="../../../../../usr/local/lib/antlr-3.5.2-complete.jar"/>
+    </path>
+    <path id="run.methodArgs two_args.classpath">
+        <pathelement location="../.metadata/.plugins/org.deved.antlride.core/antlride-runtime-1445838817715-2.1.2.201108281759.jar"/>
+        <pathelement location="../.metadata/.plugins/org.deved.antlride.core/java/ImpSynt/src/Imp/classes"/>
+        <path refid="ImpSynt.classpath"/>
+        <pathelement location="../../../../../usr/local/lib/antlr-3.5.2-complete.jar"/>
+    </path>
+    <path id="run.methodArgs two_args.bootclasspath"/>
+    <path id="run.program find_rec.classpath">
+        <pathelement location="../.metadata/.plugins/org.deved.antlride.core/antlride-runtime-1443673372244-2.1.2.201108281759.jar"/>
+        <pathelement location="../.metadata/.plugins/org.deved.antlride.core/java/ImpSynt/src/ImpLex/classes"/>
+        <path refid="ImpSynt.classpath"/>
+        <pathelement location="../../../../../usr/local/lib/antlr-3.5.2-complete.jar"/>
+        <pathelement location="bin"/>
+    </path>
+    <path id="run.program find_rec.bootclasspath"/>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="grammar">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <src path="grammar"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target name="bst_left_rotate">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="tree bst_left_rotate 6 4 0 2"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="bst_remove_root_rec">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="tree bst_remove_root_rec 6 5 2 4"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="bst_right_rotate">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="tree bst_right_rotate 6 4 0 2"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="insertion_sort_rec">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="src/test/insertion_sort_rec.imp src/test/insertion_sort_rec.sk 4 4 2 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="methodArgs two_args">
+        <java classname="org.deved.antlride.runtime.LaunchParser" failonerror="true" fork="yes">
+            <arg line="-port 58159 -testCase /Users/xkqiu/Documents/workspace/.metadata/.plugins/org.deved.antlride.core/testsuite/Imp/methodArgs/two_args -lexer ImpLexer -parser ImpParser -ruleName methodArgs"/>
+            <classpath refid="run.methodArgs two_args.classpath"/>
+            <bootclasspath>
+                <path refid="run.methodArgs two_args.bootclasspath"/>
+            </bootclasspath>
+        </java>
+    </target>
+    <target name="New_configuration">
+        <java classname="" failonerror="true" fork="yes">
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="program find_rec">
+        <java classname="org.deved.antlride.runtime.LaunchParser" failonerror="true" fork="yes">
+            <arg line="-port 57288 -testCase /Users/xkqiu/Documents/workspace/.metadata/.plugins/org.deved.antlride.core/testsuite/ImpLex/program/find_rec -lexer ImpLexLexer -parser ImpLexParser -ruleName program"/>
+            <classpath refid="run.program find_rec.classpath"/>
+            <bootclasspath>
+                <path refid="run.program find_rec.bootclasspath"/>
+            </bootclasspath>
+        </java>
+    </target>
+    <target name="sll_len_iter">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="list sll_len_iter 4 3 1 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="sll_len_rec">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="list sll_len_rec 4 3 2 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="sll_max_iter">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="list sll_max_iter 4 3 1 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="sll_max_rec">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="list sll_max_rec 4 3 2 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="sll_min_iter">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="list sll_min_iter 4 3 1 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="sll_min_rec">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="list sll_min_rec 4 3 2 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="srtl_insert_iter">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="list srtl_insert_iter 5 4 1 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="srtl_insert_rec">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="list srtl_insert_rec 4 3 1 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="srtl_prepend">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="list srtl_prepend 3 3 1 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="srtl_reverse_iter">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="list srtl_reverse_iter 4 4 0 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="srtl_reverse_iter_new">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="list srtl_reverse_iter_new 5 6 0 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+    <target name="test">
+        <java classname="NaturalSynthesis" failonerror="true" fork="yes">
+            <arg line="list test 5 6 0 1"/>
+            <classpath refid="ImpSynt.classpath"/>
+        </java>
+    </target>
+</project>
