@@ -1,4 +1,4 @@
-pragma options "--slv-simiters 10 --bnd-inbits 2 --bnd-inline-amnt 3 --bnd-unroll-amnt 3 ";
+pragma options "--slv-simiters 4 --bnd-inbits 3 --bnd-inline-amnt 7 --bnd-unroll-amnt 3 ";
 
 int TIMESIZE = 4;
 int BOUND = 3;
@@ -10,12 +10,12 @@ int MBUDGET = 1;
 
 include "header/lseg_header.skh";
 
-int old_sll, old_len, old_min, old_max;
+int old_sll, old_len, old_min, old_max, old_size, old_height, old_lenseg, old_minseg, old_maxseg;
 
-int rank_func_list_find_len_iter = {| 1 |}; //len, min or max
+int rank_func_list_find_len_iter = 
+LEN;
 
 void snapshot_list_find_len_iter(int x, ref int osll, ref int olen) {
-	osll = sll_comp(locvars[x]);
 	olen = len_comp(locvars[x]);
 }
 
@@ -27,26 +27,39 @@ bit post_cond_list_find_len_iter(int r, int x, ref int old_len_x) {
 	return intvars[r] == old_len_x;
 }
 
-int rank_var_list_find_len_iter = {| 1 |};
+int rank_var_list_find_len_iter = 1;
+int rank_var_aux_list_find_len_iter = {| 2 |};
+
+int mutate_var_list_find_len_iter = ;
 
 bit preserve_sll = false;
 bit preserve_len = true;
 bit preserve_min = false;
 bit preserve_max = false;
 
+bit preserve_lenseg = false;
+bit preserve_minseg = false;
+bit preserve_maxseg = false;
+
 void guess_ranking_list_find_len_iter() {
 	assume rank_var_list_find_len_iter>0 && rank_var_list_find_len_iter<LOCVARSIZE;
-	ranking_snapshot(rank_func_list_find_len_iter, rank_var_list_find_len_iter);
+	assume rank_var_aux_list_find_len_iter>0 && rank_var_aux_list_find_len_iter<LOCVARSIZE;
+	ranking_snapshot(rank_func_list_find_len_iter, rank_var_list_find_len_iter, rank_var_aux_list_find_len_iter);
 }
 
 bit loop_preserves_list_find_len_iter() {
 	bit single = true;
-	int comp1 = gen_non_zero(1);
-	int comp2 = gen_non_zero(1)+1;
+	int comp1 = {| 1 |};
+	int comp2 = comp1 + 1;
+	int comp3 = {| 2 |};
+	int comp4 = {| 2 |};
 	return (preserve_sll ? sll_equal_inv(LOCVARSIZE-1) : true)
-	  && (preserve_len ? len_preserve_inv(LOCVARSIZE-1, old_len, comp1, comp2, single) : true)
-	  && (preserve_min ? min_preserve_inv(LOCVARSIZE-1, old_min, comp1, comp2, single) : true)
-	  && (preserve_max ? max_preserve_inv(LOCVARSIZE-1, old_max, comp1, comp2, single) : true)
+	  && (preserve_len ? len_preserve_inv(old_len, comp1, comp2, comp3, single) : true)
+	  && (preserve_min ? min_preserve_inv(old_min, comp1, comp2, comp3, single) : true)
+	  && (preserve_max ? max_preserve_inv(old_max, comp1, comp2, comp3, single) : true)
+	  && ((preserve_lenseg && comp3 != comp4) ? lenseg_preserve_inv(old_lenseg, comp1, comp2, comp3, comp4, single) : true)
+	  && ((preserve_minseg && comp3 != comp4) ? minseg_preserve_inv(old_minseg, comp1, comp2, comp3, comp4, single) : true)
+	  && ((preserve_maxseg && comp3 != comp4) ? maxseg_preserve_inv(old_maxseg, comp1, comp2, comp3, comp4, single) : true)
 	;
 }
 
@@ -61,11 +74,11 @@ bit loop_inv_pre_list_find_len_iter() {
 
 bit loop_inv_post_list_find_len_iter() {
 	return loop_inv_list_find_len_iter()
-	  && ranking_decreases(rank_func_list_find_len_iter, rank_var_list_find_len_iter);
+	  && ranking_decreases(rank_func_list_find_len_iter, rank_var_list_find_len_iter, rank_var_aux_list_find_len_iter);
 }
 
 bit loop_cond_list_find_len_iter() {
-	return cond_for_loop(1, 2, 1);
+	return cond_for_loop(1, 1, 1);
 }
 
 harness void before_loop_list_find_len_iter(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive) {
@@ -78,8 +91,8 @@ harness void before_loop_list_find_len_iter(int[LOCVARSIZE-1] llocvars, int[INTV
 	assume pre_cond_list_find_len_iter(2);
 	snapshot_list_find_len_iter(2, old_sll, old_len);
 
-	update_intvar(0, LOCVARSIZE-1, INTVARSIZE);
-	update_locvar(1, LOCVARSIZE-1, INTVARSIZE);
+	update_intvar0(LOCVARSIZE-1, INTVARSIZE);
+	update_locvar0(1, LOCVARSIZE-1, INTVARSIZE);
 
 	assertPost(loop_inv_pre_list_find_len_iter());
 }
@@ -98,8 +111,8 @@ harness void iterate_list_find_len_iter(int lold_sll, int lold_len, int[LOCVARSI
 	assume loop_cond_list_find_len_iter();
 	guess_ranking_list_find_len_iter();
 
-	update_intvar(0, 1, 1);
-	update_locvar(1, 1, 1);
+	update_intvar1(1, 1);
+	update_locvar1(1, 1, 1);
 
 	assertPost(loop_inv_post_list_find_len_iter());
 }
@@ -114,11 +127,30 @@ harness void after_loop_list_find_len_iter(int lold_sll, int lold_len, int[LOCVA
 	old_len = lold_len;
 
 	assume(basic_assumptions() && basic_axioms());
-	assume loop_inv_pre_list_find_len_iter();
+	assume loop_inv_list_find_len_iter();
 	assume !loop_cond_list_find_len_iter();
 
-	ret_int(gen_all(1));
+	mutate_locvar0({| 1 |}, 1, 1);
+	ret_int(int_id0(1));
 
 	assertPost(post_cond_list_find_len_iter(ret, 2, old_len));
 }
 
+int int_id0(int intrange) { 
+	return gen_all(intrange);
+}
+void update_intvar0(int locrange, int intrange) { 
+	update_intvar_statement(0, locrange - 1, intrange);
+}
+void update_intvar1(int locrange, int intrange) { 
+	update_intvar(0, locrange, intrange);
+}
+void update_locvar0(int to, int locrange, int intrange) { 
+	update_locvar(to , locrange, intrange);
+}
+void update_locvar1(int to, int locrange, int intrange) { 
+	update_locvar(to, locrange, intrange);
+}
+void mutate_locvar0(int v, int locrange, int intrange) { 
+	mutate_locvar(v, locrange, intrange);
+}

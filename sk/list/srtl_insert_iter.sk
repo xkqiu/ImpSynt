@@ -126,17 +126,14 @@ harness void before_loop_srtl_insert_iter(int[LOCVARSIZE-1] llocvars, int[INTVAR
 	assume pre_cond_srtl_insert_iter(3, 0);
 	snapshot_srtl_insert_iter(3, 0, old_k, old_sll, old_len, old_min, old_max);
 
-	//assume !cond0();
-	assume !locvar_eq(3, 0);
+	assume !cond0();
 
-	//update_locvar0(1, LOCVARSIZE-1, INTVARSIZE);
-	locVarAssign(1, 3);
-	//update_locvar1(2, LOCVARSIZE-1, INTVARSIZE);
-	locderef2var(3, 2);
+	update_locvar0(1, LOCVARSIZE-1, INTVARSIZE);
+	update_locvar1(2, LOCVARSIZE-1, INTVARSIZE);
 
 	assertPost(loop_inv_pre_srtl_insert_iter());
 }
-/*
+
 harness void iterate_srtl_insert_iter(int lold_sll, int lold_len, int lold_min, int lold_max, int lold_k, int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive) {
 
 	int[HEAPSIZE-1] lleft = {};
@@ -185,7 +182,6 @@ harness void after_loop_srtl_insert_iter(int lold_sll, int lold_len, int lold_mi
 
 	assertPost(post_cond_srtl_insert_iter(ret, 3, 0, old_len, old_min, old_max, old_k));
 }
-*/
 
 void statement0(int locrange, int intrange, int locrange2, int intrange2) { 
 	statement(locrange, intrange, locrange2, intrange2);

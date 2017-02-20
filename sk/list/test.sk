@@ -1,4 +1,4 @@
-pragma options "--bnd-inbits 3 --bnd-inline-amnt 8 --bnd-unroll-amnt 4 ";
+pragma options "--slv-simiters 4 --bnd-inbits 3 --bnd-inline-amnt 8 --bnd-unroll-amnt 4 ";
 
 int TIMESIZE = 4;
 int BOUND = 4;
@@ -12,7 +12,8 @@ include "header/lseg_header.skh";
 
 int old_sll, old_len, old_min, old_max, old_size, old_height, old_lenseg, old_minseg, old_maxseg;
 
-int rank_func_test = LENSEG; //len, min or max
+int rank_func_test = 
+LEN;
 
 void snapshot_test(int x, int y, ref int osll, ref int olenseg, ref int ominseg, ref int omaxseg) {
 	olenseg = lenseg_comp(locvars[x], locvars[y]);
@@ -21,17 +22,17 @@ void snapshot_test(int x, int y, ref int osll, ref int olenseg, ref int ominseg,
 }
 
 bit pre_cond_test(int x, int y) {
-	return nextTo(y, y) && sllseg_inv(x, y) && !locvar_eq(x, y);
+	return lseg_inv(x, y);
 }
 
 bit post_cond_test(int r, int x, int y, ref int old_lenseg_x_y, ref int old_minseg_x_y, ref int old_maxseg_x_y) {
-	return ((rsllseg_inv(r, x) && (locvar_eq(r, y))) && (lenseg_comp(locvars[r], locvars[x]) == old_lenseg_x_y)) && ((minseg_comp(locvars[r], locvars[x]) == old_minseg_x_y) && (maxseg_comp(locvars[r], locvars[x]) == old_maxseg_x_y));
+	return ((lseg_inv(r, x) && (locvar_eq(r, y))) && (lenseg_comp(locvars[r], locvars[x]) == old_lenseg_x_y)) && ((minseg_comp(locvars[r], locvars[x]) == old_minseg_x_y) && (maxseg_comp(locvars[r], locvars[x]) == old_maxseg_x_y));
 }
 
-int rank_var_test = 3;
-int rank_var_aux_test = 4;
+int rank_var_test = 6;
+int rank_var_aux_test = {| 1 | 2 | 3 | 4 | 5 |};
 
-int mutate_var_srtl_reverse_iter = 2;
+int mutate_var_test = {| 1 | 2 | 3 | 4 | 5 |};
 
 bit preserve_sll = false;
 bit preserve_len = false;
@@ -50,33 +51,24 @@ void guess_ranking_test() {
 
 bit loop_preserves_test() {
 	bit single = false;
-	int comp1 = 2;
-	int comp2 = 3;
-	int comp3 = 5;
-	int comp4 = 4;
-	assert comp3 != comp4;
+	int comp1 = {| 1 |};
+	int comp2 = comp1 + 1;
+	int comp3 = {| 1 | 2 | 3 | 4 | 5 |};
+	int comp4 = {| 1 | 2 | 3 | 4 | 5 |};
 	return (preserve_sll ? sll_equal_inv(LOCVARSIZE-1) : true)
 	  && (preserve_len ? len_preserve_inv(old_len, comp1, comp2, comp3, single) : true)
 	  && (preserve_min ? min_preserve_inv(old_min, comp1, comp2, comp3, single) : true)
 	  && (preserve_max ? max_preserve_inv(old_max, comp1, comp2, comp3, single) : true)
-	  && (preserve_lenseg ? lenseg_preserve_inv(old_lenseg, comp1, comp2, comp3, comp4, single) : true)
-	  && (preserve_minseg ? minseg_preserve_inv(old_minseg, comp1, comp2, comp3, comp4, single) : true)
-	  && (preserve_maxseg ? maxseg_preserve_inv(old_maxseg, comp1, comp2, comp3, comp4, single) : true)
+	  && ((preserve_lenseg && comp3 != comp4) ? lenseg_preserve_inv(old_lenseg, comp1, comp2, comp3, comp4, single) : true)
+	  && ((preserve_minseg && comp3 != comp4) ? minseg_preserve_inv(old_minseg, comp1, comp2, comp3, comp4, single) : true)
+	  && ((preserve_maxseg && comp3 != comp4) ? maxseg_preserve_inv(old_maxseg, comp1, comp2, comp3, comp4, single) : true)
 	;
 }
 
 bit loop_inv_test() {
 	return loop_preserves_test()
-	&& predicate(1, 3, 0, 2, 0)
-	&& predicate(9, 3, 0, 2, 0)
-	&& predicate(2, 3, 0, 2, 0)
-	&& any_pred(3, 0, 2, 0)
-	&& any_pred(3, 0, 2, 0);
-			//&& sllseg_inv(3, 4)
-			//&& rsllseg_inv(2, 5)
-			//&& nextTo(4, 4)
-			//&& max_leq_min_inv(2, 3, 5, 4)
-			//&& disj_inv(2, 3, 5, 4);
+	 && predicate(2, 0, 0, 5, 0)
+;
 }
 
 bit loop_inv_pre_test() {
@@ -86,13 +78,11 @@ bit loop_inv_pre_test() {
 bit loop_inv_post_test() {
 	return loop_inv_test()
 	  && ranking_decreases(rank_func_test, rank_var_test, rank_var_aux_test);
-			//&& lenseg_equal_inv(3, 4, -1);
 }
 
 bit loop_cond_test() {
-	return ! locvar_eq(3, 4);
+	return ! (locvars[1] == locvars[0] || locvars[1] == locvars[4]);
 }
-
 
 harness void before_loop_test(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive) {
 
@@ -104,18 +94,15 @@ harness void before_loop_test(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintva
 	assume pre_cond_test(5, 4);
 	snapshot_test(5, 4, old_sll, old_lenseg, old_minseg, old_maxseg);
 
-	//locVarAssign(1, 0);
-	update_locvar_statement(1, 5);
+	locVarAssign(2, 0);
 
-	//locVarAssign(2, 5);
-	update_locvar_statement(2, 5);
+	locVarAssign(3, 0);
 
-	//locVarAssign(3, 5);
-	update_locvar_statement(3, 5);
+	locVarAssign(1, 5);
+
 
 	assertPost(loop_inv_pre_test());
 }
-
 
 harness void iterate_test(int lold_sll, int lold_lenseg, int lold_minseg, int lold_maxseg, int lold_sll, int lold_lenseg, int lold_minseg, int lold_maxseg, int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive) {
 
@@ -138,29 +125,16 @@ harness void iterate_test(int lold_sll, int lold_lenseg, int lold_minseg, int lo
 	guess_ranking_test();
 
 	{
-	//locVarAssign(1, 2);
-	update_locvar(1, 3, 0);
-	//locVarAssign(2, 3);
-	update_locvar(2, 3, 0);
-	//locderef2var(3, 3);
-	update_locvar(3, 3, 0);
-	//locMutate(2, 1, NEXT);
-	mutate_locvar(mutate_var_srtl_reverse_iter, 3, 0);
+	locVarAssign(2, 3);
+	locVarAssign(3, 1);
+	locderef2var(1, 1);
+	locMutate(3, 2, NEXT);
 
 	}
 
 
 	assertPost(loop_inv_post_test());
-	//assertPost(loop_preserves_test()
-	//&& sllseg_inv(3, 4)
-	//&& rsllseg_inv(2, 5)
-	//&& max_leq_min_inv(2, 3, 5, 4)
-	//&& disj_inv(2, 3, 5, 4)
-	//&& nextTo(4, 4)
-	//	  && ranking_decreases(rank_func_test, rank_var_test, rank_var_aux_test)
-	//);
 }
-
 
 harness void after_loop_test(int lold_sll, int lold_lenseg, int lold_minseg, int lold_maxseg, int lold_sll, int lold_lenseg, int lold_minseg, int lold_maxseg, int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintvars, int[HEAPSIZE-1] lnext, int[HEAPSIZE-1] lsupernext, int[HEAPSIZE-1] lkey, bit[HEAPSIZE-1] lsymbolic, bit[HEAPSIZE-1] lactive) {
 
@@ -181,17 +155,8 @@ harness void after_loop_test(int lold_sll, int lold_lenseg, int lold_minseg, int
 	assume loop_inv_test();
 	assume !loop_cond_test();
 
-	//locMutate(3, 2, NEXT);
-	mutate_locvar(3, 3, 0);
-
 	ret_loc(3);
 
-	//assertPost(//rsllseg_inv(1, 5));
-	//		locvar_eq(1, 4)
-	//		&& (lenseg_comp(locvars[1], locvars[5]) == old_lenseg)
-	//		&& (minseg_comp(locvars[1], locvars[5]) == old_minseg)
-	//		&& (maxseg_comp(locvars[1], locvars[5]) == old_maxseg)
-	//		);
 	assertPost(post_cond_test(ret, 5, 4, old_lenseg, old_minseg, old_maxseg));
 }
 

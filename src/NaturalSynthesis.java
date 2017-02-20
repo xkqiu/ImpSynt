@@ -1518,10 +1518,12 @@ public class NaturalSynthesis {
         
         //run sketch
         //System.out.println(new File("sk").getAbsolutePath());
-        String[] command = {"/Users/xkqiu/hg/sketch-frontend/target/sketch-1.7.2-noarch-launchers/sketch", "--fe-cegis-path", "/Users/xkqiu/hg/sketch-backend/src/SketchSolver/cegis", "-p", "lowering", "-V", "10", "--fe-output-code", "--fe-output-dir", "..//output//" + args[0] + "//", args[0] + "/" + args[1] + ".sk"};
+        //String[] command = {"/Users/xkqiu/hg/sketch-frontend/target/sketch-1.7.2-noarch-launchers/sketch", "--fe-cegis-path", "/Users/xkqiu/hg/sketch-backend/src/SketchSolver/cegis", "-p", "lowering", "-V", "10", "--fe-output-code", "--fe-output-dir", "..//output//" + args[0] + "//", args[0] + "/" + args[1] + ".sk"};
+        String[] command = {"/home/waghon/tools/sketch-1.7.2/sketch-frontend/sketch", "--fe-cegis-path", "/home/waghon/tools/sketch-1.7.2/sketch-backend/src/SketchSolver/cegis", "-p", "lowering", "-V", "10", "--fe-output-code", "--fe-output-dir", "..//output//" + args[0] + "//", args[0] + "/" + args[1] + ".sk"};
         //, "--fe-custom-codegen", "..//codegen//lib//codegen.jar"
         ProcessBuilder sketch = new ProcessBuilder(command);
-        sketch.directory(new File("/Users/xkqiu/Documents/workspace/ImpSynt/sk"));
+        //sketch.directory(new File("/Users/xkqiu/Documents/workspace/ImpSynt/sk"));
+        sketch.directory(new File("/home/waghon/Projects/ImpSynt/sk"));
         sketch.redirectErrorStream(true);
         sketch.redirectOutput(new File("output//" + args[0] + "//" + args[1] + ".out"));
         Process p = sketch.start();

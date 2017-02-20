@@ -11,7 +11,8 @@
     <property name="source" value="1.8"/>
     <path id="ImpSynt.classpath">
         <pathelement location="bin"/>
-        <pathelement location="../../../../../usr/local/lib/antlr-3.5.2-complete.jar"/>
+        <pathelement location="/usr/local/lib/antlr-3.5.2-complete.jar"/>
+		<pathelement location="/usr/lib/jvm/java-8-oracle/lib/rt.jar"/>
     </path>
     <path id="run.methodArgs two_args.classpath">
         <pathelement location="../.metadata/.plugins/org.deved.antlride.core/antlride-runtime-1445838817715-2.1.2.201108281759.jar"/>

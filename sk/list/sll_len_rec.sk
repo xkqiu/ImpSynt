@@ -1,4 +1,4 @@
-pragma options "--slv-simiters 10 --bnd-inbits 3 --bnd-inline-amnt 3 --bnd-unroll-amnt 3 ";
+pragma options "--slv-simiters 4 --bnd-inbits 3 --bnd-inline-amnt 7 --bnd-unroll-amnt 3 ";
 
 int TIMESIZE = 4;
 int BOUND = 3;
@@ -27,7 +27,8 @@ void rec_list_comp_len_rec(int x, int recret, ref int rv, ref bit[HEAPSIZE-1] ne
 	assumePre(post_cond_list_comp_len_rec(recret, x, newer_len));
 }
 
-int rank_func_list_comp_len_rec = LEN; //len, min or max
+int rank_func_list_comp_len_rec = 
+LEN;
 
 void snapshot_list_comp_len_rec(int x, ref int osll, ref int olen) {
 	olen = len_comp(locvars[x]);
@@ -53,7 +54,7 @@ harness void list_comp_len_rec(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintv
 
 	snapshot_list_comp_len_rec(2, old_sll, old_len);
 
-	ranking_snapshot(rank_func_list_comp_len_rec, 2);
+	ranking_snapshot(rank_func_list_comp_len_rec, 2, 1);
 
 	if (basic_cond0(2, 2)) 	{
 	statement0(1, 2, 1, 0);
@@ -63,7 +64,7 @@ harness void list_comp_len_rec(int[LOCVARSIZE-1] llocvars, int[INTVARSIZE] lintv
 	else 	{
 	statement1(1, 2, 1, 0);
 	int rank_var_for_call_0 = loc_id0(2);
-	assertPost(ranking_decreases(rank_func_list_comp_len_rec, rank_var_for_call_0));
+	assertPost(ranking_decreases(rank_func_list_comp_len_rec, rank_var_for_call_0, 1));
 	rec_list_comp_len_rec(rank_var_for_call_0, int_id0(2), ret_value, new_symbolic, new_next, new_supernext, new_key);
 	statement2(1, 2, 1, 0);
 

@@ -1,0 +1,3940 @@
+SKETCH version 1.7.2
+Benchmark = list/test.sk
+    [0;32m[1484669128.3230 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+    [0;32m[1484669128.6480 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1484669128.8990 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1484669128.9020 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1484669128.9030 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1484669128.9050 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1484669128.9080 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1484669128.9530 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+
+//// After stage lowering
+/* BEGIN PACKAGE ANONYMOUS*/
+/*list/test.sk:139*/
+
+void after_loop_test0 (int lold_sll_0_a3, int lold_lenseg_1_a4, int lold_minseg_2_a5, int lold_maxseg_3_a6, int lold_sll_a7, int lold_lenseg_a8, int lold_minseg_a9, int lold_maxseg_aa, int[5] llocvars_4_ab, int[1] lintvars_5_ac, int[4] lnext_6_ad, int[4] lsupernext_7_ae, int[4] lkey_8_af, bit[4] lsymbolic_9_b0, bit[4] lactive_10_b1, ref global bit[5] active__ANONYMOUS_s1123_b2, ref global bit error_flag__ANONYMOUS_s1454_b3, ref global bit[4 * 5] history__ANONYMOUS_s1124_b4, ref global int[1] intvars__ANONYMOUS_s1466_b5, ref global int[5] key__ANONYMOUS_s1125_b6, ref global int[5] left__ANONYMOUS_s1467_b7, ref global int[6] locvars__ANONYMOUS_s1050_b8, ref global int[5] next__ANONYMOUS_s1126_b9, ref global int old_len__ANONYMOUS_s1655_ba, ref global int old_lenseg__ANONYMOUS_s858_bb, ref global int old_max__ANONYMOUS_s1656_bc, ref global int old_maxseg__ANONYMOUS_s859_bd, ref global int old_min__ANONYMOUS_s1657_be, ref global int old_minseg__ANONYMOUS_s860_bf, ref global int old_sll__ANONYMOUS_s861_c0, ref global bit[4 * 5] p_history__ANONYMOUS_s1110_c1, ref global int ret__ANONYMOUS_s862_c2, ref global int[5] right__ANONYMOUS_s1468_c3, ref global int[5] supernext__ANONYMOUS_s1127_c4, ref global bit[5] symbolic__ANONYMOUS_s1128_c5, ref global int ts__ANONYMOUS_s1111_c6)/*list/test.sk:139*/
+{
+  {
+    {
+      bit[4] lactive_c7;
+      lactive_c7 = lactive_10_b1;
+      bit[4] lsymbolic_c8;
+      lsymbolic_c8 = lsymbolic_9_b0;
+      int[4] lkey_c9;
+      lkey_c9 = lkey_8_af;
+      int[4] lsupernext_ca;
+      lsupernext_ca = lsupernext_7_ae;
+      int[4] lnext_cb;
+      lnext_cb = lnext_6_ad;
+      int[1] lintvars_cc;
+      lintvars_cc = lintvars_5_ac;
+      int[5] llocvars_cd;
+      llocvars_cd = llocvars_4_ab;
+      int lold_maxseg_ce;
+      lold_maxseg_ce = lold_maxseg_3_a6;
+      int lold_minseg_cf;
+      lold_minseg_cf = lold_minseg_2_a5;
+      int lold_lenseg_d0;
+      lold_lenseg_d0 = lold_lenseg_1_a4;
+      int lold_sll_d1;
+      lold_sll_d1 = lold_sll_0_a3;
+      int[4] lleft_d2;
+      {
+        for(int __sa2050 = 0; __sa2050 < 0; __sa2050 = __sa2050 + 1)/*Canonical*/
+        {
+          lleft_d2[__sa2050] = {}[__sa2050];
+        }
+        for(int __sa2051 = 0; __sa2051 < 4; __sa2051 = __sa2051 + 1)/*Canonical*/
+        {
+          lleft_d2[__sa2051] = '\0';
+        }
+      }
+      int[4] lright_d3;
+      {
+        for(int __sa2052 = 0; __sa2052 < 0; __sa2052 = __sa2052 + 1)/*Canonical*/
+        {
+          lright_d3[__sa2052] = {}[__sa2052];
+        }
+        for(int __sa2053 = 0; __sa2053 < 4; __sa2053 = __sa2053 + 1)/*Canonical*/
+        {
+          lright_d3[__sa2053] = '\0';
+        }
+      }
+      init@ANONYMOUS(llocvars_cd, lintvars_cc, lnext_cb, lsupernext_ca, lleft_d2, lright_d3, lkey_c9, lsymbolic_c8, lactive_c7, active__ANONYMOUS_s1123_b2, intvars__ANONYMOUS_s1466_b5, key__ANONYMOUS_s1125_b6, left__ANONYMOUS_s1467_b7, locvars__ANONYMOUS_s1050_b8, next__ANONYMOUS_s1126_b9, right__ANONYMOUS_s1468_c3, supernext__ANONYMOUS_s1127_c4, symbolic__ANONYMOUS_s1128_c5);
+      old_sll__ANONYMOUS_s861_c0 = lold_sll_d1;
+      old_lenseg__ANONYMOUS_s858_bb = lold_lenseg_d0;
+      old_minseg__ANONYMOUS_s860_bf = lold_minseg_cf;
+      old_maxseg__ANONYMOUS_s859_bd = lold_maxseg_ce;
+      old_sll__ANONYMOUS_s861_c0 = lold_sll_d1;
+      old_lenseg__ANONYMOUS_s858_bb = lold_lenseg_d0;
+      old_minseg__ANONYMOUS_s860_bf = lold_minseg_cf;
+      old_maxseg__ANONYMOUS_s859_bd = lold_maxseg_ce;
+      bit _pac_sc_s54_d4;
+      bit _pac_sc_s54_s56_d5;
+      basic_assumptions@ANONYMOUS(_pac_sc_s54_s56_d5, active__ANONYMOUS_s1123_b2, key__ANONYMOUS_s1125_b6, left__ANONYMOUS_s1467_b7, locvars__ANONYMOUS_s1050_b8, next__ANONYMOUS_s1126_b9, right__ANONYMOUS_s1468_c3, supernext__ANONYMOUS_s1127_c4, symbolic__ANONYMOUS_s1128_c5);
+      _pac_sc_s54_d4 = _pac_sc_s54_s56_d5;
+      if(_pac_sc_s54_d4)/*list/test.sk:154*/
+      {
+        bit _pac_sc_s54_s58_d6;
+        basic_axioms@ANONYMOUS(_pac_sc_s54_s58_d6, supernext__ANONYMOUS_s1127_c4, ts__ANONYMOUS_s1111_c6);
+        _pac_sc_s54_d4 = _pac_sc_s54_s58_d6;
+      }
+      assume (_pac_sc_s54_d4): "Assume at list/test.sk:154"; //Assume at list/test.sk:154
+      bit _out_s60_d7;
+      loop_inv_test@ANONYMOUS(_out_s60_d7, active__ANONYMOUS_s1123_b2, history__ANONYMOUS_s1124_b4, intvars__ANONYMOUS_s1466_b5, key__ANONYMOUS_s1125_b6, locvars__ANONYMOUS_s1050_b8, next__ANONYMOUS_s1126_b9, old_len__ANONYMOUS_s1655_ba, old_lenseg__ANONYMOUS_s858_bb, old_max__ANONYMOUS_s1656_bc, old_maxseg__ANONYMOUS_s859_bd, old_min__ANONYMOUS_s1657_be, old_minseg__ANONYMOUS_s860_bf, p_history__ANONYMOUS_s1110_c1, supernext__ANONYMOUS_s1127_c4, symbolic__ANONYMOUS_s1128_c5, ts__ANONYMOUS_s1111_c6);
+      assume (_out_s60_d7): "Assume at list/test.sk:155"; //Assume at list/test.sk:155
+      bit _out_s62_d8;
+      loop_cond_test@ANONYMOUS(_out_s62_d8, locvars__ANONYMOUS_s1050_b8);
+      assume (!(_out_s62_d8)): "Assume at list/test.sk:156"; //Assume at list/test.sk:156
+      ret_loc@ANONYMOUS(3, ret__ANONYMOUS_s862_c2);
+      bit _out_s64_d9;
+      post_cond_test@ANONYMOUS(ret__ANONYMOUS_s862_c2, 5, 4, old_lenseg__ANONYMOUS_s858_bb, old_minseg__ANONYMOUS_s860_bf, old_maxseg__ANONYMOUS_s859_bd, _out_s64_d9, active__ANONYMOUS_s1123_b2, history__ANONYMOUS_s1124_b4, key__ANONYMOUS_s1125_b6, locvars__ANONYMOUS_s1050_b8, next__ANONYMOUS_s1126_b9, p_history__ANONYMOUS_s1110_c1, supernext__ANONYMOUS_s1127_c4, symbolic__ANONYMOUS_s1128_c5, ts__ANONYMOUS_s1111_c6);
+      assertPost@ANONYMOUS(_out_s64_d9, error_flag__ANONYMOUS_s1454_b3);
+    }
+  }
+}
+/*list/test.sk:139*/
+
+void after_loop_test__Wrapper (int lold_sll_0_28, int lold_lenseg_1_29, int lold_minseg_2_2a, int lold_maxseg_3_2b, int lold_sll_2c, int lold_lenseg_2d, int lold_minseg_2e, int lold_maxseg_2f, int[5] llocvars_30, int[1] lintvars_31, int[4] lnext_32, int[4] lsupernext_33, int[4] lkey_34, bit[4] lsymbolic_35, bit[4] lactive_36)  implements after_loop_test__WrapperNospec/*list/test.sk:139*/
+{
+  {
+    {
+      global int ts__ANONYMOUS_s1153_f;
+      glblInit_ts__ANONYMOUS_s1804@ANONYMOUS(ts__ANONYMOUS_s1153_f);
+      global bit[5] symbolic__ANONYMOUS_s1215_10;
+      global int[5] supernext__ANONYMOUS_s1384_11;
+      global int[5] right__ANONYMOUS_s1606_12;
+      global int ret__ANONYMOUS_s1611_13;
+      glblInit_ret__ANONYMOUS_s1802@ANONYMOUS(ret__ANONYMOUS_s1611_13);
+      global bit[4 * 5] p_history__ANONYMOUS_s1152_14;
+      global int old_sll__ANONYMOUS_s1610_15;
+      global int old_minseg__ANONYMOUS_s1431_16;
+      global int old_min__ANONYMOUS_s1430_17;
+      global int old_maxseg__ANONYMOUS_s1429_18;
+      global int old_max__ANONYMOUS_s1428_19;
+      global int old_lenseg__ANONYMOUS_s1427_1a;
+      global int old_len__ANONYMOUS_s1426_1b;
+      global int[5] next__ANONYMOUS_s1195_1c;
+      global int[6] locvars__ANONYMOUS_s1012_1d;
+      global int[5] left__ANONYMOUS_s1605_1e;
+      global int[5] key__ANONYMOUS_s1214_1f;
+      global int[1] intvars__ANONYMOUS_s1213_20;
+      global bit[4 * 5] history__ANONYMOUS_s1269_21;
+      global bit error_flag__ANONYMOUS_s1609_22;
+      glblInit_error_flag__ANONYMOUS_s1788@ANONYMOUS(error_flag__ANONYMOUS_s1609_22);
+      global bit[5] active__ANONYMOUS_s1212_23;
+      int lold_maxseg_24;
+      lold_maxseg_24 = lold_maxseg_3_2b;
+      int lold_minseg_25;
+      lold_minseg_25 = lold_minseg_2_2a;
+      int lold_lenseg_26;
+      lold_lenseg_26 = lold_lenseg_1_29;
+      int lold_sll_27;
+      lold_sll_27 = lold_sll_0_28;
+      after_loop_test0@ANONYMOUS(lold_sll_27, lold_lenseg_26, lold_minseg_25, lold_maxseg_24, lold_sll_27, lold_lenseg_26, lold_minseg_25, lold_maxseg_24, llocvars_30, lintvars_31, lnext_32, lsupernext_33, lkey_34, lsymbolic_35, lactive_36, active__ANONYMOUS_s1212_23, error_flag__ANONYMOUS_s1609_22, history__ANONYMOUS_s1269_21, intvars__ANONYMOUS_s1213_20, key__ANONYMOUS_s1214_1f, left__ANONYMOUS_s1605_1e, locvars__ANONYMOUS_s1012_1d, next__ANONYMOUS_s1195_1c, old_len__ANONYMOUS_s1426_1b, old_lenseg__ANONYMOUS_s1427_1a, old_max__ANONYMOUS_s1428_19, old_maxseg__ANONYMOUS_s1429_18, old_min__ANONYMOUS_s1430_17, old_minseg__ANONYMOUS_s1431_16, old_sll__ANONYMOUS_s1610_15, p_history__ANONYMOUS_s1152_14, ret__ANONYMOUS_s1611_13, right__ANONYMOUS_s1606_12, supernext__ANONYMOUS_s1384_11, symbolic__ANONYMOUS_s1215_10, ts__ANONYMOUS_s1153_f);
+    }
+  }
+}
+/*list/test.sk:139*/
+
+void after_loop_test__WrapperNospec (int lold_sll_0_28, int lold_lenseg_1_29, int lold_minseg_2_2a, int lold_maxseg_3_2b, int lold_sll_2c, int lold_lenseg_2d, int lold_minseg_2e, int lold_maxseg_2f, int[5] llocvars_30, int[1] lintvars_31, int[4] lnext_32, int[4] lsupernext_33, int[4] lkey_34, bit[4] lsymbolic_35, bit[4] lactive_36)/*list/test.sk:139*/
+{
+  {
+    {
+      int lold_maxseg_37;
+      lold_maxseg_37 = lold_maxseg_3_2b;
+      int lold_minseg_38;
+      lold_minseg_38 = lold_minseg_2_2a;
+      int lold_lenseg_39;
+      lold_lenseg_39 = lold_lenseg_1_29;
+      int lold_sll_3a;
+      lold_sll_3a = lold_sll_0_28;
+    }
+  }
+}
+/*aux.skh:77*/
+
+void assertPost (bit b_1b6, ref global bit error_flag__ANONYMOUS_s827_1b7)/*aux.skh:77*/
+{
+  {
+    {
+      if(error_flag__ANONYMOUS_s827_1b7)/*aux.skh:78*/
+      {
+        return;
+      }
+      else
+      {
+        assert (b_1b6); //Assert at aux.skh:79 (-1213476200197191081)
+      }
+    }
+  }
+}
+/*aux.skh:73*/
+
+void assumePre (bit b_2a9, ref global bit error_flag__ANONYMOUS_s857_2aa)/*aux.skh:73*/
+{
+  {
+    {
+      if(!(b_2a9))/*aux.skh:74*/
+      {
+        error_flag__ANONYMOUS_s857_2aa = 1;
+      }
+    }
+  }
+}
+/*aux.skh:277*/
+
+void basic_assumptions (ref bit _out_14e, ref global bit[5] active__ANONYMOUS_s892_14f, ref global int[5] key__ANONYMOUS_s893_150, ref global int[5] left__ANONYMOUS_s894_151, ref global int[6] locvars__ANONYMOUS_s895_152, ref global int[5] next__ANONYMOUS_s896_153, ref global int[5] right__ANONYMOUS_s897_154, ref global int[5] supernext__ANONYMOUS_s898_155, ref global bit[5] symbolic__ANONYMOUS_s899_156)/*aux.skh:277*/
+{
+  {
+    {
+      _out_14e = 0;
+      bit _pac_sc_s1940;
+      {
+        bit _pac_sc_s1941;
+        {
+          bit _pac_sc_s1942;
+          {
+            bit _pac_sc_s1943;
+            {
+              bit _pac_sc_s1944;
+              {
+                bit _pac_sc_s1945;
+                {
+                  bit _pac_sc_s1946;
+                  {
+                    bit _pac_s1947;
+                    _pac_s1947 = 0;
+                    assert ((_pac_s1947 >= 0) && (_pac_s1947 < 6)); //aux.skh:279: Array out of bounds
+                    _pac_sc_s1946 = (locvars__ANONYMOUS_s895_152[_pac_s1947]) == 0;
+                    if(_pac_sc_s1946)/*aux.skh:279*/
+                    {
+                      bit _pac_s1948;
+                      _pac_s1948 = 0;
+                      assert ((_pac_s1948 >= 0) && (_pac_s1948 < 5)); //aux.skh:280: Array out of bounds
+                      _pac_sc_s1946 = (next__ANONYMOUS_s896_153[_pac_s1948]) == 0;
+                    }
+                  }
+                  _pac_sc_s1945 = _pac_sc_s1946;
+                  if(_pac_sc_s1945)/*aux.skh:279*/
+                  {
+                    bit _pac_s1949;
+                    _pac_s1949 = 0;
+                    assert ((_pac_s1949 >= 0) && (_pac_s1949 < 5)); //aux.skh:281: Array out of bounds
+                    _pac_sc_s1945 = (supernext__ANONYMOUS_s898_155[_pac_s1949]) == 0;
+                  }
+                }
+                _pac_sc_s1944 = _pac_sc_s1945;
+                if(_pac_sc_s1944)/*aux.skh:279*/
+                {
+                  bit _pac_s1950;
+                  _pac_s1950 = 0;
+                  assert ((_pac_s1950 >= 0) && (_pac_s1950 < 5)); //aux.skh:282: Array out of bounds
+                  _pac_sc_s1944 = (left__ANONYMOUS_s894_151[_pac_s1950]) == 0;
+                }
+              }
+              _pac_sc_s1943 = _pac_sc_s1944;
+              if(_pac_sc_s1943)/*aux.skh:279*/
+              {
+                bit _pac_s1951;
+                _pac_s1951 = 0;
+                assert ((_pac_s1951 >= 0) && (_pac_s1951 < 5)); //aux.skh:283: Array out of bounds
+                _pac_sc_s1943 = (right__ANONYMOUS_s897_154[_pac_s1951]) == 0;
+              }
+            }
+            _pac_sc_s1942 = _pac_sc_s1943;
+            if(_pac_sc_s1942)/*aux.skh:279*/
+            {
+              bit _pac_s1952;
+              _pac_s1952 = 0;
+              assert ((_pac_s1952 >= 0) && (_pac_s1952 < 5)); //aux.skh:284: Array out of bounds
+              _pac_sc_s1942 = (key__ANONYMOUS_s893_150[_pac_s1952]) == 0;
+            }
+          }
+          _pac_sc_s1941 = _pac_sc_s1942;
+          if(_pac_sc_s1941)/*aux.skh:279*/
+          {
+            bit _pac_s1953;
+            _pac_s1953 = 0;
+            assert ((_pac_s1953 >= 0) && (_pac_s1953 < 5)); //aux.skh:285: Array out of bounds
+            _pac_sc_s1941 = !(symbolic__ANONYMOUS_s899_156[_pac_s1953]);
+          }
+        }
+        _pac_sc_s1940 = _pac_sc_s1941;
+        if(_pac_sc_s1940)/*aux.skh:279*/
+        {
+          bit _pac_s1954;
+          _pac_s1954 = 0;
+          assert ((_pac_s1954 >= 0) && (_pac_s1954 < 5)); //aux.skh:286: Array out of bounds
+          _pac_sc_s1940 = active__ANONYMOUS_s892_14f[_pac_s1954];
+        }
+      }
+      _out_14e = _pac_sc_s1940;
+      int idx_157;
+      idx_157 = 2;
+      while((idx_157 <= 2) && _out_14e)
+      {
+        assert ((idx_157 >= 0) && (idx_157 < 5)); //aux.skh:291: Array out of bounds
+        _out_14e = !(active__ANONYMOUS_s892_14f[idx_157]);
+        int uo_s26_15a;
+        uo_s26_15a = idx_157;
+        idx_157 = idx_157 + 1;
+        uo_s26_15a;
+      }
+      return;
+    }
+  }
+}
+/*lseg_header.skh:1414*/
+
+void basic_axioms (ref bit _out_15b, ref global int[5] supernext__ANONYMOUS_s917_15c, ref global int ts__ANONYMOUS_s918_15d)/*lseg_header.skh:1414*/
+{
+  {
+    {
+      _out_15b = 0;
+      bit _pac_sc_s464_15e;
+      bit _pac_sc_s465_15f;
+      int _pac_sc_s465_s467_160;
+      len(0, ts__ANONYMOUS_s918_15d, _pac_sc_s465_s467_160);
+      _pac_sc_s465_15f = _pac_sc_s465_s467_160 == 0;
+      if(_pac_sc_s465_15f)/*lseg_header.skh:1415*/
+      {
+        int _pac_sc_s465_s469_161;
+        min(0, ts__ANONYMOUS_s918_15d, _pac_sc_s465_s469_161);
+        _pac_sc_s465_15f = _pac_sc_s465_s469_161 == 7;
+      }
+      _pac_sc_s464_15e = _pac_sc_s465_15f;
+      if(_pac_sc_s464_15e)/*lseg_header.skh:1415*/
+      {
+        int _pac_sc_s464_s471_162;
+        max(0, ts__ANONYMOUS_s918_15d, _pac_sc_s464_s471_162);
+        _pac_sc_s464_15e = _pac_sc_s464_s471_162 == 0;
+      }
+      _out_15b = _pac_sc_s464_15e;
+      int idx_163;
+      idx_163 = 1;
+      while((idx_163 < 5) && _out_15b)
+      {
+        bit _pac_sc_s472_176;
+        bit _pac_sc_s473_177;
+        bit _pac_sc_s474_178;
+        assert ((idx_163 >= 0) && (idx_163 < 5)); //lseg_header.skh:1421: Array out of bounds
+        _pac_sc_s474_178 = (supernext__ANONYMOUS_s917_15c[idx_163]) != 0;
+        if(_pac_sc_s474_178)/*lseg_header.skh:1421*/
+        {
+          int _pac_sc_s474_s476_179;
+          len(idx_163, ts__ANONYMOUS_s918_15d, _pac_sc_s474_s476_179);
+          _pac_sc_s474_178 = _pac_sc_s474_s476_179 > 0;
+        }
+        _pac_sc_s473_177 = _pac_sc_s474_178;
+        if(_pac_sc_s473_177)/*lseg_header.skh:1421*/
+        {
+          int _pac_sc_s473_s478_17a;
+          min(idx_163, ts__ANONYMOUS_s918_15d, _pac_sc_s473_s478_17a);
+          int _pac_sc_s473_s480_17b;
+          max(idx_163, ts__ANONYMOUS_s918_15d, _pac_sc_s473_s480_17b);
+          _pac_sc_s473_177 = _pac_sc_s473_s478_17a <= _pac_sc_s473_s480_17b;
+        }
+        _pac_sc_s472_176 = _pac_sc_s473_177;
+        if(_pac_sc_s472_176)/*lseg_header.skh:1421*/
+        {
+          int _pac_sc_s472_s482_17c;
+          minseg(idx_163, ts__ANONYMOUS_s918_15d, _pac_sc_s472_s482_17c);
+          int _pac_sc_s472_s484_17d;
+          maxseg(idx_163, ts__ANONYMOUS_s918_15d, _pac_sc_s472_s484_17d);
+          _pac_sc_s472_176 = _pac_sc_s472_s482_17c <= _pac_sc_s472_s484_17d;
+        }
+        _out_15b = _pac_sc_s472_176;
+        int uo_s25_17e;
+        uo_s25_17e = idx_163;
+        idx_163 = idx_163 + 1;
+        uo_s25_17e;
+      }
+      return;
+    }
+  }
+}
+/*list/test.sk:87*/
+
+void before_loop_test0 (int[5] llocvars_0_113, int[1] lintvars_1_114, int[4] lnext_2_115, int[4] lsupernext_3_116, int[4] lkey_4_117, bit[4] lsymbolic_5_118, bit[4] lactive_6_119, ref global bit[5] active__ANONYMOUS_s1349_11a, ref global bit error_flag__ANONYMOUS_s1418_11b, ref global bit[4 * 5] history__ANONYMOUS_s1246_11c, ref global int[1] intvars__ANONYMOUS_s1726_11d, ref global int[5] key__ANONYMOUS_s1403_11e, ref global int[5] left__ANONYMOUS_s1501_11f, ref global int[6] locvars__ANONYMOUS_s1350_120, ref global int[5] next__ANONYMOUS_s1351_121, ref global int old_len__ANONYMOUS_s1632_122, ref global int old_lenseg__ANONYMOUS_s769_123, ref global int old_max__ANONYMOUS_s1633_124, ref global int old_maxseg__ANONYMOUS_s770_125, ref global int old_min__ANONYMOUS_s1634_126, ref global int old_minseg__ANONYMOUS_s771_127, ref global int old_sll__ANONYMOUS_s772_128, ref global bit[4 * 5] p_history__ANONYMOUS_s1404_129, ref global int[5] right__ANONYMOUS_s1502_12a, ref global int[5] supernext__ANONYMOUS_s1175_12b, ref global bit[5] symbolic__ANONYMOUS_s1352_12c, ref global int ts__ANONYMOUS_s1176_12d)/*list/test.sk:87*/
+{
+  {
+    {
+      bit[4] lactive_12e;
+      lactive_12e = lactive_6_119;
+      bit[4] lsymbolic_12f;
+      lsymbolic_12f = lsymbolic_5_118;
+      int[4] lkey_130;
+      lkey_130 = lkey_4_117;
+      int[4] lsupernext_131;
+      lsupernext_131 = lsupernext_3_116;
+      int[4] lnext_132;
+      lnext_132 = lnext_2_115;
+      int[1] lintvars_133;
+      lintvars_133 = lintvars_1_114;
+      int[5] llocvars_134;
+      llocvars_134 = llocvars_0_113;
+      int[4] lleft_135;
+      {
+        for(int __sa2058 = 0; __sa2058 < 0; __sa2058 = __sa2058 + 1)/*Canonical*/
+        {
+          lleft_135[__sa2058] = {}[__sa2058];
+        }
+        for(int __sa2059 = 0; __sa2059 < 4; __sa2059 = __sa2059 + 1)/*Canonical*/
+        {
+          lleft_135[__sa2059] = '\0';
+        }
+      }
+      int[4] lright_136;
+      {
+        for(int __sa2060 = 0; __sa2060 < 0; __sa2060 = __sa2060 + 1)/*Canonical*/
+        {
+          lright_136[__sa2060] = {}[__sa2060];
+        }
+        for(int __sa2061 = 0; __sa2061 < 4; __sa2061 = __sa2061 + 1)/*Canonical*/
+        {
+          lright_136[__sa2061] = '\0';
+        }
+      }
+      init@ANONYMOUS(llocvars_134, lintvars_133, lnext_132, lsupernext_131, lleft_135, lright_136, lkey_130, lsymbolic_12f, lactive_12e, active__ANONYMOUS_s1349_11a, intvars__ANONYMOUS_s1726_11d, key__ANONYMOUS_s1403_11e, left__ANONYMOUS_s1501_11f, locvars__ANONYMOUS_s1350_120, next__ANONYMOUS_s1351_121, right__ANONYMOUS_s1502_12a, supernext__ANONYMOUS_s1175_12b, symbolic__ANONYMOUS_s1352_12c);
+      bit _pac_sc_s547_137;
+      bit _pac_sc_s547_s549_138;
+      basic_assumptions@ANONYMOUS(_pac_sc_s547_s549_138, active__ANONYMOUS_s1349_11a, key__ANONYMOUS_s1403_11e, left__ANONYMOUS_s1501_11f, locvars__ANONYMOUS_s1350_120, next__ANONYMOUS_s1351_121, right__ANONYMOUS_s1502_12a, supernext__ANONYMOUS_s1175_12b, symbolic__ANONYMOUS_s1352_12c);
+      _pac_sc_s547_137 = _pac_sc_s547_s549_138;
+      if(_pac_sc_s547_137)/*list/test.sk:93*/
+      {
+        bit _pac_sc_s547_s551_139;
+        basic_axioms@ANONYMOUS(_pac_sc_s547_s551_139, supernext__ANONYMOUS_s1175_12b, ts__ANONYMOUS_s1176_12d);
+        _pac_sc_s547_137 = _pac_sc_s547_s551_139;
+      }
+      assume (_pac_sc_s547_137): "Assume at list/test.sk:93"; //Assume at list/test.sk:93
+      bit _out_s553_13a;
+      pre_cond_test@ANONYMOUS(5, 4, _out_s553_13a, active__ANONYMOUS_s1349_11a, locvars__ANONYMOUS_s1350_120, next__ANONYMOUS_s1351_121, supernext__ANONYMOUS_s1175_12b, symbolic__ANONYMOUS_s1352_12c);
+      assume (_out_s553_13a): "Assume at list/test.sk:94"; //Assume at list/test.sk:94
+      snapshot_test@ANONYMOUS(5, 4, old_sll__ANONYMOUS_s772_128, old_lenseg__ANONYMOUS_s769_123, old_minseg__ANONYMOUS_s771_127, old_maxseg__ANONYMOUS_s770_125, active__ANONYMOUS_s1349_11a, history__ANONYMOUS_s1246_11c, key__ANONYMOUS_s1403_11e, locvars__ANONYMOUS_s1350_120, next__ANONYMOUS_s1351_121, p_history__ANONYMOUS_s1404_129, supernext__ANONYMOUS_s1175_12b, symbolic__ANONYMOUS_s1352_12c, ts__ANONYMOUS_s1176_12d);
+      locVarAssign@ANONYMOUS(2, 0, locvars__ANONYMOUS_s1350_120);
+      locVarAssign@ANONYMOUS(3, 0, locvars__ANONYMOUS_s1350_120);
+      locVarAssign@ANONYMOUS(1, 5, locvars__ANONYMOUS_s1350_120);
+      bit _out_s555_13b;
+      loop_inv_pre_test@ANONYMOUS(_out_s555_13b, active__ANONYMOUS_s1349_11a, history__ANONYMOUS_s1246_11c, intvars__ANONYMOUS_s1726_11d, key__ANONYMOUS_s1403_11e, locvars__ANONYMOUS_s1350_120, next__ANONYMOUS_s1351_121, old_len__ANONYMOUS_s1632_122, old_lenseg__ANONYMOUS_s769_123, old_max__ANONYMOUS_s1633_124, old_maxseg__ANONYMOUS_s770_125, old_min__ANONYMOUS_s1634_126, old_minseg__ANONYMOUS_s771_127, p_history__ANONYMOUS_s1404_129, supernext__ANONYMOUS_s1175_12b, symbolic__ANONYMOUS_s1352_12c, ts__ANONYMOUS_s1176_12d);
+      assertPost@ANONYMOUS(_out_s555_13b, error_flag__ANONYMOUS_s1418_11b);
+    }
+  }
+}
+/*list/test.sk:87*/
+
+void before_loop_test__Wrapper (int[5] llocvars_93, int[1] lintvars_94, int[4] lnext_95, int[4] lsupernext_96, int[4] lkey_97, bit[4] lsymbolic_98, bit[4] lactive_99)  implements before_loop_test__WrapperNospec/*list/test.sk:87*/
+{
+  {
+    {
+      global int ts__ANONYMOUS_s1242_7f;
+      glblInit_ts__ANONYMOUS_s1804@ANONYMOUS(ts__ANONYMOUS_s1242_7f);
+      global bit[5] symbolic__ANONYMOUS_s1194_80;
+      global int[5] supernext__ANONYMOUS_s1332_81;
+      global int[5] right__ANONYMOUS_s1545_82;
+      global bit[4 * 5] p_history__ANONYMOUS_s1265_83;
+      global int old_sll__ANONYMOUS_s1166_84;
+      global int old_minseg__ANONYMOUS_s1165_85;
+      global int old_min__ANONYMOUS_s1331_86;
+      global int old_maxseg__ANONYMOUS_s1164_87;
+      global int old_max__ANONYMOUS_s1330_88;
+      global int old_lenseg__ANONYMOUS_s1163_89;
+      global int old_len__ANONYMOUS_s1329_8a;
+      global int[5] next__ANONYMOUS_s1066_8b;
+      global int[6] locvars__ANONYMOUS_s1193_8c;
+      global int[5] left__ANONYMOUS_s1544_8d;
+      global int[5] key__ANONYMOUS_s1312_8e;
+      global int[1] intvars__ANONYMOUS_s1311_8f;
+      global bit[4 * 5] history__ANONYMOUS_s1241_90;
+      global bit error_flag__ANONYMOUS_s1670_91;
+      glblInit_error_flag__ANONYMOUS_s1788@ANONYMOUS(error_flag__ANONYMOUS_s1670_91);
+      global bit[5] active__ANONYMOUS_s1192_92;
+      before_loop_test0@ANONYMOUS(llocvars_93, lintvars_94, lnext_95, lsupernext_96, lkey_97, lsymbolic_98, lactive_99, active__ANONYMOUS_s1192_92, error_flag__ANONYMOUS_s1670_91, history__ANONYMOUS_s1241_90, intvars__ANONYMOUS_s1311_8f, key__ANONYMOUS_s1312_8e, left__ANONYMOUS_s1544_8d, locvars__ANONYMOUS_s1193_8c, next__ANONYMOUS_s1066_8b, old_len__ANONYMOUS_s1329_8a, old_lenseg__ANONYMOUS_s1163_89, old_max__ANONYMOUS_s1330_88, old_maxseg__ANONYMOUS_s1164_87, old_min__ANONYMOUS_s1331_86, old_minseg__ANONYMOUS_s1165_85, old_sll__ANONYMOUS_s1166_84, p_history__ANONYMOUS_s1265_83, right__ANONYMOUS_s1545_82, supernext__ANONYMOUS_s1332_81, symbolic__ANONYMOUS_s1194_80, ts__ANONYMOUS_s1242_7f);
+    }
+  }
+}
+/*list/test.sk:87*/
+
+void before_loop_test__WrapperNospec (int[5] llocvars_93, int[1] lintvars_94, int[4] lnext_95, int[4] lsupernext_96, int[4] lkey_97, bit[4] lsymbolic_98, bit[4] lactive_99)/*list/test.sk:87*/
+{
+  {
+    {
+    }
+  }
+}
+/*lseg_header.skh:312*/
+
+void check_p_treeness (int t1_3bd, int t2_3be, ref bit[5] m_3bf, int bnd_3c0, ref bit _out_3c1, ref global bit[5] active__ANONYMOUS_s809_3c2, ref global int[5] next__ANONYMOUS_s810_3c3, ref global int[5] supernext__ANONYMOUS_s811_3c4, ref global bit[5] symbolic__ANONYMOUS_s812_3c5)/*lseg_header.skh:312*/
+{
+  {
+    {
+      _out_3c1 = 0;
+      if(bnd_3c0 < 0)/*lseg_header.skh:313*/
+      {
+        _out_3c1 = 0;
+        return;
+      }
+      else
+      {
+        if((((t1_3bd < 0) || (t1_3bd >= 5)) || (t2_3be < 0)) || (t2_3be >= 5))/*lseg_header.skh:314*/
+        {
+          _out_3c1 = 0;
+          return;
+        }
+        else
+        {
+          bit _pac_sc_s2022;
+          {
+            assert ((t1_3bd >= 0) && (t1_3bd < 5)); //lseg_header.skh:315: Array out of bounds
+            _pac_sc_s2022 = !(active__ANONYMOUS_s809_3c2[t1_3bd]);
+            if(!(_pac_sc_s2022))/*lseg_header.skh:315*/
+            {
+              assert ((t2_3be >= 0) && (t2_3be < 5)); //lseg_header.skh:315: Array out of bounds
+              _pac_sc_s2022 = !(active__ANONYMOUS_s809_3c2[t2_3be]);
+            }
+          }
+          if(_pac_sc_s2022)/*lseg_header.skh:315*/
+          {
+            _out_3c1 = 0;
+            return;
+          }
+          else
+          {
+            if(t1_3bd == t2_3be)/*lseg_header.skh:316*/
+            {
+              _out_3c1 = 1;
+              return;
+            }
+            else
+            {
+              if(t1_3bd == 0)/*lseg_header.skh:317*/
+              {
+                _out_3c1 = 0;
+                return;
+              }
+              else
+              {
+                assert ((t1_3bd >= 0) && (t1_3bd < 5)); //lseg_header.skh:318: Array out of bounds
+                if(symbolic__ANONYMOUS_s812_3c5[t1_3bd])/*lseg_header.skh:318*/
+                {
+                  assert ((t1_3bd >= 0) && (t1_3bd < 5)); //lseg_header.skh:319: Array out of bounds
+                  if(m_3bf[t1_3bd])/*lseg_header.skh:319*/
+                  {
+                    _out_3c1 = 0;
+                    return;
+                  }
+                  else
+                  {
+                    assert ((t1_3bd >= 0) && (t1_3bd < 5)); //lseg_header.skh:321: Either null pointer or Array out of bounds
+                    m_3bf[t1_3bd] = 1;
+                    _out_3c1 = t2_3be == 0;
+                    return;
+                  }
+                }
+                else
+                {
+                  assert ((t1_3bd >= 0) && (t1_3bd < 5)); //lseg_header.skh:326: Array out of bounds
+                  if(m_3bf[t1_3bd])/*lseg_header.skh:326*/
+                  {
+                    _out_3c1 = 0;
+                    return;
+                  }
+                  else
+                  {
+                    assert ((t1_3bd >= 0) && (t1_3bd < 5)); //lseg_header.skh:328: Either null pointer or Array out of bounds
+                    m_3bf[t1_3bd] = 1;
+                    int nxt_3c6;
+                    assert ((t1_3bd >= 0) && (t1_3bd < 5)); //lseg_header.skh:329: Array out of bounds
+                    nxt_3c6 = next__ANONYMOUS_s810_3c3[t1_3bd];
+                    if((nxt_3c6 < 0) || (nxt_3c6 >= 5))/*lseg_header.skh:330*/
+                    {
+                      assert ((t1_3bd >= 0) && (t1_3bd < 5)); //lseg_header.skh:330: Array out of bounds
+                      nxt_3c6 = supernext__ANONYMOUS_s811_3c4[t1_3bd];
+                    }
+                    if(nxt_3c6 == 0)/*lseg_header.skh:331*/
+                    {
+                      _out_3c1 = t2_3be == 0;
+                      return;
+                    }
+                    else
+                    {
+                      if((nxt_3c6 < 0) || (nxt_3c6 >= 5))/*lseg_header.skh:332*/
+                      {
+                        _out_3c1 = 0;
+                        return;
+                      }
+                      else
+                      {
+                        bit _out_s132_3c7;
+                        int bnd_3c0_s1920;
+                        bnd_3c0_s1920 = bnd_3c0 - 1;
+                        check_p_treeness@ANONYMOUS(nxt_3c6, t2_3be, m_3bf, bnd_3c0_s1920, _out_s132_3c7, active__ANONYMOUS_s809_3c2, next__ANONYMOUS_s810_3c3, supernext__ANONYMOUS_s811_3c4, symbolic__ANONYMOUS_s812_3c5);
+                        _out_3c1 = _out_s132_3c7;
+                        return;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*aux.skh:82*/
+
+void connect_defs (ref global bit[5] active__ANONYMOUS_s1002_2d6, ref global bit[4 * 5] history__ANONYMOUS_s1003_2d7, ref global int[5] next__ANONYMOUS_s1004_2d8, ref global bit[4 * 5] p_history__ANONYMOUS_s1005_2d9, ref global bit[5] symbolic__ANONYMOUS_s1006_2da, ref global int ts__ANONYMOUS_s1007_2db)/*aux.skh:82*/
+{
+  {
+    {
+      int i_2dc;
+      if(0 < 5)/*aux.skh:83*/
+      {
+      }
+      for(i_2dc = 0; i_2dc < 5; i_2dc = i_2dc + 1)/*Canonical*/
+      {
+        if(active__ANONYMOUS_s1002_2d6[i_2dc])/*aux.skh:84*/
+        {
+          assert ((i_2dc >= 0) && (i_2dc < 5)); //aux.skh:85: Array out of bounds
+          if(symbolic__ANONYMOUS_s1006_2da[i_2dc])/*aux.skh:85*/
+          {
+            assert ((i_2dc >= 0) && (i_2dc < 5)); //aux.skh:86: Array out of bounds
+            assert ((ts__ANONYMOUS_s1007_2db >= 0) && (ts__ANONYMOUS_s1007_2db < 4)); //aux.skh:86: Either null pointer or Array out of bounds
+            history__ANONYMOUS_s1003_2d7[(4 * i_2dc) + ts__ANONYMOUS_s1007_2db] = 1;
+            assert ((i_2dc >= 0) && (i_2dc < 5)); //aux.skh:87: Array out of bounds
+            assert ((ts__ANONYMOUS_s1007_2db >= 0) && (ts__ANONYMOUS_s1007_2db < 4)); //aux.skh:87: Either null pointer or Array out of bounds
+            p_history__ANONYMOUS_s1005_2d9[(4 * i_2dc) + ts__ANONYMOUS_s1007_2db] = 1;
+          }
+          else
+          {
+            bit _pac_sc_s1976;
+            {
+              assert ((i_2dc >= 0) && (i_2dc < 5)); //aux.skh:89: Array out of bounds
+              _pac_sc_s1976 = (next__ANONYMOUS_s1004_2d8[i_2dc]) < 0;
+              if(!(_pac_sc_s1976))/*aux.skh:89*/
+              {
+                assert ((i_2dc >= 0) && (i_2dc < 5)); //aux.skh:89: Array out of bounds
+                _pac_sc_s1976 = (next__ANONYMOUS_s1004_2d8[i_2dc]) >= 5;
+              }
+            }
+            if(_pac_sc_s1976)/*aux.skh:89*/
+            {
+              assert ((i_2dc >= 0) && (i_2dc < 5)); //aux.skh:90: Array out of bounds
+              assert ((ts__ANONYMOUS_s1007_2db >= 0) && (ts__ANONYMOUS_s1007_2db < 4)); //aux.skh:90: Either null pointer or Array out of bounds
+              p_history__ANONYMOUS_s1005_2d9[(4 * i_2dc) + ts__ANONYMOUS_s1007_2db] = 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*aux.skh:32*/
+
+void glblInit_error_flag__ANONYMOUS_s1788 (ref bit error_flag__ANONYMOUS_s1787_9a)/*aux.skh:32*/
+{
+  {
+    {
+      error_flag__ANONYMOUS_s1787_9a = 0;
+    }
+  }
+}
+/*aux.skh:35*/
+
+void glblInit_fake_unfold__ANONYMOUS_s1790 (ref int fake_unfold__ANONYMOUS_s1789_9b)/*aux.skh:35*/
+{
+  {
+    {
+      fake_unfold__ANONYMOUS_s1789_9b = 0;
+    }
+  }
+}
+/*list/test.sk:9*/
+
+void glblInit_malloc_budget__ANONYMOUS_s1794 (ref int malloc_budget__ANONYMOUS_s1793_9d)/*list/test.sk:9*/
+{
+  {
+    {
+      malloc_budget__ANONYMOUS_s1793_9d = 1;
+    }
+  }
+}
+/*aux.skh:30*/
+
+void glblInit_ranking__ANONYMOUS_s1800 (ref int ranking__ANONYMOUS_s1799_a0)/*aux.skh:30*/
+{
+  {
+    {
+      ranking__ANONYMOUS_s1799_a0 = 0;
+    }
+  }
+}
+/*aux.skh:29*/
+
+void glblInit_ret__ANONYMOUS_s1802 (ref int ret__ANONYMOUS_s1801_a1)/*aux.skh:29*/
+{
+  {
+    {
+      ret__ANONYMOUS_s1801_a1 = 0;
+    }
+  }
+}
+/*aux.skh:33*/
+
+void glblInit_ts__ANONYMOUS_s1804 (ref int ts__ANONYMOUS_s1803_a2)/*aux.skh:33*/
+{
+  {
+    {
+      ts__ANONYMOUS_s1803_a2 = 0;
+    }
+  }
+}
+/*list/test.sk:46*/
+
+void guess_ranking_test (ref global bit[5] active__ANONYMOUS_s1435_1ca, ref global bit[4 * 5] history__ANONYMOUS_s1436_1cb, ref global int[5] key__ANONYMOUS_s1712_1cc, ref global int[6] locvars__ANONYMOUS_s1738_1cd, ref global int[5] next__ANONYMOUS_s1437_1ce, ref global bit[4 * 5] p_history__ANONYMOUS_s1333_1cf, ref global int ranking__ANONYMOUS_s1739_1d0, ref global int[5] supernext__ANONYMOUS_s1438_1d1, ref global bit[5] symbolic__ANONYMOUS_s1439_1d2, ref global int ts__ANONYMOUS_s1334_1d3)/*list/test.sk:46*/
+{
+  {
+    {
+      assert (0); //Assume at list/test.sk:47
+      bit _pac_sc_s1960;
+      {
+        int _pac_s1961;
+        _pac_s1961 = ??/* H__20int:3 */;
+        assert ((_pac_s1961 >= 0) && (_pac_s1961 < 5)); //list/test.sk:33: Array out of bounds
+        _pac_sc_s1960 = ({1,2,3,4,5}[_pac_s1961]) > 0;
+        if(_pac_sc_s1960)/*list/test.sk:48*/
+        {
+          int _pac_s1962;
+          _pac_s1962 = ??/* H__20int:3 */;
+          assert ((_pac_s1962 >= 0) && (_pac_s1962 < 5)); //list/test.sk:33: Array out of bounds
+          _pac_sc_s1960 = ({1,2,3,4,5}[_pac_s1962]) < 6;
+        }
+      }
+      assert (_pac_sc_s1960); //Assume at list/test.sk:48
+      int v2_296_s1811;
+      int _pac_s1963;
+      _pac_s1963 = ??/* H__20int:3 */;
+      assert ((_pac_s1963 >= 0) && (_pac_s1963 < 5)); //list/test.sk:33: Array out of bounds
+      v2_296_s1811 = {1,2,3,4,5}[_pac_s1963];
+      ranking_snapshot@ANONYMOUS(1, 6, v2_296_s1811, active__ANONYMOUS_s1435_1ca, history__ANONYMOUS_s1436_1cb, key__ANONYMOUS_s1712_1cc, locvars__ANONYMOUS_s1738_1cd, next__ANONYMOUS_s1437_1ce, p_history__ANONYMOUS_s1333_1cf, ranking__ANONYMOUS_s1739_1d0, supernext__ANONYMOUS_s1438_1d1, symbolic__ANONYMOUS_s1439_1d2, ts__ANONYMOUS_s1334_1d3);
+    }
+  }
+}
+/*aux.skh:264*/
+
+void init (ref int[5] llocvars_13c, ref int[1] lintvars_13d, ref int[4] lnext_13e, ref int[4] lsupernext_13f, ref int[4] lleft_140, ref int[4] lright_141, ref int[4] lkey_142, ref bit[4] lsymbolic_143, ref bit[4] lactive_144, ref global bit[5] active__ANONYMOUS_s866_145, ref global int[1] intvars__ANONYMOUS_s867_146, ref global int[5] key__ANONYMOUS_s868_147, ref global int[5] left__ANONYMOUS_s869_148, ref global int[6] locvars__ANONYMOUS_s870_149, ref global int[5] next__ANONYMOUS_s871_14a, ref global int[5] right__ANONYMOUS_s872_14b, ref global int[5] supernext__ANONYMOUS_s873_14c, ref global bit[5] symbolic__ANONYMOUS_s874_14d)/*aux.skh:264*/
+{
+  {
+    {
+      int[5] __sa1921;
+      __sa1921 = llocvars_13c;
+      bit _pac_s1931;
+      _pac_s1931 = 1;
+      assert ((_pac_s1931 >= 0) && ((_pac_s1931 + 5) <= 6)); //aux.skh:265: Either null pointer or Array out of bounds
+      {
+        for(int __sa2039 = 0; __sa2039 < 5; __sa2039 = __sa2039 + 1)/*Canonical*/
+        {
+          locvars__ANONYMOUS_s870_149[_pac_s1931 + __sa2039] = __sa1921[__sa2039];
+        }
+      }
+      {
+        for(int __sa2040 = 0; __sa2040 < 1; __sa2040 = __sa2040 + 1)/*Canonical*/
+        {
+          intvars__ANONYMOUS_s867_146[__sa2040] = lintvars_13d[__sa2040];
+        }
+      }
+      int[4] __sa1922;
+      __sa1922 = lnext_13e;
+      bit _pac_s1932;
+      _pac_s1932 = 1;
+      assert ((_pac_s1932 >= 0) && ((_pac_s1932 + 4) <= 5)); //aux.skh:267: Either null pointer or Array out of bounds
+      {
+        for(int __sa2041 = 0; __sa2041 < 4; __sa2041 = __sa2041 + 1)/*Canonical*/
+        {
+          next__ANONYMOUS_s871_14a[_pac_s1932 + __sa2041] = __sa1922[__sa2041];
+        }
+      }
+      int[4] __sa1923;
+      __sa1923 = lsupernext_13f;
+      bit _pac_s1933;
+      _pac_s1933 = 1;
+      assert ((_pac_s1933 >= 0) && ((_pac_s1933 + 4) <= 5)); //aux.skh:268: Either null pointer or Array out of bounds
+      {
+        for(int __sa2042 = 0; __sa2042 < 4; __sa2042 = __sa2042 + 1)/*Canonical*/
+        {
+          supernext__ANONYMOUS_s873_14c[_pac_s1933 + __sa2042] = __sa1923[__sa2042];
+        }
+      }
+      int[4] __sa1924;
+      __sa1924 = lleft_140;
+      bit _pac_s1934;
+      _pac_s1934 = 1;
+      assert ((_pac_s1934 >= 0) && ((_pac_s1934 + 4) <= 5)); //aux.skh:269: Either null pointer or Array out of bounds
+      {
+        for(int __sa2043 = 0; __sa2043 < 4; __sa2043 = __sa2043 + 1)/*Canonical*/
+        {
+          left__ANONYMOUS_s869_148[_pac_s1934 + __sa2043] = __sa1924[__sa2043];
+        }
+      }
+      int[4] __sa1925;
+      __sa1925 = lright_141;
+      bit _pac_s1935;
+      _pac_s1935 = 1;
+      assert ((_pac_s1935 >= 0) && ((_pac_s1935 + 4) <= 5)); //aux.skh:270: Either null pointer or Array out of bounds
+      {
+        for(int __sa2044 = 0; __sa2044 < 4; __sa2044 = __sa2044 + 1)/*Canonical*/
+        {
+          right__ANONYMOUS_s872_14b[_pac_s1935 + __sa2044] = __sa1925[__sa2044];
+        }
+      }
+      int[4] __sa1926;
+      __sa1926 = lkey_142;
+      bit _pac_s1936;
+      _pac_s1936 = 1;
+      assert ((_pac_s1936 >= 0) && ((_pac_s1936 + 4) <= 5)); //aux.skh:271: Either null pointer or Array out of bounds
+      {
+        for(int __sa2045 = 0; __sa2045 < 4; __sa2045 = __sa2045 + 1)/*Canonical*/
+        {
+          key__ANONYMOUS_s868_147[_pac_s1936 + __sa2045] = __sa1926[__sa2045];
+        }
+      }
+      bit[4] __sa1927;
+      __sa1927 = lsymbolic_143;
+      bit _pac_s1937;
+      _pac_s1937 = 1;
+      assert ((_pac_s1937 >= 0) && ((_pac_s1937 + 4) <= 5)); //aux.skh:272: Either null pointer or Array out of bounds
+      {
+        for(int __sa2046 = 0; __sa2046 < 4; __sa2046 = __sa2046 + 1)/*Canonical*/
+        {
+          symbolic__ANONYMOUS_s874_14d[_pac_s1937 + __sa2046] = __sa1927[__sa2046];
+        }
+      }
+      bit[4] __sa1928;
+      __sa1928 = lactive_144;
+      bit _pac_s1938;
+      _pac_s1938 = 1;
+      assert ((_pac_s1938 >= 0) && ((_pac_s1938 + 4) <= 5)); //aux.skh:273: Either null pointer or Array out of bounds
+      {
+        for(int __sa2047 = 0; __sa2047 < 4; __sa2047 = __sa2047 + 1)/*Canonical*/
+        {
+          active__ANONYMOUS_s866_145[_pac_s1938 + __sa2047] = __sa1928[__sa2047];
+        }
+      }
+      bit _pac_s1939;
+      _pac_s1939 = 0;
+      assert ((_pac_s1939 >= 0) && (_pac_s1939 < 5)); //aux.skh:274: Either null pointer or Array out of bounds
+      active__ANONYMOUS_s866_145[_pac_s1939] = 1;
+    }
+  }
+}
+/*list/test.sk:107*/
+
+void iterate_test0 (int lold_sll_0_da, int lold_lenseg_1_db, int lold_minseg_2_dc, int lold_maxseg_3_dd, int lold_sll_de, int lold_lenseg_df, int lold_minseg_e0, int lold_maxseg_e1, int[5] llocvars_4_e2, int[1] lintvars_5_e3, int[4] lnext_6_e4, int[4] lsupernext_7_e5, int[4] lkey_8_e6, bit[4] lsymbolic_9_e7, bit[4] lactive_10_e8, ref global bit[5] active__ANONYMOUS_s1073_e9, ref global bit error_flag__ANONYMOUS_s1696_ea, ref global int fake_unfold__ANONYMOUS_s1301_eb, ref global bit[4 * 5] history__ANONYMOUS_s1178_ec, ref global int[1] intvars__ANONYMOUS_s1074_ed, ref global int[5] key__ANONYMOUS_s1075_ee, ref global int[5] left__ANONYMOUS_s1302_ef, ref global int[6] locvars__ANONYMOUS_s1076_f0, ref global int malloc_budget__ANONYMOUS_s1771_f1, ref global int[5] next__ANONYMOUS_s1092_f2, ref global int old_len__ANONYMOUS_s1203_f3, ref global int old_lenseg__ANONYMOUS_s834_f4, ref global int old_max__ANONYMOUS_s1204_f5, ref global int old_maxseg__ANONYMOUS_s835_f6, ref global int old_min__ANONYMOUS_s1205_f7, ref global int old_minseg__ANONYMOUS_s836_f8, ref global int old_sll__ANONYMOUS_s837_f9, ref global bit[4 * 5] p_history__ANONYMOUS_s1117_fa, ref global int ranking__ANONYMOUS_s1592_fb, ref global int[5] right__ANONYMOUS_s1303_fc, ref global int[5] supernext__ANONYMOUS_s1093_fd, ref global bit[5] symbolic__ANONYMOUS_s1077_fe, ref global int ts__ANONYMOUS_s1118_ff)/*list/test.sk:107*/
+{
+  {
+    {
+      bit[4] lactive_100;
+      lactive_100 = lactive_10_e8;
+      bit[4] lsymbolic_101;
+      lsymbolic_101 = lsymbolic_9_e7;
+      int[4] lkey_102;
+      lkey_102 = lkey_8_e6;
+      int[4] lsupernext_103;
+      lsupernext_103 = lsupernext_7_e5;
+      int[4] lnext_104;
+      lnext_104 = lnext_6_e4;
+      int[1] lintvars_105;
+      lintvars_105 = lintvars_5_e3;
+      int[5] llocvars_106;
+      llocvars_106 = llocvars_4_e2;
+      int lold_maxseg_107;
+      lold_maxseg_107 = lold_maxseg_3_dd;
+      int lold_minseg_108;
+      lold_minseg_108 = lold_minseg_2_dc;
+      int lold_lenseg_109;
+      lold_lenseg_109 = lold_lenseg_1_db;
+      int lold_sll_10a;
+      lold_sll_10a = lold_sll_0_da;
+      int[4] lleft_10b;
+      {
+        for(int __sa2054 = 0; __sa2054 < 0; __sa2054 = __sa2054 + 1)/*Canonical*/
+        {
+          lleft_10b[__sa2054] = {}[__sa2054];
+        }
+        for(int __sa2055 = 0; __sa2055 < 4; __sa2055 = __sa2055 + 1)/*Canonical*/
+        {
+          lleft_10b[__sa2055] = '\0';
+        }
+      }
+      int[4] lright_10c;
+      {
+        for(int __sa2056 = 0; __sa2056 < 0; __sa2056 = __sa2056 + 1)/*Canonical*/
+        {
+          lright_10c[__sa2056] = {}[__sa2056];
+        }
+        for(int __sa2057 = 0; __sa2057 < 4; __sa2057 = __sa2057 + 1)/*Canonical*/
+        {
+          lright_10c[__sa2057] = '\0';
+        }
+      }
+      init@ANONYMOUS(llocvars_106, lintvars_105, lnext_104, lsupernext_103, lleft_10b, lright_10c, lkey_102, lsymbolic_101, lactive_100, active__ANONYMOUS_s1073_e9, intvars__ANONYMOUS_s1074_ed, key__ANONYMOUS_s1075_ee, left__ANONYMOUS_s1302_ef, locvars__ANONYMOUS_s1076_f0, next__ANONYMOUS_s1092_f2, right__ANONYMOUS_s1303_fc, supernext__ANONYMOUS_s1093_fd, symbolic__ANONYMOUS_s1077_fe);
+      old_sll__ANONYMOUS_s837_f9 = lold_sll_10a;
+      old_lenseg__ANONYMOUS_s834_f4 = lold_lenseg_109;
+      old_minseg__ANONYMOUS_s836_f8 = lold_minseg_108;
+      old_maxseg__ANONYMOUS_s835_f6 = lold_maxseg_107;
+      old_sll__ANONYMOUS_s837_f9 = lold_sll_10a;
+      old_lenseg__ANONYMOUS_s834_f4 = lold_lenseg_109;
+      old_minseg__ANONYMOUS_s836_f8 = lold_minseg_108;
+      old_maxseg__ANONYMOUS_s835_f6 = lold_maxseg_107;
+      bit _pac_sc_s485_10d;
+      bit _pac_sc_s485_s487_10e;
+      basic_assumptions@ANONYMOUS(_pac_sc_s485_s487_10e, active__ANONYMOUS_s1073_e9, key__ANONYMOUS_s1075_ee, left__ANONYMOUS_s1302_ef, locvars__ANONYMOUS_s1076_f0, next__ANONYMOUS_s1092_f2, right__ANONYMOUS_s1303_fc, supernext__ANONYMOUS_s1093_fd, symbolic__ANONYMOUS_s1077_fe);
+      _pac_sc_s485_10d = _pac_sc_s485_s487_10e;
+      if(_pac_sc_s485_10d)/*list/test.sk:122*/
+      {
+        bit _pac_sc_s485_s489_10f;
+        basic_axioms@ANONYMOUS(_pac_sc_s485_s489_10f, supernext__ANONYMOUS_s1093_fd, ts__ANONYMOUS_s1118_ff);
+        _pac_sc_s485_10d = _pac_sc_s485_s489_10f;
+      }
+      assume (_pac_sc_s485_10d): "Assume at list/test.sk:122"; //Assume at list/test.sk:122
+      bit _out_s491_110;
+      loop_inv_pre_test@ANONYMOUS(_out_s491_110, active__ANONYMOUS_s1073_e9, history__ANONYMOUS_s1178_ec, intvars__ANONYMOUS_s1074_ed, key__ANONYMOUS_s1075_ee, locvars__ANONYMOUS_s1076_f0, next__ANONYMOUS_s1092_f2, old_len__ANONYMOUS_s1203_f3, old_lenseg__ANONYMOUS_s834_f4, old_max__ANONYMOUS_s1204_f5, old_maxseg__ANONYMOUS_s835_f6, old_min__ANONYMOUS_s1205_f7, old_minseg__ANONYMOUS_s836_f8, p_history__ANONYMOUS_s1117_fa, supernext__ANONYMOUS_s1093_fd, symbolic__ANONYMOUS_s1077_fe, ts__ANONYMOUS_s1118_ff);
+      assume (_out_s491_110): "Assume at list/test.sk:123"; //Assume at list/test.sk:123
+      bit _out_s493_111;
+      loop_cond_test@ANONYMOUS(_out_s493_111, locvars__ANONYMOUS_s1076_f0);
+      assume (_out_s493_111): "Assume at list/test.sk:124"; //Assume at list/test.sk:124
+      guess_ranking_test@ANONYMOUS(active__ANONYMOUS_s1073_e9, history__ANONYMOUS_s1178_ec, key__ANONYMOUS_s1075_ee, locvars__ANONYMOUS_s1076_f0, next__ANONYMOUS_s1092_f2, p_history__ANONYMOUS_s1117_fa, ranking__ANONYMOUS_s1592_fb, supernext__ANONYMOUS_s1093_fd, symbolic__ANONYMOUS_s1077_fe, ts__ANONYMOUS_s1118_ff);
+      locVarAssign@ANONYMOUS(2, 3, locvars__ANONYMOUS_s1076_f0);
+      locVarAssign@ANONYMOUS(3, 1, locvars__ANONYMOUS_s1076_f0);
+      locderef2var@ANONYMOUS(1, 1, active__ANONYMOUS_s1073_e9, error_flag__ANONYMOUS_s1696_ea, history__ANONYMOUS_s1178_ec, key__ANONYMOUS_s1075_ee, locvars__ANONYMOUS_s1076_f0, malloc_budget__ANONYMOUS_s1771_f1, next__ANONYMOUS_s1092_f2, p_history__ANONYMOUS_s1117_fa, supernext__ANONYMOUS_s1093_fd, symbolic__ANONYMOUS_s1077_fe, ts__ANONYMOUS_s1118_ff);
+      locMutate@ANONYMOUS(3, 2, 0, active__ANONYMOUS_s1073_e9, error_flag__ANONYMOUS_s1696_ea, fake_unfold__ANONYMOUS_s1301_eb, history__ANONYMOUS_s1178_ec, left__ANONYMOUS_s1302_ef, locvars__ANONYMOUS_s1076_f0, next__ANONYMOUS_s1092_f2, p_history__ANONYMOUS_s1117_fa, right__ANONYMOUS_s1303_fc, symbolic__ANONYMOUS_s1077_fe, ts__ANONYMOUS_s1118_ff);
+      bit _out_s495_112;
+      loop_inv_post_test@ANONYMOUS(_out_s495_112, active__ANONYMOUS_s1073_e9, history__ANONYMOUS_s1178_ec, intvars__ANONYMOUS_s1074_ed, key__ANONYMOUS_s1075_ee, locvars__ANONYMOUS_s1076_f0, next__ANONYMOUS_s1092_f2, old_len__ANONYMOUS_s1203_f3, old_lenseg__ANONYMOUS_s834_f4, old_max__ANONYMOUS_s1204_f5, old_maxseg__ANONYMOUS_s835_f6, old_min__ANONYMOUS_s1205_f7, old_minseg__ANONYMOUS_s836_f8, p_history__ANONYMOUS_s1117_fa, ranking__ANONYMOUS_s1592_fb, supernext__ANONYMOUS_s1093_fd, symbolic__ANONYMOUS_s1077_fe, ts__ANONYMOUS_s1118_ff);
+      assertPost@ANONYMOUS(_out_s495_112, error_flag__ANONYMOUS_s1696_ea);
+    }
+  }
+}
+/*list/test.sk:107*/
+
+void iterate_test__Wrapper (int lold_sll_0_65, int lold_lenseg_1_66, int lold_minseg_2_67, int lold_maxseg_3_68, int lold_sll_69, int lold_lenseg_6a, int lold_minseg_6b, int lold_maxseg_6c, int[5] llocvars_6d, int[1] lintvars_6e, int[4] lnext_6f, int[4] lsupernext_70, int[4] lkey_71, bit[4] lsymbolic_72, bit[4] lactive_73)  implements iterate_test__WrapperNospec/*list/test.sk:107*/
+{
+  {
+    {
+      global int ts__ANONYMOUS_s1186_4a;
+      glblInit_ts__ANONYMOUS_s1804@ANONYMOUS(ts__ANONYMOUS_s1186_4a);
+      global bit[5] symbolic__ANONYMOUS_s1122_4b;
+      global int[5] supernext__ANONYMOUS_s1315_4c;
+      global int[5] right__ANONYMOUS_s1591_4d;
+      global int ranking__ANONYMOUS_s1631_4e;
+      glblInit_ranking__ANONYMOUS_s1800@ANONYMOUS(ranking__ANONYMOUS_s1631_4e);
+      global bit[4 * 5] p_history__ANONYMOUS_s1185_4f;
+      global int old_sll__ANONYMOUS_s1659_50;
+      global int old_minseg__ANONYMOUS_s1028_51;
+      global int old_min__ANONYMOUS_s1027_52;
+      global int old_maxseg__ANONYMOUS_s1026_53;
+      global int old_max__ANONYMOUS_s1025_54;
+      global int old_lenseg__ANONYMOUS_s1024_55;
+      global int old_len__ANONYMOUS_s1023_56;
+      global int[5] next__ANONYMOUS_s1314_57;
+      global int malloc_budget__ANONYMOUS_s1781_58;
+      glblInit_malloc_budget__ANONYMOUS_s1794@ANONYMOUS(malloc_budget__ANONYMOUS_s1781_58);
+      global int[6] locvars__ANONYMOUS_s1062_59;
+      global int[5] left__ANONYMOUS_s1590_5a;
+      global int[5] key__ANONYMOUS_s1121_5b;
+      global int[1] intvars__ANONYMOUS_s1120_5c;
+      global bit[4 * 5] history__ANONYMOUS_s1252_5d;
+      global int fake_unfold__ANONYMOUS_s1658_5e;
+      glblInit_fake_unfold__ANONYMOUS_s1790@ANONYMOUS(fake_unfold__ANONYMOUS_s1658_5e);
+      global bit error_flag__ANONYMOUS_s1704_5f;
+      glblInit_error_flag__ANONYMOUS_s1788@ANONYMOUS(error_flag__ANONYMOUS_s1704_5f);
+      global bit[5] active__ANONYMOUS_s1119_60;
+      int lold_maxseg_61;
+      lold_maxseg_61 = lold_maxseg_3_68;
+      int lold_minseg_62;
+      lold_minseg_62 = lold_minseg_2_67;
+      int lold_lenseg_63;
+      lold_lenseg_63 = lold_lenseg_1_66;
+      int lold_sll_64;
+      lold_sll_64 = lold_sll_0_65;
+      iterate_test0@ANONYMOUS(lold_sll_64, lold_lenseg_63, lold_minseg_62, lold_maxseg_61, lold_sll_64, lold_lenseg_63, lold_minseg_62, lold_maxseg_61, llocvars_6d, lintvars_6e, lnext_6f, lsupernext_70, lkey_71, lsymbolic_72, lactive_73, active__ANONYMOUS_s1119_60, error_flag__ANONYMOUS_s1704_5f, fake_unfold__ANONYMOUS_s1658_5e, history__ANONYMOUS_s1252_5d, intvars__ANONYMOUS_s1120_5c, key__ANONYMOUS_s1121_5b, left__ANONYMOUS_s1590_5a, locvars__ANONYMOUS_s1062_59, malloc_budget__ANONYMOUS_s1781_58, next__ANONYMOUS_s1314_57, old_len__ANONYMOUS_s1023_56, old_lenseg__ANONYMOUS_s1024_55, old_max__ANONYMOUS_s1025_54, old_maxseg__ANONYMOUS_s1026_53, old_min__ANONYMOUS_s1027_52, old_minseg__ANONYMOUS_s1028_51, old_sll__ANONYMOUS_s1659_50, p_history__ANONYMOUS_s1185_4f, ranking__ANONYMOUS_s1631_4e, right__ANONYMOUS_s1591_4d, supernext__ANONYMOUS_s1315_4c, symbolic__ANONYMOUS_s1122_4b, ts__ANONYMOUS_s1186_4a);
+    }
+  }
+}
+/*list/test.sk:107*/
+
+void iterate_test__WrapperNospec (int lold_sll_0_65, int lold_lenseg_1_66, int lold_minseg_2_67, int lold_maxseg_3_68, int lold_sll_69, int lold_lenseg_6a, int lold_minseg_6b, int lold_maxseg_6c, int[5] llocvars_6d, int[1] lintvars_6e, int[4] lnext_6f, int[4] lsupernext_70, int[4] lkey_71, bit[4] lsymbolic_72, bit[4] lactive_73)/*list/test.sk:107*/
+{
+  {
+    {
+      int lold_maxseg_74;
+      lold_maxseg_74 = lold_maxseg_3_68;
+      int lold_minseg_75;
+      lold_minseg_75 = lold_minseg_2_67;
+      int lold_lenseg_76;
+      lold_lenseg_76 = lold_lenseg_1_66;
+      int lold_sll_77;
+      lold_sll_77 = lold_sll_0_65;
+    }
+  }
+}
+/*lseg_header.skh:20*/
+
+uninterp void len (int l, int t, ref int _out)/*lseg_header.skh:20*/
+/*lseg_header.skh:129*/
+
+void len_comp (int l_2b6, ref int _out_2b7, ref global bit[5] active__ANONYMOUS_s1294_2b8, ref global bit[4 * 5] history__ANONYMOUS_s1190_2b9, ref global int[5] next__ANONYMOUS_s1295_2ba, ref global bit[4 * 5] p_history__ANONYMOUS_s1372_2bb, ref global int[5] supernext__ANONYMOUS_s1296_2bc, ref global bit[5] symbolic__ANONYMOUS_s1297_2bd, ref global int ts__ANONYMOUS_s1191_2be)/*lseg_header.skh:129*/
+{
+  {
+    {
+      _out_2b7 = 0;
+      int _out_s458_2bf;
+      len_recursive@ANONYMOUS(l_2b6, 0, 4, _out_s458_2bf, active__ANONYMOUS_s1294_2b8, history__ANONYMOUS_s1190_2b9, next__ANONYMOUS_s1295_2ba, p_history__ANONYMOUS_s1372_2bb, supernext__ANONYMOUS_s1296_2bc, symbolic__ANONYMOUS_s1297_2bd, ts__ANONYMOUS_s1191_2be);
+      _out_2b7 = _out_s458_2bf;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:158*/
+
+void len_history (int l_3c8, int ts_0_3c9, ref int _out_3ca, ref global bit[4 * 5] history__ANONYMOUS_s801_3cb, ref global int ts__ANONYMOUS_s802_3cc)/*lseg_header.skh:158*/
+{
+  {
+    {
+      _out_3ca = 0;
+      int ts_3cd;
+      ts_3cd = ts_0_3c9;
+      bit __sa4_3ce;
+      bit _pac_sc_s2023;
+      {
+        _pac_sc_s2023 = ts_3cd > 0;
+        if(_pac_sc_s2023)/*lseg_header.skh:159*/
+        {
+          assert ((l_3c8 >= 0) && (l_3c8 < 5)); //lseg_header.skh:159: Array out of bounds
+          assert ((ts_3cd >= 0) && (ts_3cd < 4)); //lseg_header.skh:159: Array out of bounds
+          _pac_sc_s2023 = history__ANONYMOUS_s801_3cb[(4 * l_3c8) + ts_3cd];
+        }
+      }
+      __sa4_3ce = _pac_sc_s2023;
+      while(__sa4_3ce)
+      {
+        int uo_s20_3d0;
+        uo_s20_3d0 = ts_3cd;
+        ts_3cd = ts_3cd - 1;
+        uo_s20_3d0;
+        bit _pac_sc_s2024;
+        {
+          _pac_sc_s2024 = ts_3cd > 0;
+          if(_pac_sc_s2024)/*lseg_header.skh:159*/
+          {
+            assert ((l_3c8 >= 0) && (l_3c8 < 5)); //lseg_header.skh:159: Array out of bounds
+            assert ((ts_3cd >= 0) && (ts_3cd < 4)); //lseg_header.skh:159: Array out of bounds
+            _pac_sc_s2024 = history__ANONYMOUS_s801_3cb[(4 * l_3c8) + ts_3cd];
+          }
+        }
+        __sa4_3ce = _pac_sc_s2024;
+      }
+      int _out_s126_3d1;
+      len(l_3c8, ts_3cd, _out_s126_3d1);
+      _out_3ca = _out_s126_3d1;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:134*/
+
+void len_recursive (int l1_350, int l2_351, int bnd_352, ref int _out_353, ref global bit[5] active__ANONYMOUS_s789_354, ref global bit[4 * 5] history__ANONYMOUS_s1618_355, ref global int[5] next__ANONYMOUS_s790_356, ref global bit[4 * 5] p_history__ANONYMOUS_s1769_357, ref global int[5] supernext__ANONYMOUS_s791_358, ref global bit[5] symbolic__ANONYMOUS_s792_359, ref global int ts__ANONYMOUS_s793_35a)/*lseg_header.skh:134*/
+{
+  {
+    {
+      _out_353 = 0;
+      if((((l1_350 < 0) || (l1_350 >= 5)) || (l2_351 < 0)) || (l2_351 >= 5))/*lseg_header.skh:135*/
+      {
+        _out_353 = -1;
+        return;
+      }
+      else
+      {
+        bit _pac_sc_s1998;
+        {
+          assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:136: Array out of bounds
+          _pac_sc_s1998 = !(active__ANONYMOUS_s789_354[l1_350]);
+          if(!(_pac_sc_s1998))/*lseg_header.skh:136*/
+          {
+            assert ((l2_351 >= 0) && (l2_351 < 5)); //lseg_header.skh:136: Array out of bounds
+            _pac_sc_s1998 = !(active__ANONYMOUS_s789_354[l2_351]);
+          }
+        }
+        if(_pac_sc_s1998)/*lseg_header.skh:136*/
+        {
+          _out_353 = -1;
+          return;
+        }
+        else
+        {
+          if(l1_350 == l2_351)/*lseg_header.skh:138*/
+          {
+            bit _pac_sc_s1999;
+            {
+              _pac_sc_s1999 = l1_350 == 0;
+              if(!(_pac_sc_s1999))/*lseg_header.skh:138*/
+              {
+                assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:138: Array out of bounds
+                _pac_sc_s1999 = (next__ANONYMOUS_s790_356[l1_350]) != l1_350;
+              }
+            }
+            _out_353 = (_pac_sc_s1999 ? 0 : 1);
+            return;
+          }
+          else
+          {
+            if(l1_350 == 0)/*lseg_header.skh:140*/
+            {
+              _out_353 = -1;
+              return;
+            }
+            else
+            {
+              if(bnd_352 < 0)/*lseg_header.skh:141*/
+              {
+                _out_353 = -1;
+                return;
+              }
+              else
+              {
+                assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:143: Array out of bounds
+                if(symbolic__ANONYMOUS_s792_359[l1_350])/*lseg_header.skh:143*/
+                {
+                  if(l2_351 == 0)/*lseg_header.skh:144*/
+                  {
+                    int _out_s114_35b;
+                    len_history@ANONYMOUS(l1_350, ts__ANONYMOUS_s793_35a, _out_s114_35b, history__ANONYMOUS_s1618_355, ts__ANONYMOUS_s793_35a);
+                    _out_353 = _out_s114_35b;
+                    return;
+                  }
+                  else
+                  {
+                    _out_353 = -1;
+                    return;
+                  }
+                }
+                else
+                {
+                  assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:148: Array out of bounds
+                  if(l2_351 == (next__ANONYMOUS_s790_356[l1_350]))/*lseg_header.skh:148*/
+                  {
+                    bit _pac_sc_s2000;
+                    {
+                      _pac_sc_s2000 = l2_351 == 0;
+                      if(!(_pac_sc_s2000))/*lseg_header.skh:148*/
+                      {
+                        assert ((l2_351 >= 0) && (l2_351 < 5)); //lseg_header.skh:148: Array out of bounds
+                        _pac_sc_s2000 = (next__ANONYMOUS_s790_356[l2_351]) != l2_351;
+                      }
+                    }
+                    _out_353 = (_pac_sc_s2000 ? 1 : 2);
+                    return;
+                  }
+                  else
+                  {
+                    assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:149: Array out of bounds
+                    if(0 == (next__ANONYMOUS_s790_356[l1_350]))/*lseg_header.skh:149*/
+                    {
+                      _out_353 = -1;
+                      return;
+                    }
+                    else
+                    {
+                      bit _pac_sc_s2001;
+                      {
+                        assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:150: Array out of bounds
+                        _pac_sc_s2001 = 0 < (next__ANONYMOUS_s790_356[l1_350]);
+                        if(_pac_sc_s2001)/*lseg_header.skh:150*/
+                        {
+                          assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:150: Array out of bounds
+                          _pac_sc_s2001 = (next__ANONYMOUS_s790_356[l1_350]) < 5;
+                        }
+                      }
+                      if(_pac_sc_s2001)/*lseg_header.skh:150*/
+                      {
+                        int _out_s116_35c;
+                        int l1_350_s1900;
+                        assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:150: Array out of bounds
+                        l1_350_s1900 = next__ANONYMOUS_s790_356[l1_350];
+                        int bnd_352_s1901;
+                        bnd_352_s1901 = bnd_352 - 1;
+                        len_recursive@ANONYMOUS(l1_350_s1900, l2_351, bnd_352_s1901, _out_s116_35c, active__ANONYMOUS_s789_354, history__ANONYMOUS_s1618_355, next__ANONYMOUS_s790_356, p_history__ANONYMOUS_s1769_357, supernext__ANONYMOUS_s791_358, symbolic__ANONYMOUS_s792_359, ts__ANONYMOUS_s793_35a);
+                        _out_353 = _out_s116_35c + 1;
+                        return;
+                      }
+                      else
+                      {
+                        assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:151: Array out of bounds
+                        if(l2_351 == (supernext__ANONYMOUS_s791_358[l1_350]))/*lseg_header.skh:151*/
+                        {
+                          int _out_s118_35d;
+                          lenseg_history@ANONYMOUS(l1_350, ts__ANONYMOUS_s793_35a, _out_s118_35d, p_history__ANONYMOUS_s1769_357, ts__ANONYMOUS_s793_35a);
+                          _out_353 = _out_s118_35d;
+                          return;
+                        }
+                        else
+                        {
+                          assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:152: Array out of bounds
+                          if(0 == (supernext__ANONYMOUS_s791_358[l1_350]))/*lseg_header.skh:152*/
+                          {
+                            _out_353 = -1;
+                            return;
+                          }
+                          else
+                          {
+                            bit _pac_sc_s2002;
+                            {
+                              assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:153: Array out of bounds
+                              _pac_sc_s2002 = 0 < (supernext__ANONYMOUS_s791_358[l1_350]);
+                              if(_pac_sc_s2002)/*lseg_header.skh:153*/
+                              {
+                                assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:153: Array out of bounds
+                                _pac_sc_s2002 = (supernext__ANONYMOUS_s791_358[l1_350]) < 5;
+                              }
+                            }
+                            if(_pac_sc_s2002)/*lseg_header.skh:153*/
+                            {
+                              int _out_s120_35e;
+                              lenseg_history@ANONYMOUS(l1_350, ts__ANONYMOUS_s793_35a, _out_s120_35e, p_history__ANONYMOUS_s1769_357, ts__ANONYMOUS_s793_35a);
+                              int _out_s122_35f;
+                              int l1_350_s1902;
+                              assert ((l1_350 >= 0) && (l1_350 < 5)); //lseg_header.skh:153: Array out of bounds
+                              l1_350_s1902 = supernext__ANONYMOUS_s791_358[l1_350];
+                              int bnd_352_s1903;
+                              bnd_352_s1903 = bnd_352 - 1;
+                              len_recursive@ANONYMOUS(l1_350_s1902, l2_351, bnd_352_s1903, _out_s122_35f, active__ANONYMOUS_s789_354, history__ANONYMOUS_s1618_355, next__ANONYMOUS_s790_356, p_history__ANONYMOUS_s1769_357, supernext__ANONYMOUS_s791_358, symbolic__ANONYMOUS_s792_359, ts__ANONYMOUS_s793_35a);
+                              _out_353 = _out_s120_35e + _out_s122_35f;
+                              return;
+                            }
+                            else
+                            {
+                              _out_353 = -1;
+                              return;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*lseg_header.skh:27*/
+
+uninterp void lenseg (int l1, int t, ref int _out)/*lseg_header.skh:27*/
+/*lseg_header.skh:163*/
+
+void lenseg_comp (int l1_271, int l2_272, ref int _out_273, ref global bit[5] active__ANONYMOUS_s1362_274, ref global bit[4 * 5] history__ANONYMOUS_s1148_275, ref global int[5] next__ANONYMOUS_s1363_276, ref global bit[4 * 5] p_history__ANONYMOUS_s1405_277, ref global int[5] supernext__ANONYMOUS_s1364_278, ref global bit[5] symbolic__ANONYMOUS_s1365_279, ref global int ts__ANONYMOUS_s1149_27a)/*lseg_header.skh:163*/
+{
+  {
+    {
+      _out_273 = 0;
+      int _out_s112_27b;
+      len_recursive@ANONYMOUS(l1_271, l2_272, 4, _out_s112_27b, active__ANONYMOUS_s1362_274, history__ANONYMOUS_s1148_275, next__ANONYMOUS_s1363_276, p_history__ANONYMOUS_s1405_277, supernext__ANONYMOUS_s1364_278, symbolic__ANONYMOUS_s1365_279, ts__ANONYMOUS_s1149_27a);
+      _out_273 = _out_s112_27b;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:168*/
+
+void lenseg_history (int l1_3d2, int ts_0_3d3, ref int _out_3d4, ref global bit[4 * 5] p_history__ANONYMOUS_s879_3d5, ref global int ts__ANONYMOUS_s880_3d6)/*lseg_header.skh:168*/
+{
+  {
+    {
+      _out_3d4 = 0;
+      int ts_3d7;
+      ts_3d7 = ts_0_3d3;
+      bit __sa5_3d8;
+      bit _pac_sc_s2025;
+      {
+        _pac_sc_s2025 = ts_3d7 > 0;
+        if(_pac_sc_s2025)/*lseg_header.skh:169*/
+        {
+          assert ((l1_3d2 >= 0) && (l1_3d2 < 5)); //lseg_header.skh:169: Array out of bounds
+          assert ((ts_3d7 >= 0) && (ts_3d7 < 4)); //lseg_header.skh:169: Array out of bounds
+          _pac_sc_s2025 = p_history__ANONYMOUS_s879_3d5[(4 * l1_3d2) + ts_3d7];
+        }
+      }
+      __sa5_3d8 = _pac_sc_s2025;
+      while(__sa5_3d8)
+      {
+        int uo_s19_3da;
+        uo_s19_3da = ts_3d7;
+        ts_3d7 = ts_3d7 - 1;
+        uo_s19_3da;
+        bit _pac_sc_s2026;
+        {
+          _pac_sc_s2026 = ts_3d7 > 0;
+          if(_pac_sc_s2026)/*lseg_header.skh:169*/
+          {
+            assert ((l1_3d2 >= 0) && (l1_3d2 < 5)); //lseg_header.skh:169: Array out of bounds
+            assert ((ts_3d7 >= 0) && (ts_3d7 < 4)); //lseg_header.skh:169: Array out of bounds
+            _pac_sc_s2026 = p_history__ANONYMOUS_s879_3d5[(4 * l1_3d2) + ts_3d7];
+          }
+        }
+        __sa5_3d8 = _pac_sc_s2026;
+      }
+      int _out_s124_3db;
+      lenseg(l1_3d2, ts_3d7, _out_s124_3db);
+      _out_3d4 = _out_s124_3db;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:1135*/
+
+void lenseg_preserve_inv (int val_2f2, int v1_2f3, int v2_2f4, int v3_2f5, int v4_2f6, bit single_2f7, ref bit _out_2f8, ref global bit[5] active__ANONYMOUS_s1503_2f9, ref global bit[4 * 5] history__ANONYMOUS_s1394_2fa, ref global int[6] locvars__ANONYMOUS_s882_2fb, ref global int[5] next__ANONYMOUS_s1504_2fc, ref global bit[4 * 5] p_history__ANONYMOUS_s1138_2fd, ref global int[5] supernext__ANONYMOUS_s1505_2fe, ref global bit[5] symbolic__ANONYMOUS_s1506_2ff, ref global int ts__ANONYMOUS_s1139_300)/*lseg_header.skh:1135*/
+{
+  {
+    {
+      _out_2f8 = 0;
+      assert ((v1_2f3 > 0) && (v1_2f3 < 6)); //Assert at lseg_header.skh:1136 (4735531314598352071)
+      assert ((v3_2f5 >= 0) && (v3_2f5 < 6)); //Assert at lseg_header.skh:1137 (-7732875705855755910)
+      bit _pac_sc_s1980;
+      {
+        bit _pac_sc_s1981;
+        {
+          bit _pac_sc_s1982;
+          {
+            assert ((v1_2f3 >= 0) && (v1_2f3 < 6)); //lseg_header.skh:1138: Array out of bounds
+            _pac_sc_s1982 = (locvars__ANONYMOUS_s882_2fb[v1_2f3]) >= 0;
+            if(_pac_sc_s1982)/*lseg_header.skh:1138*/
+            {
+              assert ((v1_2f3 >= 0) && (v1_2f3 < 6)); //lseg_header.skh:1138: Array out of bounds
+              _pac_sc_s1982 = (locvars__ANONYMOUS_s882_2fb[v1_2f3]) < 5;
+            }
+          }
+          _pac_sc_s1981 = _pac_sc_s1982;
+          if(_pac_sc_s1981)/*lseg_header.skh:1138*/
+          {
+            assert ((v3_2f5 >= 0) && (v3_2f5 < 6)); //lseg_header.skh:1138: Array out of bounds
+            _pac_sc_s1981 = (locvars__ANONYMOUS_s882_2fb[v3_2f5]) >= 0;
+          }
+        }
+        _pac_sc_s1980 = _pac_sc_s1981;
+        if(_pac_sc_s1980)/*lseg_header.skh:1138*/
+        {
+          assert ((v3_2f5 >= 0) && (v3_2f5 < 6)); //lseg_header.skh:1138: Array out of bounds
+          _pac_sc_s1980 = (locvars__ANONYMOUS_s882_2fb[v3_2f5]) <= 5;
+        }
+      }
+      if(!(_pac_sc_s1980))/*lseg_header.skh:1138*/
+      {
+        _out_2f8 = 0;
+        return;
+      }
+      else
+      {
+        if(single_2f7)/*lseg_header.skh:1139*/
+        {
+          bit _pac_sc_s394_301;
+          bit _pac_sc_s394_s396_302;
+          int t1_347_s1856;
+          assert ((v1_2f3 >= 0) && (v1_2f3 < 6)); //lseg_header.skh:1140: Array out of bounds
+          t1_347_s1856 = locvars__ANONYMOUS_s882_2fb[v1_2f3];
+          int t2_348_s1857;
+          assert ((v3_2f5 >= 0) && (v3_2f5 < 6)); //lseg_header.skh:1140: Array out of bounds
+          t2_348_s1857 = locvars__ANONYMOUS_s882_2fb[v3_2f5];
+          p_treeness@ANONYMOUS(t1_347_s1856, t2_348_s1857, _pac_sc_s394_s396_302, active__ANONYMOUS_s1503_2f9, next__ANONYMOUS_s1504_2fc, supernext__ANONYMOUS_s1505_2fe, symbolic__ANONYMOUS_s1506_2ff);
+          _pac_sc_s394_301 = _pac_sc_s394_s396_302;
+          if(_pac_sc_s394_301)/*lseg_header.skh:1140*/
+          {
+            int _pac_sc_s394_s398_303;
+            int l1_271_s1858;
+            assert ((v1_2f3 >= 0) && (v1_2f3 < 6)); //lseg_header.skh:1140: Array out of bounds
+            l1_271_s1858 = locvars__ANONYMOUS_s882_2fb[v1_2f3];
+            int l2_272_s1859;
+            assert ((v3_2f5 >= 0) && (v3_2f5 < 6)); //lseg_header.skh:1140: Array out of bounds
+            l2_272_s1859 = locvars__ANONYMOUS_s882_2fb[v3_2f5];
+            lenseg_comp@ANONYMOUS(l1_271_s1858, l2_272_s1859, _pac_sc_s394_s398_303, active__ANONYMOUS_s1503_2f9, history__ANONYMOUS_s1394_2fa, next__ANONYMOUS_s1504_2fc, p_history__ANONYMOUS_s1138_2fd, supernext__ANONYMOUS_s1505_2fe, symbolic__ANONYMOUS_s1506_2ff, ts__ANONYMOUS_s1139_300);
+            _pac_sc_s394_301 = _pac_sc_s394_s398_303 == val_2f2;
+          }
+          _out_2f8 = _pac_sc_s394_301;
+          return;
+        }
+        else
+        {
+          assert (v1_2f3 < v2_2f4); //Assert at lseg_header.skh:1144 (7801708068892440805)
+          assert ((v2_2f4 > 0) && (v2_2f4 < 6)); //Assert at lseg_header.skh:1145 (8165158125935222096)
+          assert ((v4_2f6 >= 0) && (v4_2f6 < 6)); //Assert at lseg_header.skh:1146 (-7350323057340374415)
+          bit _pac_sc_s1983;
+          {
+            bit _pac_sc_s1984;
+            {
+              bit _pac_sc_s1985;
+              {
+                assert ((v2_2f4 >= 0) && (v2_2f4 < 6)); //lseg_header.skh:1147: Array out of bounds
+                _pac_sc_s1985 = (locvars__ANONYMOUS_s882_2fb[v2_2f4]) >= 0;
+                if(_pac_sc_s1985)/*lseg_header.skh:1147*/
+                {
+                  assert ((v2_2f4 >= 0) && (v2_2f4 < 6)); //lseg_header.skh:1147: Array out of bounds
+                  _pac_sc_s1985 = (locvars__ANONYMOUS_s882_2fb[v2_2f4]) < 5;
+                }
+              }
+              _pac_sc_s1984 = _pac_sc_s1985;
+              if(_pac_sc_s1984)/*lseg_header.skh:1147*/
+              {
+                assert ((v4_2f6 >= 0) && (v4_2f6 < 6)); //lseg_header.skh:1148: Array out of bounds
+                _pac_sc_s1984 = (locvars__ANONYMOUS_s882_2fb[v4_2f6]) >= 0;
+              }
+            }
+            _pac_sc_s1983 = _pac_sc_s1984;
+            if(_pac_sc_s1983)/*lseg_header.skh:1147*/
+            {
+              assert ((v4_2f6 >= 0) && (v4_2f6 < 6)); //lseg_header.skh:1148: Array out of bounds
+              _pac_sc_s1983 = (locvars__ANONYMOUS_s882_2fb[v4_2f6]) < 5;
+            }
+          }
+          if(!(_pac_sc_s1983))/*lseg_header.skh:1147*/
+          {
+            _out_2f8 = 0;
+            return;
+          }
+          else
+          {
+            bit _pac_sc_s399_304;
+            bit _pac_sc_s399_s401_305;
+            int t1_347_s1860;
+            assert ((v1_2f3 >= 0) && (v1_2f3 < 6)); //lseg_header.skh:1149: Array out of bounds
+            t1_347_s1860 = locvars__ANONYMOUS_s882_2fb[v1_2f3];
+            int t2_348_s1861;
+            assert ((v3_2f5 >= 0) && (v3_2f5 < 6)); //lseg_header.skh:1149: Array out of bounds
+            t2_348_s1861 = locvars__ANONYMOUS_s882_2fb[v3_2f5];
+            p_treeness@ANONYMOUS(t1_347_s1860, t2_348_s1861, _pac_sc_s399_s401_305, active__ANONYMOUS_s1503_2f9, next__ANONYMOUS_s1504_2fc, supernext__ANONYMOUS_s1505_2fe, symbolic__ANONYMOUS_s1506_2ff);
+            _pac_sc_s399_304 = _pac_sc_s399_s401_305;
+            if(_pac_sc_s399_304)/*lseg_header.skh:1149*/
+            {
+              bit _pac_sc_s399_s403_306;
+              int t1_347_s1862;
+              assert ((v2_2f4 >= 0) && (v2_2f4 < 6)); //lseg_header.skh:1149: Array out of bounds
+              t1_347_s1862 = locvars__ANONYMOUS_s882_2fb[v2_2f4];
+              int t2_348_s1863;
+              assert ((v4_2f6 >= 0) && (v4_2f6 < 6)); //lseg_header.skh:1149: Array out of bounds
+              t2_348_s1863 = locvars__ANONYMOUS_s882_2fb[v4_2f6];
+              p_treeness@ANONYMOUS(t1_347_s1862, t2_348_s1863, _pac_sc_s399_s403_306, active__ANONYMOUS_s1503_2f9, next__ANONYMOUS_s1504_2fc, supernext__ANONYMOUS_s1505_2fe, symbolic__ANONYMOUS_s1506_2ff);
+              _pac_sc_s399_304 = _pac_sc_s399_s403_306;
+            }
+            if(_pac_sc_s399_304)/*lseg_header.skh:1149*/
+            {
+              int l1_307;
+              int l1_s405_308;
+              int l1_271_s1864;
+              assert ((v1_2f3 >= 0) && (v1_2f3 < 6)); //lseg_header.skh:1150: Array out of bounds
+              l1_271_s1864 = locvars__ANONYMOUS_s882_2fb[v1_2f3];
+              int l2_272_s1865;
+              assert ((v3_2f5 >= 0) && (v3_2f5 < 6)); //lseg_header.skh:1150: Array out of bounds
+              l2_272_s1865 = locvars__ANONYMOUS_s882_2fb[v3_2f5];
+              lenseg_comp@ANONYMOUS(l1_271_s1864, l2_272_s1865, l1_s405_308, active__ANONYMOUS_s1503_2f9, history__ANONYMOUS_s1394_2fa, next__ANONYMOUS_s1504_2fc, p_history__ANONYMOUS_s1138_2fd, supernext__ANONYMOUS_s1505_2fe, symbolic__ANONYMOUS_s1506_2ff, ts__ANONYMOUS_s1139_300);
+              l1_307 = l1_s405_308;
+              int l2_309;
+              int l2_s407_30a;
+              int l1_271_s1866;
+              assert ((v2_2f4 >= 0) && (v2_2f4 < 6)); //lseg_header.skh:1151: Array out of bounds
+              l1_271_s1866 = locvars__ANONYMOUS_s882_2fb[v2_2f4];
+              int l2_272_s1867;
+              assert ((v4_2f6 >= 0) && (v4_2f6 < 6)); //lseg_header.skh:1151: Array out of bounds
+              l2_272_s1867 = locvars__ANONYMOUS_s882_2fb[v4_2f6];
+              lenseg_comp@ANONYMOUS(l1_271_s1866, l2_272_s1867, l2_s407_30a, active__ANONYMOUS_s1503_2f9, history__ANONYMOUS_s1394_2fa, next__ANONYMOUS_s1504_2fc, p_history__ANONYMOUS_s1138_2fd, supernext__ANONYMOUS_s1505_2fe, symbolic__ANONYMOUS_s1506_2ff, ts__ANONYMOUS_s1139_300);
+              l2_309 = l2_s407_30a;
+              _out_2f8 = (l1_307 + l2_309) == val_2f2;
+              return;
+            }
+            else
+            {
+              _out_2f8 = 0;
+              return;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*aux.skh:141*/
+
+void locMutate (int c1_1f8, int c2_1f9, int dir_1fa, ref global bit[5] active__ANONYMOUS_s947_1fb, ref global bit error_flag__ANONYMOUS_s1339_1fc, ref global int fake_unfold__ANONYMOUS_s948_1fd, ref global bit[4 * 5] history__ANONYMOUS_s1595_1fe, ref global int[5] left__ANONYMOUS_s949_1ff, ref global int[6] locvars__ANONYMOUS_s950_200, ref global int[5] next__ANONYMOUS_s951_201, ref global bit[4 * 5] p_history__ANONYMOUS_s1596_202, ref global int[5] right__ANONYMOUS_s952_203, ref global bit[5] symbolic__ANONYMOUS_s953_204, ref global int ts__ANONYMOUS_s954_205)/*aux.skh:141*/
+{
+  {
+    {
+      int choice_206;
+      choice_206 = c1_1f8;
+      assert (choice_206 > 0); //Assert at aux.skh:144 (-3875732371707395795)
+      assert (choice_206 < 6); //Assert at aux.skh:145 (305598044753416367)
+      int choice2_207;
+      choice2_207 = c2_1f9;
+      assert (choice2_207 >= 0); //Assert at aux.skh:147 (2277465079734675523)
+      assert (choice2_207 < 6); //Assert at aux.skh:148 (8631713729885374638)
+      int df_208;
+      assert ((choice_206 >= 0) && (choice_206 < 6)); //aux.skh:151: Array out of bounds
+      df_208 = locvars__ANONYMOUS_s950_200[choice_206];
+      bit b_2a9_s1822;
+      b_2a9_s1822 = df_208 >= 0;
+      assumePre@ANONYMOUS(b_2a9_s1822, error_flag__ANONYMOUS_s1339_1fc);
+      bit b_2a9_s1823;
+      b_2a9_s1823 = df_208 < 5;
+      assumePre@ANONYMOUS(b_2a9_s1823, error_flag__ANONYMOUS_s1339_1fc);
+      if((df_208 < 0) || (df_208 >= 5))/*aux.skh:154*/
+      {
+        return;
+      }
+      if(df_208 == 0)/*aux.skh:157*/
+      {
+        return;
+      }
+      assert ((df_208 >= 0) && (df_208 < 5)); //aux.skh:158: Array out of bounds
+      if(!(active__ANONYMOUS_s947_1fb[df_208]))/*aux.skh:158*/
+      {
+        return;
+      }
+      bit _pac_sc_s1967;
+      {
+        assert ((df_208 >= 0) && (df_208 < 5)); //aux.skh:159: Array out of bounds
+        _pac_sc_s1967 = symbolic__ANONYMOUS_s953_204[df_208];
+        if(_pac_sc_s1967)/*aux.skh:159*/
+        {
+          _pac_sc_s1967 = fake_unfold__ANONYMOUS_s948_1fd != df_208;
+        }
+      }
+      if(_pac_sc_s1967)/*aux.skh:159*/
+      {
+        return;
+      }
+      int to_209;
+      assert ((choice2_207 >= 0) && (choice2_207 < 6)); //aux.skh:161: Array out of bounds
+      to_209 = locvars__ANONYMOUS_s950_200[choice2_207];
+      bit b_2a9_s1824;
+      b_2a9_s1824 = to_209 >= 0;
+      assumePre@ANONYMOUS(b_2a9_s1824, error_flag__ANONYMOUS_s1339_1fc);
+      bit b_2a9_s1825;
+      b_2a9_s1825 = to_209 < 5;
+      assumePre@ANONYMOUS(b_2a9_s1825, error_flag__ANONYMOUS_s1339_1fc);
+      bit _pac_sc_s1968;
+      {
+        _pac_sc_s1968 = to_209 >= 5;
+        if(!(_pac_sc_s1968))/*aux.skh:164*/
+        {
+          assert ((to_209 >= 0) && (to_209 < 5)); //aux.skh:164: Array out of bounds
+          _pac_sc_s1968 = !(active__ANONYMOUS_s947_1fb[to_209]);
+        }
+      }
+      if(_pac_sc_s1968)/*aux.skh:164*/
+      {
+        return;
+      }
+      int uo_s27_20a;
+      uo_s27_20a = ts__ANONYMOUS_s954_205;
+      ts__ANONYMOUS_s954_205 = ts__ANONYMOUS_s954_205 + 1;
+      uo_s27_20a;
+      if(dir_1fa == 0)/*aux.skh:167*/
+      {
+        assert ((df_208 >= 0) && (df_208 < 5)); //aux.skh:167: Either null pointer or Array out of bounds
+        next__ANONYMOUS_s951_201[df_208] = to_209;
+      }
+      else
+      {
+        if(dir_1fa == 1)/*aux.skh:168*/
+        {
+          assert ((df_208 >= 0) && (df_208 < 5)); //aux.skh:168: Either null pointer or Array out of bounds
+          left__ANONYMOUS_s949_1ff[df_208] = to_209;
+        }
+        else
+        {
+          if(dir_1fa == 2)/*aux.skh:169*/
+          {
+            assert ((df_208 >= 0) && (df_208 < 5)); //aux.skh:169: Either null pointer or Array out of bounds
+            right__ANONYMOUS_s952_203[df_208] = to_209;
+          }
+        }
+      }
+      connect_defs@ANONYMOUS(active__ANONYMOUS_s947_1fb, history__ANONYMOUS_s1595_1fe, next__ANONYMOUS_s951_201, p_history__ANONYMOUS_s1596_202, symbolic__ANONYMOUS_s953_204, ts__ANONYMOUS_s954_205);
+    }
+  }
+}
+/*aux.skh:108*/
+
+void locVarAssign (int c1_1d4, int c2_1d5, ref global int[6] locvars__ANONYMOUS_s919_1d6)/*aux.skh:108*/
+{
+  {
+    {
+      int choice_1d7;
+      choice_1d7 = c1_1d4;
+      assert (choice_1d7 > 0); //Assert at aux.skh:111 (1058726148007517735)
+      assert (choice_1d7 < 6); //Assert at aux.skh:112 (-2018135789270791060)
+      int choice2_1d8;
+      choice2_1d8 = c2_1d5;
+      assert (choice2_1d8 >= 0); //Assert at aux.skh:115 (3234841069996503272)
+      assert (choice2_1d8 < 6); //Assert at aux.skh:116 (-3654366641281730718)
+      assert ((choice2_1d8 >= 0) && (choice2_1d8 < 6)); //aux.skh:118: Array out of bounds
+      assert ((choice_1d7 >= 0) && (choice_1d7 < 6)); //aux.skh:118: Either null pointer or Array out of bounds
+      locvars__ANONYMOUS_s919_1d6[choice_1d7] = locvars__ANONYMOUS_s919_1d6[choice2_1d8];
+    }
+  }
+}
+/*lseg_header.skh:451*/
+
+void locderef2var (int c1_1d9, int c2_1da, ref global bit[5] active__ANONYMOUS_s851_1db, ref global bit error_flag__ANONYMOUS_s1284_1dc, ref global bit[4 * 5] history__ANONYMOUS_s1386_1dd, ref global int[5] key__ANONYMOUS_s1038_1de, ref global int[6] locvars__ANONYMOUS_s852_1df, ref global int malloc_budget__ANONYMOUS_s853_1e0, ref global int[5] next__ANONYMOUS_s854_1e1, ref global bit[4 * 5] p_history__ANONYMOUS_s1020_1e2, ref global int[5] supernext__ANONYMOUS_s1039_1e3, ref global bit[5] symbolic__ANONYMOUS_s855_1e4, ref global int ts__ANONYMOUS_s856_1e5)/*lseg_header.skh:451*/
+{
+  {
+    {
+      int choice_1e6;
+      choice_1e6 = c1_1d9;
+      assert (choice_1e6 > 0); //Assert at lseg_header.skh:454 (1318667255765987267)
+      assert (choice_1e6 < 6); //Assert at lseg_header.skh:455 (-7475915803582667338)
+      int choice2_1e7;
+      choice2_1e7 = c2_1da;
+      assert (choice2_1e7 > 0); //Assert at lseg_header.skh:457 (-1335849281614670509)
+      assert (choice2_1e7 < 6); //Assert at lseg_header.skh:458 (-73425505699109016)
+      int l_1e8;
+      assert ((choice_1e6 >= 0) && (choice_1e6 < 6)); //lseg_header.skh:461: Array out of bounds
+      l_1e8 = locvars__ANONYMOUS_s852_1df[choice_1e6];
+      bit b_1b6_s1812;
+      b_1b6_s1812 = l_1e8 > 0;
+      assertPost@ANONYMOUS(b_1b6_s1812, error_flag__ANONYMOUS_s1284_1dc);
+      bit b_1b6_s1813;
+      b_1b6_s1813 = l_1e8 < 5;
+      assertPost@ANONYMOUS(b_1b6_s1813, error_flag__ANONYMOUS_s1284_1dc);
+      if((l_1e8 <= 0) || (l_1e8 >= 5))/*lseg_header.skh:464*/
+      {
+        return;
+      }
+      assert ((l_1e8 >= 0) && (l_1e8 < 5)); //lseg_header.skh:465: Array out of bounds
+      if(!(active__ANONYMOUS_s851_1db[l_1e8]))/*lseg_header.skh:465*/
+      {
+        return;
+      }
+      int test_1e9;
+      assert ((l_1e8 >= 0) && (l_1e8 < 5)); //lseg_header.skh:468: Array out of bounds
+      test_1e9 = next__ANONYMOUS_s854_1e1[l_1e8];
+      assert ((l_1e8 >= 0) && (l_1e8 < 5)); //lseg_header.skh:470: Array out of bounds
+      if(!(symbolic__ANONYMOUS_s855_1e4[l_1e8]))/*lseg_header.skh:470*/
+      {
+        bit b_2a9_s1814;
+        b_2a9_s1814 = test_1e9 >= 0;
+        assumePre@ANONYMOUS(b_2a9_s1814, error_flag__ANONYMOUS_s1284_1dc);
+        bit b_2a9_s1815;
+        b_2a9_s1815 = test_1e9 < 5;
+        assumePre@ANONYMOUS(b_2a9_s1815, error_flag__ANONYMOUS_s1284_1dc);
+        if((test_1e9 < 0) || (test_1e9 >= 5))/*lseg_header.skh:473*/
+        {
+          return;
+        }
+        assert ((choice2_1e7 >= 0) && (choice2_1e7 < 6)); //lseg_header.skh:476: Either null pointer or Array out of bounds
+        locvars__ANONYMOUS_s852_1df[choice2_1e7] = test_1e9;
+        return;
+      }
+      int ln_1ea;
+      ln_1ea = test_1e9;
+      if(test_1e9 > 0)/*lseg_header.skh:481*/
+      {
+        bit b_2a9_s1816;
+        b_2a9_s1816 = malloc_budget__ANONYMOUS_s853_1e0 >= 1;
+        assumePre@ANONYMOUS(b_2a9_s1816, error_flag__ANONYMOUS_s1284_1dc);
+        if(malloc_budget__ANONYMOUS_s853_1e0 < 1)/*lseg_header.skh:483*/
+        {
+          return;
+        }
+        int uo_s28_1eb;
+        uo_s28_1eb = malloc_budget__ANONYMOUS_s853_1e0;
+        malloc_budget__ANONYMOUS_s853_1e0 = malloc_budget__ANONYMOUS_s853_1e0 - 1;
+        uo_s28_1eb;
+        ln_1ea = 1;
+        bit __sa11_1ec;
+        bit _pac_sc_s1964;
+        {
+          _pac_sc_s1964 = 1;
+          if(_pac_sc_s1964)/*lseg_header.skh:487*/
+          {
+            bit _pac_s1965;
+            _pac_s1965 = 1;
+            assert ((_pac_s1965 >= 0) && (_pac_s1965 < 5)); //lseg_header.skh:487: Array out of bounds
+            _pac_sc_s1964 = active__ANONYMOUS_s851_1db[_pac_s1965];
+          }
+        }
+        __sa11_1ec = _pac_sc_s1964;
+        while(__sa11_1ec)
+        {
+          int uo_s29_1ef;
+          uo_s29_1ef = ln_1ea;
+          ln_1ea = ln_1ea + 1;
+          uo_s29_1ef;
+          bit _pac_sc_s1966;
+          {
+            _pac_sc_s1966 = ln_1ea < 5;
+            if(_pac_sc_s1966)/*lseg_header.skh:487*/
+            {
+              assert ((ln_1ea >= 0) && (ln_1ea < 5)); //lseg_header.skh:487: Array out of bounds
+              _pac_sc_s1966 = active__ANONYMOUS_s851_1db[ln_1ea];
+            }
+          }
+          __sa11_1ec = _pac_sc_s1966;
+        }
+        bit b_2a9_s1817;
+        b_2a9_s1817 = ln_1ea < 5;
+        assumePre@ANONYMOUS(b_2a9_s1817, error_flag__ANONYMOUS_s1284_1dc);
+        if(ln_1ea >= 5)/*lseg_header.skh:491*/
+        {
+          return;
+        }
+        assert ((ln_1ea >= 0) && (ln_1ea < 5)); //lseg_header.skh:494: Either null pointer or Array out of bounds
+        active__ANONYMOUS_s851_1db[ln_1ea] = 1;
+        assert ((ln_1ea >= 0) && (ln_1ea < 5)); //lseg_header.skh:495: Either null pointer or Array out of bounds
+        symbolic__ANONYMOUS_s855_1e4[ln_1ea] = 1;
+        assert ((l_1e8 >= 0) && (l_1e8 < 5)); //lseg_header.skh:496: Either null pointer or Array out of bounds
+        next__ANONYMOUS_s854_1e1[l_1e8] = ln_1ea;
+      }
+      assert ((choice2_1e7 >= 0) && (choice2_1e7 < 6)); //lseg_header.skh:499: Either null pointer or Array out of bounds
+      locvars__ANONYMOUS_s852_1df[choice2_1e7] = ln_1ea;
+      assert ((l_1e8 >= 0) && (l_1e8 < 5)); //lseg_header.skh:500: Either null pointer or Array out of bounds
+      symbolic__ANONYMOUS_s855_1e4[l_1e8] = 0;
+      bit _out_s514_1f0;
+      sll(l_1e8, ts__ANONYMOUS_s856_1e5, _out_s514_1f0);
+      bit _out_s516_1f1;
+      sll_comp@ANONYMOUS(l_1e8, _out_s516_1f1, active__ANONYMOUS_s851_1db, history__ANONYMOUS_s1386_1dd, key__ANONYMOUS_s1038_1de, next__ANONYMOUS_s854_1e1, p_history__ANONYMOUS_s1020_1e2, supernext__ANONYMOUS_s1039_1e3, symbolic__ANONYMOUS_s855_1e4, ts__ANONYMOUS_s856_1e5);
+      bit b_2a9_s1818;
+      b_2a9_s1818 = _out_s514_1f0 == _out_s516_1f1;
+      assumePre@ANONYMOUS(b_2a9_s1818, error_flag__ANONYMOUS_s1284_1dc);
+      int _out_s518_1f2;
+      len(l_1e8, ts__ANONYMOUS_s856_1e5, _out_s518_1f2);
+      int _out_s520_1f3;
+      len_comp@ANONYMOUS(l_1e8, _out_s520_1f3, active__ANONYMOUS_s851_1db, history__ANONYMOUS_s1386_1dd, next__ANONYMOUS_s854_1e1, p_history__ANONYMOUS_s1020_1e2, supernext__ANONYMOUS_s1039_1e3, symbolic__ANONYMOUS_s855_1e4, ts__ANONYMOUS_s856_1e5);
+      bit b_2a9_s1819;
+      b_2a9_s1819 = _out_s518_1f2 == _out_s520_1f3;
+      assumePre@ANONYMOUS(b_2a9_s1819, error_flag__ANONYMOUS_s1284_1dc);
+      int _out_s522_1f4;
+      min(l_1e8, ts__ANONYMOUS_s856_1e5, _out_s522_1f4);
+      int _out_s524_1f5;
+      min_comp@ANONYMOUS(l_1e8, _out_s524_1f5, active__ANONYMOUS_s851_1db, history__ANONYMOUS_s1386_1dd, key__ANONYMOUS_s1038_1de, next__ANONYMOUS_s854_1e1, p_history__ANONYMOUS_s1020_1e2, supernext__ANONYMOUS_s1039_1e3, symbolic__ANONYMOUS_s855_1e4, ts__ANONYMOUS_s856_1e5);
+      bit b_2a9_s1820;
+      b_2a9_s1820 = _out_s522_1f4 == _out_s524_1f5;
+      assumePre@ANONYMOUS(b_2a9_s1820, error_flag__ANONYMOUS_s1284_1dc);
+      int _out_s526_1f6;
+      max(l_1e8, ts__ANONYMOUS_s856_1e5, _out_s526_1f6);
+      int _out_s528_1f7;
+      max_comp@ANONYMOUS(l_1e8, _out_s528_1f7, active__ANONYMOUS_s851_1db, history__ANONYMOUS_s1386_1dd, key__ANONYMOUS_s1038_1de, next__ANONYMOUS_s854_1e1, p_history__ANONYMOUS_s1020_1e2, supernext__ANONYMOUS_s1039_1e3, symbolic__ANONYMOUS_s855_1e4, ts__ANONYMOUS_s856_1e5);
+      bit b_2a9_s1821;
+      b_2a9_s1821 = _out_s526_1f6 == _out_s528_1f7;
+      assumePre@ANONYMOUS(b_2a9_s1821, error_flag__ANONYMOUS_s1284_1dc);
+    }
+  }
+}
+/*aux.skh:203*/
+
+void locvar_eq (int c1_26b, int c2_26c, ref bit _out_26d, ref global int[6] locvars__ANONYMOUS_s767_26e)/*aux.skh:203*/
+{
+  {
+    {
+      _out_26d = 0;
+      int choice_26f;
+      choice_26f = c1_26b;
+      assert (choice_26f > 0); //Assert at aux.skh:206 (-1643109753597050775)
+      assert (choice_26f < 6); //Assert at aux.skh:207 (2820801073922306167)
+      int choice2_270;
+      choice2_270 = c2_26c;
+      assert (choice2_270 >= 0); //Assert at aux.skh:209 (-1417191028145841798)
+      assert (choice2_270 < 6); //Assert at aux.skh:210 (450670015827675409)
+      assert ((choice_26f >= 0) && (choice_26f < 6)); //aux.skh:212: Array out of bounds
+      assert ((choice2_270 >= 0) && (choice2_270 < 6)); //aux.skh:212: Array out of bounds
+      _out_26d = (locvars__ANONYMOUS_s767_26e[choice_26f]) == (locvars__ANONYMOUS_s767_26e[choice2_270]);
+      return;
+    }
+  }
+}
+/*list/test.sk:83*/
+
+void loop_cond_test (ref bit _out_199, ref global int[6] locvars__ANONYMOUS_s936_19a)/*list/test.sk:83*/
+{
+  {
+    {
+      _out_199 = 0;
+      bit _pac_sc_s1955;
+      {
+        bit _pac_s1956;
+        _pac_s1956 = 1;
+        assert ((_pac_s1956 >= 0) && (_pac_s1956 < 6)); //list/test.sk:84: Array out of bounds
+        bit _pac_s1957;
+        _pac_s1957 = 0;
+        assert ((_pac_s1957 >= 0) && (_pac_s1957 < 6)); //list/test.sk:84: Array out of bounds
+        _pac_sc_s1955 = (locvars__ANONYMOUS_s936_19a[_pac_s1956]) == (locvars__ANONYMOUS_s936_19a[_pac_s1957]);
+        if(!(_pac_sc_s1955))/*list/test.sk:84*/
+        {
+          bit _pac_s1958;
+          _pac_s1958 = 1;
+          assert ((_pac_s1958 >= 0) && (_pac_s1958 < 6)); //list/test.sk:84: Array out of bounds
+          int _pac_s1959;
+          _pac_s1959 = 4;
+          assert ((_pac_s1959 >= 0) && (_pac_s1959 < 6)); //list/test.sk:84: Array out of bounds
+          _pac_sc_s1955 = (locvars__ANONYMOUS_s936_19a[_pac_s1958]) == (locvars__ANONYMOUS_s936_19a[_pac_s1959]);
+        }
+      }
+      _out_199 = !(_pac_sc_s1955);
+      return;
+    }
+  }
+}
+/*list/test.sk:78*/
+
+void loop_inv_post_test (ref bit _out_20b, ref global bit[5] active__ANONYMOUS_s1086_20c, ref global bit[4 * 5] history__ANONYMOUS_s1108_20d, ref global int[1] intvars__ANONYMOUS_s1651_20e, ref global int[5] key__ANONYMOUS_s1087_20f, ref global int[6] locvars__ANONYMOUS_s1037_210, ref global int[5] next__ANONYMOUS_s1088_211, ref global int old_len__ANONYMOUS_s1599_212, ref global int old_lenseg__ANONYMOUS_s1600_213, ref global int old_max__ANONYMOUS_s1601_214, ref global int old_maxseg__ANONYMOUS_s1602_215, ref global int old_min__ANONYMOUS_s1603_216, ref global int old_minseg__ANONYMOUS_s1604_217, ref global bit[4 * 5] p_history__ANONYMOUS_s1084_218, ref global int ranking__ANONYMOUS_s1558_219, ref global int[5] supernext__ANONYMOUS_s1089_21a, ref global bit[5] symbolic__ANONYMOUS_s1090_21b, ref global int ts__ANONYMOUS_s1085_21c)/*list/test.sk:78*/
+{
+  {
+    {
+      _out_20b = 0;
+      bit _pac_sc_s496_21d;
+      bit _pac_sc_s496_s498_21e;
+      loop_inv_test@ANONYMOUS(_pac_sc_s496_s498_21e, active__ANONYMOUS_s1086_20c, history__ANONYMOUS_s1108_20d, intvars__ANONYMOUS_s1651_20e, key__ANONYMOUS_s1087_20f, locvars__ANONYMOUS_s1037_210, next__ANONYMOUS_s1088_211, old_len__ANONYMOUS_s1599_212, old_lenseg__ANONYMOUS_s1600_213, old_max__ANONYMOUS_s1601_214, old_maxseg__ANONYMOUS_s1602_215, old_min__ANONYMOUS_s1603_216, old_minseg__ANONYMOUS_s1604_217, p_history__ANONYMOUS_s1084_218, supernext__ANONYMOUS_s1089_21a, symbolic__ANONYMOUS_s1090_21b, ts__ANONYMOUS_s1085_21c);
+      _pac_sc_s496_21d = _pac_sc_s496_s498_21e;
+      if(_pac_sc_s496_21d)/*list/test.sk:79*/
+      {
+        bit _pac_sc_s496_s500_21f;
+        int v2_2df_s1826;
+        int _pac_s1969;
+        _pac_s1969 = ??/* H__20int:3 */;
+        assert ((_pac_s1969 >= 0) && (_pac_s1969 < 5)); //list/test.sk:33: Array out of bounds
+        v2_2df_s1826 = {1,2,3,4,5}[_pac_s1969];
+        ranking_decreases@ANONYMOUS(1, 6, v2_2df_s1826, _pac_sc_s496_s500_21f, active__ANONYMOUS_s1086_20c, history__ANONYMOUS_s1108_20d, key__ANONYMOUS_s1087_20f, locvars__ANONYMOUS_s1037_210, next__ANONYMOUS_s1088_211, p_history__ANONYMOUS_s1084_218, ranking__ANONYMOUS_s1558_219, supernext__ANONYMOUS_s1089_21a, symbolic__ANONYMOUS_s1090_21b, ts__ANONYMOUS_s1085_21c);
+        _pac_sc_s496_21d = _pac_sc_s496_s500_21f;
+      }
+      _out_20b = _pac_sc_s496_21d;
+      return;
+    }
+  }
+}
+/*list/test.sk:74*/
+
+void loop_inv_pre_test (ref bit _out_1b8, ref global bit[5] active__ANONYMOUS_s1013_1b9, ref global bit[4 * 5] history__ANONYMOUS_s1065_1ba, ref global int[1] intvars__ANONYMOUS_s1646_1bb, ref global int[5] key__ANONYMOUS_s1014_1bc, ref global int[6] locvars__ANONYMOUS_s1049_1bd, ref global int[5] next__ANONYMOUS_s1015_1be, ref global int old_len__ANONYMOUS_s1720_1bf, ref global int old_lenseg__ANONYMOUS_s1721_1c0, ref global int old_max__ANONYMOUS_s1722_1c1, ref global int old_maxseg__ANONYMOUS_s1723_1c2, ref global int old_min__ANONYMOUS_s1724_1c3, ref global int old_minseg__ANONYMOUS_s1725_1c4, ref global bit[4 * 5] p_history__ANONYMOUS_s1055_1c5, ref global int[5] supernext__ANONYMOUS_s1016_1c6, ref global bit[5] symbolic__ANONYMOUS_s1017_1c7, ref global int ts__ANONYMOUS_s1018_1c8)/*list/test.sk:74*/
+{
+  {
+    {
+      _out_1b8 = 0;
+      bit _out_s546_1c9;
+      loop_inv_test@ANONYMOUS(_out_s546_1c9, active__ANONYMOUS_s1013_1b9, history__ANONYMOUS_s1065_1ba, intvars__ANONYMOUS_s1646_1bb, key__ANONYMOUS_s1014_1bc, locvars__ANONYMOUS_s1049_1bd, next__ANONYMOUS_s1015_1be, old_len__ANONYMOUS_s1720_1bf, old_lenseg__ANONYMOUS_s1721_1c0, old_max__ANONYMOUS_s1722_1c1, old_maxseg__ANONYMOUS_s1723_1c2, old_min__ANONYMOUS_s1724_1c3, old_minseg__ANONYMOUS_s1725_1c4, p_history__ANONYMOUS_s1055_1c5, supernext__ANONYMOUS_s1016_1c6, symbolic__ANONYMOUS_s1017_1c7, ts__ANONYMOUS_s1018_1c8);
+      _out_1b8 = _out_s546_1c9;
+      return;
+    }
+  }
+}
+/*list/test.sk:68*/
+
+void loop_inv_test (ref bit _out_17f, ref global bit[5] active__ANONYMOUS_s1275_180, ref global bit[4 * 5] history__ANONYMOUS_s1293_181, ref global int[1] intvars__ANONYMOUS_s1529_182, ref global int[5] key__ANONYMOUS_s1313_183, ref global int[6] locvars__ANONYMOUS_s1491_184, ref global int[5] next__ANONYMOUS_s1276_185, ref global int old_len__ANONYMOUS_s1772_186, ref global int old_lenseg__ANONYMOUS_s1773_187, ref global int old_max__ANONYMOUS_s1774_188, ref global int old_maxseg__ANONYMOUS_s1775_189, ref global int old_min__ANONYMOUS_s1776_18a, ref global int old_minseg__ANONYMOUS_s1777_18b, ref global bit[4 * 5] p_history__ANONYMOUS_s1154_18c, ref global int[5] supernext__ANONYMOUS_s1277_18d, ref global bit[5] symbolic__ANONYMOUS_s1278_18e, ref global int ts__ANONYMOUS_s1155_18f)/*list/test.sk:68*/
+{
+  {
+    {
+      _out_17f = 0;
+      bit _pac_sc_s133_190;
+      bit _pac_sc_s133_s135_191;
+      loop_preserves_test@ANONYMOUS(_pac_sc_s133_s135_191, active__ANONYMOUS_s1275_180, history__ANONYMOUS_s1293_181, key__ANONYMOUS_s1313_183, locvars__ANONYMOUS_s1491_184, next__ANONYMOUS_s1276_185, old_len__ANONYMOUS_s1772_186, old_lenseg__ANONYMOUS_s1773_187, old_max__ANONYMOUS_s1774_188, old_maxseg__ANONYMOUS_s1775_189, old_min__ANONYMOUS_s1776_18a, old_minseg__ANONYMOUS_s1777_18b, p_history__ANONYMOUS_s1154_18c, supernext__ANONYMOUS_s1277_18d, symbolic__ANONYMOUS_s1278_18e, ts__ANONYMOUS_s1155_18f);
+      _pac_sc_s133_190 = _pac_sc_s133_s135_191;
+      assert (!(_pac_sc_s133_190)); //ASSERTION CAN NOT BE SATISFIED: lseg_header.skh:1321 Assert at lseg_header.skh:1321 (-290230877093378489)
+      _out_17f = _pac_sc_s133_190;
+      return;
+    }
+  }
+}
+/*list/test.sk:52*/
+
+void loop_preserves_test (ref bit _out_23b, ref global bit[5] active__ANONYMOUS_s1143_23c, ref global bit[4 * 5] history__ANONYMOUS_s1141_23d, ref global int[5] key__ANONYMOUS_s1144_23e, ref global int[6] locvars__ANONYMOUS_s1259_23f, ref global int[5] next__ANONYMOUS_s1145_240, ref global int old_len__ANONYMOUS_s803_241, ref global int old_lenseg__ANONYMOUS_s804_242, ref global int old_max__ANONYMOUS_s805_243, ref global int old_maxseg__ANONYMOUS_s806_244, ref global int old_min__ANONYMOUS_s807_245, ref global int old_minseg__ANONYMOUS_s808_246, ref global bit[4 * 5] p_history__ANONYMOUS_s1251_247, ref global int[5] supernext__ANONYMOUS_s1146_248, ref global bit[5] symbolic__ANONYMOUS_s1147_249, ref global int ts__ANONYMOUS_s1142_24a)/*list/test.sk:52*/
+{
+  {
+    {
+      _out_23b = 0;
+      int _whichexpr_s42_24b;
+      _whichexpr_s42_24b = ??/* H__22int:3 */;
+      assert ((0 <= _whichexpr_s42_24b) && (_whichexpr_s42_24b < 5)); //regen H__22
+      int _whichexpr_s43_24c;
+      _whichexpr_s43_24c = ??/* H__23int:3 */;
+      assert ((0 <= _whichexpr_s43_24c) && (_whichexpr_s43_24c < 5)); //regen H__23
+      bit single_24d;
+      single_24d = 0;
+      int comp1_24e;
+      comp1_24e = 1;
+      int comp2_24f;
+      comp2_24f = 2;
+      int comp3_250;
+      comp3_250 = (_whichexpr_s42_24b == 0 ? 1 : (_whichexpr_s42_24b == 1 ? 2 : (_whichexpr_s42_24b == 2 ? 3 : (_whichexpr_s42_24b == 3 ? 4 : 5))));
+      int comp4_251;
+      comp4_251 = (_whichexpr_s43_24c == 0 ? 1 : (_whichexpr_s43_24c == 1 ? 2 : (_whichexpr_s43_24c == 2 ? 3 : (_whichexpr_s43_24c == 3 ? 4 : 5))));
+      bit _pac_sc_s327_252;
+      bit _pac_sc_s328_253;
+      bit _pac_sc_s329_254;
+      bit _pac_sc_s330_255;
+      bit _pac_sc_s331_256;
+      bit _pac_sc_s332_257;
+      bit _pac_sc_s333_258;
+      _pac_sc_s333_258 = 1;
+      _pac_sc_s332_257 = 1;
+      bit _pac_sc_s336_259;
+      _pac_sc_s336_259 = 1;
+      _pac_sc_s332_257 = 1;
+      _pac_sc_s331_256 = 1;
+      bit _pac_sc_s339_25a;
+      _pac_sc_s339_25a = 1;
+      _pac_sc_s331_256 = 1;
+      _pac_sc_s330_255 = 1;
+      bit _pac_sc_s342_25b;
+      _pac_sc_s342_25b = 1;
+      _pac_sc_s330_255 = 1;
+      _pac_sc_s329_254 = 1;
+      bit _pac_sc_s345_25c;
+      if(comp3_250 != comp4_251)/*list/test.sk:62*/
+      {
+        bit _pac_sc_s329_s347_25d;
+        lenseg_preserve_inv@ANONYMOUS(old_lenseg__ANONYMOUS_s804_242, 1, 2, comp3_250, comp4_251, 0, _pac_sc_s329_s347_25d, active__ANONYMOUS_s1143_23c, history__ANONYMOUS_s1141_23d, locvars__ANONYMOUS_s1259_23f, next__ANONYMOUS_s1145_240, p_history__ANONYMOUS_s1251_247, supernext__ANONYMOUS_s1146_248, symbolic__ANONYMOUS_s1147_249, ts__ANONYMOUS_s1142_24a);
+        _pac_sc_s345_25c = _pac_sc_s329_s347_25d;
+      }
+      else
+      {
+        _pac_sc_s345_25c = 1;
+      }
+      _pac_sc_s329_254 = _pac_sc_s345_25c;
+      _pac_sc_s328_253 = _pac_sc_s329_254;
+      if(_pac_sc_s328_253)/*list/test.sk:58*/
+      {
+        bit _pac_sc_s348_25e;
+        if(comp3_250 != comp4_251)/*list/test.sk:63*/
+        {
+          bit _pac_sc_s328_s350_25f;
+          minseg_preserve_inv@ANONYMOUS(old_minseg__ANONYMOUS_s808_246, 1, 2, comp3_250, comp4_251, 0, _pac_sc_s328_s350_25f, active__ANONYMOUS_s1143_23c, history__ANONYMOUS_s1141_23d, key__ANONYMOUS_s1144_23e, locvars__ANONYMOUS_s1259_23f, next__ANONYMOUS_s1145_240, p_history__ANONYMOUS_s1251_247, supernext__ANONYMOUS_s1146_248, symbolic__ANONYMOUS_s1147_249, ts__ANONYMOUS_s1142_24a);
+          _pac_sc_s348_25e = _pac_sc_s328_s350_25f;
+        }
+        else
+        {
+          _pac_sc_s348_25e = 1;
+        }
+        _pac_sc_s328_253 = _pac_sc_s348_25e;
+      }
+      _pac_sc_s327_252 = _pac_sc_s328_253;
+      if(_pac_sc_s327_252)/*list/test.sk:58*/
+      {
+        bit _pac_sc_s351_260;
+        if(comp3_250 != comp4_251)/*list/test.sk:64*/
+        {
+          bit _pac_sc_s327_s353_261;
+          maxseg_preserve_inv@ANONYMOUS(old_maxseg__ANONYMOUS_s806_244, 1, 2, comp3_250, comp4_251, 0, _pac_sc_s327_s353_261, active__ANONYMOUS_s1143_23c, history__ANONYMOUS_s1141_23d, key__ANONYMOUS_s1144_23e, locvars__ANONYMOUS_s1259_23f, next__ANONYMOUS_s1145_240, p_history__ANONYMOUS_s1251_247, supernext__ANONYMOUS_s1146_248, symbolic__ANONYMOUS_s1147_249, ts__ANONYMOUS_s1142_24a);
+          _pac_sc_s351_260 = _pac_sc_s327_s353_261;
+        }
+        else
+        {
+          _pac_sc_s351_260 = 1;
+        }
+        _pac_sc_s327_252 = _pac_sc_s351_260;
+      }
+      _out_23b = _pac_sc_s327_252;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:1067*/
+
+void lseg_inv (int v1_262, int v2_263, ref bit _out_264, ref global bit[5] active__ANONYMOUS_s1581_265, ref global int[6] locvars__ANONYMOUS_s922_266, ref global int[5] next__ANONYMOUS_s1582_267, ref global int[5] supernext__ANONYMOUS_s1583_268, ref global bit[5] symbolic__ANONYMOUS_s1584_269)/*lseg_header.skh:1067*/
+{
+  {
+    {
+      _out_264 = 0;
+      assert ((v1_262 > 0) && (v1_262 < 6)); //Assert at lseg_header.skh:1068 (5321702185722122067)
+      assert ((v2_263 > 0) && (v2_263 < 6)); //Assert at lseg_header.skh:1069 (-1468994798330879803)
+      bit _pac_sc_s1970;
+      {
+        bit _pac_sc_s1971;
+        {
+          bit _pac_sc_s1972;
+          {
+            assert ((v1_262 >= 0) && (v1_262 < 6)); //lseg_header.skh:1070: Array out of bounds
+            _pac_sc_s1972 = (locvars__ANONYMOUS_s922_266[v1_262]) >= 0;
+            if(_pac_sc_s1972)/*lseg_header.skh:1070*/
+            {
+              assert ((v1_262 >= 0) && (v1_262 < 6)); //lseg_header.skh:1070: Array out of bounds
+              _pac_sc_s1972 = (locvars__ANONYMOUS_s922_266[v1_262]) < 5;
+            }
+          }
+          _pac_sc_s1971 = _pac_sc_s1972;
+          if(_pac_sc_s1971)/*lseg_header.skh:1070*/
+          {
+            assert ((v2_263 >= 0) && (v2_263 < 6)); //lseg_header.skh:1071: Array out of bounds
+            _pac_sc_s1971 = (locvars__ANONYMOUS_s922_266[v2_263]) >= 0;
+          }
+        }
+        _pac_sc_s1970 = _pac_sc_s1971;
+        if(_pac_sc_s1970)/*lseg_header.skh:1070*/
+        {
+          assert ((v2_263 >= 0) && (v2_263 < 6)); //lseg_header.skh:1071: Array out of bounds
+          _pac_sc_s1970 = (locvars__ANONYMOUS_s922_266[v2_263]) < 5;
+        }
+      }
+      if(!(_pac_sc_s1970))/*lseg_header.skh:1070*/
+      {
+        _out_264 = 0;
+        return;
+      }
+      else
+      {
+        bit _out_s128_26a;
+        int t1_347_s1833;
+        assert ((v1_262 >= 0) && (v1_262 < 6)); //lseg_header.skh:1072: Array out of bounds
+        t1_347_s1833 = locvars__ANONYMOUS_s922_266[v1_262];
+        int t2_348_s1834;
+        assert ((v2_263 >= 0) && (v2_263 < 6)); //lseg_header.skh:1072: Array out of bounds
+        t2_348_s1834 = locvars__ANONYMOUS_s922_266[v2_263];
+        p_treeness@ANONYMOUS(t1_347_s1833, t2_348_s1834, _out_s128_26a, active__ANONYMOUS_s1581_265, next__ANONYMOUS_s1582_267, supernext__ANONYMOUS_s1583_268, symbolic__ANONYMOUS_s1584_269);
+        _out_264 = _out_s128_26a;
+        return;
+      }
+    }
+  }
+}
+/*lseg_header.skh:22*/
+
+uninterp void max (int l, int t, ref int _out)/*lseg_header.skh:22*/
+/*lseg_header.skh:227*/
+
+void max_comp (int l_2cb, ref int _out_2cc, ref global bit[5] active__ANONYMOUS_s1698_2cd, ref global bit[4 * 5] history__ANONYMOUS_s1666_2ce, ref global int[5] key__ANONYMOUS_s1699_2cf, ref global int[5] next__ANONYMOUS_s1700_2d0, ref global bit[4 * 5] p_history__ANONYMOUS_s1701_2d1, ref global int[5] supernext__ANONYMOUS_s1702_2d2, ref global bit[5] symbolic__ANONYMOUS_s1703_2d3, ref global int ts__ANONYMOUS_s1667_2d4)/*lseg_header.skh:227*/
+{
+  {
+    {
+      _out_2cc = 0;
+      int _out_s424_2d5;
+      max_recursive@ANONYMOUS(l_2cb, 4, _out_s424_2d5, active__ANONYMOUS_s1698_2cd, history__ANONYMOUS_s1666_2ce, key__ANONYMOUS_s1699_2cf, next__ANONYMOUS_s1700_2d0, p_history__ANONYMOUS_s1701_2d1, supernext__ANONYMOUS_s1702_2d2, symbolic__ANONYMOUS_s1703_2d3, ts__ANONYMOUS_s1667_2d4);
+      _out_2cc = _out_s424_2d5;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:236*/
+
+void max_history (int l_3f0, int ts_0_3f1, ref int _out_3f2, ref global bit[4 * 5] history__ANONYMOUS_s797_3f3, ref global int ts__ANONYMOUS_s798_3f4)/*lseg_header.skh:236*/
+{
+  {
+    {
+      _out_3f2 = 0;
+      int ts_3f5;
+      ts_3f5 = ts_0_3f1;
+      bit __sa8_3f6;
+      bit _pac_sc_s2031;
+      {
+        _pac_sc_s2031 = ts_3f5 > 0;
+        if(_pac_sc_s2031)/*lseg_header.skh:237*/
+        {
+          assert ((l_3f0 >= 0) && (l_3f0 < 5)); //lseg_header.skh:237: Array out of bounds
+          assert ((ts_3f5 >= 0) && (ts_3f5 < 4)); //lseg_header.skh:237: Array out of bounds
+          _pac_sc_s2031 = history__ANONYMOUS_s797_3f3[(4 * l_3f0) + ts_3f5];
+        }
+      }
+      __sa8_3f6 = _pac_sc_s2031;
+      while(__sa8_3f6)
+      {
+        int uo_s16_3f8;
+        uo_s16_3f8 = ts_3f5;
+        ts_3f5 = ts_3f5 - 1;
+        uo_s16_3f8;
+        bit _pac_sc_s2032;
+        {
+          _pac_sc_s2032 = ts_3f5 > 0;
+          if(_pac_sc_s2032)/*lseg_header.skh:237*/
+          {
+            assert ((l_3f0 >= 0) && (l_3f0 < 5)); //lseg_header.skh:237: Array out of bounds
+            assert ((ts_3f5 >= 0) && (ts_3f5 < 4)); //lseg_header.skh:237: Array out of bounds
+            _pac_sc_s2032 = history__ANONYMOUS_s797_3f3[(4 * l_3f0) + ts_3f5];
+          }
+        }
+        __sa8_3f6 = _pac_sc_s2032;
+      }
+      int _out_s94_3f9;
+      max(l_3f0, ts_3f5, _out_s94_3f9);
+      _out_3f2 = _out_s94_3f9;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:232*/
+
+void max_recursive (int l_3b1, int bnd_3b2, ref int _out_3b3, ref global bit[5] active__ANONYMOUS_s1732_3b4, ref global bit[4 * 5] history__ANONYMOUS_s1401_3b5, ref global int[5] key__ANONYMOUS_s1733_3b6, ref global int[5] next__ANONYMOUS_s1734_3b7, ref global bit[4 * 5] p_history__ANONYMOUS_s1636_3b8, ref global int[5] supernext__ANONYMOUS_s1735_3b9, ref global bit[5] symbolic__ANONYMOUS_s1736_3ba, ref global int ts__ANONYMOUS_s1402_3bb)/*lseg_header.skh:232*/
+{
+  {
+    {
+      _out_3b3 = 0;
+      int _out_s294_3bc;
+      maxseg_recursive@ANONYMOUS(l_3b1, 0, bnd_3b2, _out_s294_3bc, active__ANONYMOUS_s1732_3b4, history__ANONYMOUS_s1401_3b5, key__ANONYMOUS_s1733_3b6, next__ANONYMOUS_s1734_3b7, p_history__ANONYMOUS_s1636_3b8, supernext__ANONYMOUS_s1735_3b9, symbolic__ANONYMOUS_s1736_3ba, ts__ANONYMOUS_s1402_3bb);
+      _out_3b3 = _out_s294_3bc;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:26*/
+
+uninterp void maxseg (int l1, int t, ref int _out)/*lseg_header.skh:26*/
+/*lseg_header.skh:241*/
+
+void maxseg_comp (int l1_288, int l2_289, ref int _out_28a, ref global bit[5] active__ANONYMOUS_s1684_28b, ref global bit[4 * 5] history__ANONYMOUS_s1672_28c, ref global int[5] key__ANONYMOUS_s1685_28d, ref global int[5] next__ANONYMOUS_s1686_28e, ref global bit[4 * 5] p_history__ANONYMOUS_s1687_28f, ref global int[5] supernext__ANONYMOUS_s1688_290, ref global bit[5] symbolic__ANONYMOUS_s1689_291, ref global int ts__ANONYMOUS_s1673_292)/*lseg_header.skh:241*/
+{
+  {
+    {
+      _out_28a = 0;
+      int _out_s80_293;
+      maxseg_recursive@ANONYMOUS(l1_288, l2_289, 4, _out_s80_293, active__ANONYMOUS_s1684_28b, history__ANONYMOUS_s1672_28c, key__ANONYMOUS_s1685_28d, next__ANONYMOUS_s1686_28e, p_history__ANONYMOUS_s1687_28f, supernext__ANONYMOUS_s1688_290, symbolic__ANONYMOUS_s1689_291, ts__ANONYMOUS_s1673_292);
+      _out_28a = _out_s80_293;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:275*/
+
+void maxseg_history (int l1_3fa, int ts_0_3fb, ref int _out_3fc, ref global bit[4 * 5] p_history__ANONYMOUS_s814_3fd, ref global int ts__ANONYMOUS_s815_3fe)/*lseg_header.skh:275*/
+{
+  {
+    {
+      _out_3fc = 0;
+      int ts_3ff;
+      ts_3ff = ts_0_3fb;
+      bit __sa9_400;
+      bit _pac_sc_s2033;
+      {
+        _pac_sc_s2033 = ts_3ff > 0;
+        if(_pac_sc_s2033)/*lseg_header.skh:276*/
+        {
+          assert ((l1_3fa >= 0) && (l1_3fa < 5)); //lseg_header.skh:276: Array out of bounds
+          assert ((ts_3ff >= 0) && (ts_3ff < 4)); //lseg_header.skh:276: Array out of bounds
+          _pac_sc_s2033 = p_history__ANONYMOUS_s814_3fd[(4 * l1_3fa) + ts_3ff];
+        }
+      }
+      __sa9_400 = _pac_sc_s2033;
+      while(__sa9_400)
+      {
+        int uo_s15_402;
+        uo_s15_402 = ts_3ff;
+        ts_3ff = ts_3ff - 1;
+        uo_s15_402;
+        bit _pac_sc_s2034;
+        {
+          _pac_sc_s2034 = ts_3ff > 0;
+          if(_pac_sc_s2034)/*lseg_header.skh:276*/
+          {
+            assert ((l1_3fa >= 0) && (l1_3fa < 5)); //lseg_header.skh:276: Array out of bounds
+            assert ((ts_3ff >= 0) && (ts_3ff < 4)); //lseg_header.skh:276: Array out of bounds
+            _pac_sc_s2034 = p_history__ANONYMOUS_s814_3fd[(4 * l1_3fa) + ts_3ff];
+          }
+        }
+        __sa9_400 = _pac_sc_s2034;
+      }
+      int _out_s92_403;
+      maxseg(l1_3fa, ts_3ff, _out_s92_403);
+      _out_3fc = _out_s92_403;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:1221*/
+
+void maxseg_preserve_inv (int val_329, int v1_32a, int v2_32b, int v3_32c, int v4_32d, bit single_32e, ref bit _out_32f, ref global bit[5] active__ANONYMOUS_s1551_330, ref global bit[4 * 5] history__ANONYMOUS_s1730_331, ref global int[5] key__ANONYMOUS_s1552_332, ref global int[6] locvars__ANONYMOUS_s988_333, ref global int[5] next__ANONYMOUS_s1553_334, ref global bit[4 * 5] p_history__ANONYMOUS_s1554_335, ref global int[5] supernext__ANONYMOUS_s1555_336, ref global bit[5] symbolic__ANONYMOUS_s1556_337, ref global int ts__ANONYMOUS_s1557_338)/*lseg_header.skh:1221*/
+{
+  {
+    {
+      _out_32f = 0;
+      assert ((v1_32a > 0) && (v1_32a < 6)); //Assert at lseg_header.skh:1222 (5872633193988432439)
+      assert ((v3_32c >= 0) && (v3_32c < 6)); //Assert at lseg_header.skh:1223 (-2009827475184493698)
+      bit _pac_sc_s1992;
+      {
+        bit _pac_sc_s1993;
+        {
+          bit _pac_sc_s1994;
+          {
+            assert ((v1_32a >= 0) && (v1_32a < 6)); //lseg_header.skh:1224: Array out of bounds
+            _pac_sc_s1994 = (locvars__ANONYMOUS_s988_333[v1_32a]) >= 0;
+            if(_pac_sc_s1994)/*lseg_header.skh:1224*/
+            {
+              assert ((v1_32a >= 0) && (v1_32a < 6)); //lseg_header.skh:1224: Array out of bounds
+              _pac_sc_s1994 = (locvars__ANONYMOUS_s988_333[v1_32a]) < 5;
+            }
+          }
+          _pac_sc_s1993 = _pac_sc_s1994;
+          if(_pac_sc_s1993)/*lseg_header.skh:1224*/
+          {
+            assert ((v3_32c >= 0) && (v3_32c < 6)); //lseg_header.skh:1224: Array out of bounds
+            _pac_sc_s1993 = (locvars__ANONYMOUS_s988_333[v3_32c]) >= 0;
+          }
+        }
+        _pac_sc_s1992 = _pac_sc_s1993;
+        if(_pac_sc_s1992)/*lseg_header.skh:1224*/
+        {
+          assert ((v3_32c >= 0) && (v3_32c < 6)); //lseg_header.skh:1224: Array out of bounds
+          _pac_sc_s1992 = (locvars__ANONYMOUS_s988_333[v3_32c]) <= 5;
+        }
+      }
+      if(!(_pac_sc_s1992))/*lseg_header.skh:1224*/
+      {
+        _out_32f = 0;
+        return;
+      }
+      else
+      {
+        if(single_32e)/*lseg_header.skh:1225*/
+        {
+          bit _pac_sc_s354_339;
+          bit _pac_sc_s354_s356_33a;
+          int t1_347_s1884;
+          assert ((v1_32a >= 0) && (v1_32a < 6)); //lseg_header.skh:1226: Array out of bounds
+          t1_347_s1884 = locvars__ANONYMOUS_s988_333[v1_32a];
+          int t2_348_s1885;
+          assert ((v3_32c >= 0) && (v3_32c < 6)); //lseg_header.skh:1226: Array out of bounds
+          t2_348_s1885 = locvars__ANONYMOUS_s988_333[v3_32c];
+          p_treeness@ANONYMOUS(t1_347_s1884, t2_348_s1885, _pac_sc_s354_s356_33a, active__ANONYMOUS_s1551_330, next__ANONYMOUS_s1553_334, supernext__ANONYMOUS_s1555_336, symbolic__ANONYMOUS_s1556_337);
+          _pac_sc_s354_339 = _pac_sc_s354_s356_33a;
+          if(_pac_sc_s354_339)/*lseg_header.skh:1226*/
+          {
+            int _pac_sc_s354_s358_33b;
+            int l1_288_s1886;
+            assert ((v1_32a >= 0) && (v1_32a < 6)); //lseg_header.skh:1226: Array out of bounds
+            l1_288_s1886 = locvars__ANONYMOUS_s988_333[v1_32a];
+            int l2_289_s1887;
+            assert ((v3_32c >= 0) && (v3_32c < 6)); //lseg_header.skh:1226: Array out of bounds
+            l2_289_s1887 = locvars__ANONYMOUS_s988_333[v3_32c];
+            maxseg_comp@ANONYMOUS(l1_288_s1886, l2_289_s1887, _pac_sc_s354_s358_33b, active__ANONYMOUS_s1551_330, history__ANONYMOUS_s1730_331, key__ANONYMOUS_s1552_332, next__ANONYMOUS_s1553_334, p_history__ANONYMOUS_s1554_335, supernext__ANONYMOUS_s1555_336, symbolic__ANONYMOUS_s1556_337, ts__ANONYMOUS_s1557_338);
+            _pac_sc_s354_339 = _pac_sc_s354_s358_33b == val_329;
+          }
+          _out_32f = _pac_sc_s354_339;
+          return;
+        }
+        else
+        {
+          assert (v1_32a < v2_32b); //Assert at lseg_header.skh:1230 (-871091525630657583)
+          assert ((v2_32b > 0) && (v2_32b < 6)); //Assert at lseg_header.skh:1231 (-2958994059996424604)
+          assert ((v4_32d >= 0) && (v4_32d < 6)); //Assert at lseg_header.skh:1232 (-2533008570404869768)
+          bit _pac_sc_s1995;
+          {
+            bit _pac_sc_s1996;
+            {
+              bit _pac_sc_s1997;
+              {
+                assert ((v2_32b >= 0) && (v2_32b < 6)); //lseg_header.skh:1233: Array out of bounds
+                _pac_sc_s1997 = (locvars__ANONYMOUS_s988_333[v2_32b]) >= 0;
+                if(_pac_sc_s1997)/*lseg_header.skh:1233*/
+                {
+                  assert ((v2_32b >= 0) && (v2_32b < 6)); //lseg_header.skh:1233: Array out of bounds
+                  _pac_sc_s1997 = (locvars__ANONYMOUS_s988_333[v2_32b]) < 5;
+                }
+              }
+              _pac_sc_s1996 = _pac_sc_s1997;
+              if(_pac_sc_s1996)/*lseg_header.skh:1233*/
+              {
+                assert ((v4_32d >= 0) && (v4_32d < 6)); //lseg_header.skh:1234: Array out of bounds
+                _pac_sc_s1996 = (locvars__ANONYMOUS_s988_333[v4_32d]) >= 0;
+              }
+            }
+            _pac_sc_s1995 = _pac_sc_s1996;
+            if(_pac_sc_s1995)/*lseg_header.skh:1233*/
+            {
+              assert ((v4_32d >= 0) && (v4_32d < 6)); //lseg_header.skh:1234: Array out of bounds
+              _pac_sc_s1995 = (locvars__ANONYMOUS_s988_333[v4_32d]) < 5;
+            }
+          }
+          if(!(_pac_sc_s1995))/*lseg_header.skh:1233*/
+          {
+            _out_32f = 0;
+            return;
+          }
+          else
+          {
+            bit _pac_sc_s359_33c;
+            bit _pac_sc_s359_s361_33d;
+            int t1_347_s1888;
+            assert ((v1_32a >= 0) && (v1_32a < 6)); //lseg_header.skh:1235: Array out of bounds
+            t1_347_s1888 = locvars__ANONYMOUS_s988_333[v1_32a];
+            int t2_348_s1889;
+            assert ((v3_32c >= 0) && (v3_32c < 6)); //lseg_header.skh:1235: Array out of bounds
+            t2_348_s1889 = locvars__ANONYMOUS_s988_333[v3_32c];
+            p_treeness@ANONYMOUS(t1_347_s1888, t2_348_s1889, _pac_sc_s359_s361_33d, active__ANONYMOUS_s1551_330, next__ANONYMOUS_s1553_334, supernext__ANONYMOUS_s1555_336, symbolic__ANONYMOUS_s1556_337);
+            _pac_sc_s359_33c = _pac_sc_s359_s361_33d;
+            if(_pac_sc_s359_33c)/*lseg_header.skh:1235*/
+            {
+              bit _pac_sc_s359_s363_33e;
+              int t1_347_s1890;
+              assert ((v2_32b >= 0) && (v2_32b < 6)); //lseg_header.skh:1235: Array out of bounds
+              t1_347_s1890 = locvars__ANONYMOUS_s988_333[v2_32b];
+              int t2_348_s1891;
+              assert ((v4_32d >= 0) && (v4_32d < 6)); //lseg_header.skh:1235: Array out of bounds
+              t2_348_s1891 = locvars__ANONYMOUS_s988_333[v4_32d];
+              p_treeness@ANONYMOUS(t1_347_s1890, t2_348_s1891, _pac_sc_s359_s363_33e, active__ANONYMOUS_s1551_330, next__ANONYMOUS_s1553_334, supernext__ANONYMOUS_s1555_336, symbolic__ANONYMOUS_s1556_337);
+              _pac_sc_s359_33c = _pac_sc_s359_s363_33e;
+            }
+            if(_pac_sc_s359_33c)/*lseg_header.skh:1235*/
+            {
+              int m1_33f;
+              bit m1_s365_340;
+              int t1_347_s1892;
+              assert ((v1_32a >= 0) && (v1_32a < 6)); //lseg_header.skh:1236: Array out of bounds
+              t1_347_s1892 = locvars__ANONYMOUS_s988_333[v1_32a];
+              int t2_348_s1893;
+              assert ((v3_32c >= 0) && (v3_32c < 6)); //lseg_header.skh:1236: Array out of bounds
+              t2_348_s1893 = locvars__ANONYMOUS_s988_333[v3_32c];
+              p_treeness@ANONYMOUS(t1_347_s1892, t2_348_s1893, m1_s365_340, active__ANONYMOUS_s1551_330, next__ANONYMOUS_s1553_334, supernext__ANONYMOUS_s1555_336, symbolic__ANONYMOUS_s1556_337);
+              int _pac_sc_s366_341;
+              if(m1_s365_340)/*lseg_header.skh:1236*/
+              {
+                int m1_s368_342;
+                int l1_288_s1894;
+                assert ((v1_32a >= 0) && (v1_32a < 6)); //lseg_header.skh:1236: Array out of bounds
+                l1_288_s1894 = locvars__ANONYMOUS_s988_333[v1_32a];
+                int l2_289_s1895;
+                assert ((v3_32c >= 0) && (v3_32c < 6)); //lseg_header.skh:1236: Array out of bounds
+                l2_289_s1895 = locvars__ANONYMOUS_s988_333[v3_32c];
+                maxseg_comp@ANONYMOUS(l1_288_s1894, l2_289_s1895, m1_s368_342, active__ANONYMOUS_s1551_330, history__ANONYMOUS_s1730_331, key__ANONYMOUS_s1552_332, next__ANONYMOUS_s1553_334, p_history__ANONYMOUS_s1554_335, supernext__ANONYMOUS_s1555_336, symbolic__ANONYMOUS_s1556_337, ts__ANONYMOUS_s1557_338);
+                _pac_sc_s366_341 = m1_s368_342;
+              }
+              else
+              {
+                _pac_sc_s366_341 = 0;
+              }
+              m1_33f = _pac_sc_s366_341;
+              int m2_343;
+              bit m2_s370_344;
+              int t1_347_s1896;
+              assert ((v2_32b >= 0) && (v2_32b < 6)); //lseg_header.skh:1237: Array out of bounds
+              t1_347_s1896 = locvars__ANONYMOUS_s988_333[v2_32b];
+              int t2_348_s1897;
+              assert ((v4_32d >= 0) && (v4_32d < 6)); //lseg_header.skh:1237: Array out of bounds
+              t2_348_s1897 = locvars__ANONYMOUS_s988_333[v4_32d];
+              p_treeness@ANONYMOUS(t1_347_s1896, t2_348_s1897, m2_s370_344, active__ANONYMOUS_s1551_330, next__ANONYMOUS_s1553_334, supernext__ANONYMOUS_s1555_336, symbolic__ANONYMOUS_s1556_337);
+              int _pac_sc_s371_345;
+              if(m2_s370_344)/*lseg_header.skh:1237*/
+              {
+                int m2_s373_346;
+                int l1_288_s1898;
+                assert ((v2_32b >= 0) && (v2_32b < 6)); //lseg_header.skh:1237: Array out of bounds
+                l1_288_s1898 = locvars__ANONYMOUS_s988_333[v2_32b];
+                int l2_289_s1899;
+                assert ((v4_32d >= 0) && (v4_32d < 6)); //lseg_header.skh:1237: Array out of bounds
+                l2_289_s1899 = locvars__ANONYMOUS_s988_333[v4_32d];
+                maxseg_comp@ANONYMOUS(l1_288_s1898, l2_289_s1899, m2_s373_346, active__ANONYMOUS_s1551_330, history__ANONYMOUS_s1730_331, key__ANONYMOUS_s1552_332, next__ANONYMOUS_s1553_334, p_history__ANONYMOUS_s1554_335, supernext__ANONYMOUS_s1555_336, symbolic__ANONYMOUS_s1556_337, ts__ANONYMOUS_s1557_338);
+                _pac_sc_s371_345 = m2_s373_346;
+              }
+              else
+              {
+                _pac_sc_s371_345 = 0;
+              }
+              m2_343 = _pac_sc_s371_345;
+              _out_32f = ((m1_33f <= m2_343 ? m2_343 : m1_33f)) == val_329;
+              return;
+            }
+            else
+            {
+              _out_32f = 0;
+              return;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*lseg_header.skh:246*/
+
+void maxseg_recursive (int l1_374, int l2_375, int bnd_376, ref int _out_377, ref global bit[5] active__ANONYMOUS_s966_378, ref global bit[4 * 5] history__ANONYMOUS_s1741_379, ref global int[5] key__ANONYMOUS_s967_37a, ref global int[5] next__ANONYMOUS_s968_37b, ref global bit[4 * 5] p_history__ANONYMOUS_s1162_37c, ref global int[5] supernext__ANONYMOUS_s969_37d, ref global bit[5] symbolic__ANONYMOUS_s970_37e, ref global int ts__ANONYMOUS_s971_37f)/*lseg_header.skh:246*/
+{
+  {
+    {
+      _out_377 = 0;
+      if((((l1_374 < 0) || (l1_374 >= 5)) || (l2_375 < 0)) || (l2_375 >= 5))/*lseg_header.skh:247*/
+      {
+        _out_377 = -1;
+        return;
+      }
+      else
+      {
+        bit _pac_sc_s2011;
+        {
+          assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:248: Array out of bounds
+          _pac_sc_s2011 = !(active__ANONYMOUS_s966_378[l1_374]);
+          if(!(_pac_sc_s2011))/*lseg_header.skh:248*/
+          {
+            assert ((l2_375 >= 0) && (l2_375 < 5)); //lseg_header.skh:248: Array out of bounds
+            _pac_sc_s2011 = !(active__ANONYMOUS_s966_378[l2_375]);
+          }
+        }
+        if(_pac_sc_s2011)/*lseg_header.skh:248*/
+        {
+          _out_377 = -1;
+          return;
+        }
+        else
+        {
+          if(l1_374 == l2_375)/*lseg_header.skh:249*/
+          {
+            bit _pac_sc_s2012;
+            {
+              _pac_sc_s2012 = l1_374 == 0;
+              if(!(_pac_sc_s2012))/*lseg_header.skh:249*/
+              {
+                assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:249: Array out of bounds
+                _pac_sc_s2012 = (next__ANONYMOUS_s968_37b[l1_374]) != l1_374;
+              }
+            }
+            int _pac_sc_s2013;
+            if(_pac_sc_s2012)/*lseg_header.skh:249*/
+            {
+              _pac_sc_s2013 = 0;
+            }
+            else
+            {
+              assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:249: Array out of bounds
+              _pac_sc_s2013 = key__ANONYMOUS_s967_37a[l1_374];
+            }
+            _out_377 = _pac_sc_s2013;
+            return;
+          }
+          else
+          {
+            if(l1_374 == 0)/*lseg_header.skh:251*/
+            {
+              _out_377 = 0;
+              return;
+            }
+            else
+            {
+              if(bnd_376 < 0)/*lseg_header.skh:252*/
+              {
+                _out_377 = -1;
+                return;
+              }
+              else
+              {
+                assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:254: Array out of bounds
+                if(symbolic__ANONYMOUS_s970_37e[l1_374])/*lseg_header.skh:254*/
+                {
+                  if(l2_375 == 0)/*lseg_header.skh:255*/
+                  {
+                    int _out_s82_380;
+                    max_history@ANONYMOUS(l1_374, ts__ANONYMOUS_s971_37f, _out_s82_380, history__ANONYMOUS_s1741_379, ts__ANONYMOUS_s971_37f);
+                    _out_377 = _out_s82_380;
+                    return;
+                  }
+                  else
+                  {
+                    _out_377 = -1;
+                    return;
+                  }
+                }
+                else
+                {
+                  assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:258: Array out of bounds
+                  if(l2_375 == (next__ANONYMOUS_s968_37b[l1_374]))/*lseg_header.skh:258*/
+                  {
+                    bit _pac_sc_s2014;
+                    {
+                      bit _pac_sc_s2015;
+                      {
+                        _pac_sc_s2015 = l2_375 == 0;
+                        if(!(_pac_sc_s2015))/*lseg_header.skh:258*/
+                        {
+                          assert ((l2_375 >= 0) && (l2_375 < 5)); //lseg_header.skh:258: Array out of bounds
+                          _pac_sc_s2015 = (next__ANONYMOUS_s968_37b[l2_375]) != l2_375;
+                        }
+                      }
+                      _pac_sc_s2014 = _pac_sc_s2015;
+                      if(!(_pac_sc_s2014))/*lseg_header.skh:258*/
+                      {
+                        assert ((l2_375 >= 0) && (l2_375 < 5)); //lseg_header.skh:258: Array out of bounds
+                        assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:258: Array out of bounds
+                        _pac_sc_s2014 = (key__ANONYMOUS_s967_37a[l2_375]) <= (key__ANONYMOUS_s967_37a[l1_374]);
+                      }
+                    }
+                    int _pac_sc_s2016;
+                    if(_pac_sc_s2014)/*lseg_header.skh:258*/
+                    {
+                      assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:258: Array out of bounds
+                      _pac_sc_s2016 = key__ANONYMOUS_s967_37a[l1_374];
+                    }
+                    else
+                    {
+                      assert ((l2_375 >= 0) && (l2_375 < 5)); //lseg_header.skh:258: Array out of bounds
+                      _pac_sc_s2016 = key__ANONYMOUS_s967_37a[l2_375];
+                    }
+                    _out_377 = _pac_sc_s2016;
+                    return;
+                  }
+                  else
+                  {
+                    assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:259: Array out of bounds
+                    if(0 == (next__ANONYMOUS_s968_37b[l1_374]))/*lseg_header.skh:259*/
+                    {
+                      _out_377 = -1;
+                      return;
+                    }
+                    else
+                    {
+                      bit _pac_sc_s2017;
+                      {
+                        assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:260: Array out of bounds
+                        _pac_sc_s2017 = 0 < (next__ANONYMOUS_s968_37b[l1_374]);
+                        if(_pac_sc_s2017)/*lseg_header.skh:260*/
+                        {
+                          assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:260: Array out of bounds
+                          _pac_sc_s2017 = (next__ANONYMOUS_s968_37b[l1_374]) < 5;
+                        }
+                      }
+                      if(_pac_sc_s2017)/*lseg_header.skh:260*/
+                      {
+                        int r_381;
+                        int r_s84_382;
+                        int l1_374_s1908;
+                        assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:261: Array out of bounds
+                        l1_374_s1908 = next__ANONYMOUS_s968_37b[l1_374];
+                        int bnd_376_s1909;
+                        bnd_376_s1909 = bnd_376 - 1;
+                        maxseg_recursive@ANONYMOUS(l1_374_s1908, l2_375, bnd_376_s1909, r_s84_382, active__ANONYMOUS_s966_378, history__ANONYMOUS_s1741_379, key__ANONYMOUS_s967_37a, next__ANONYMOUS_s968_37b, p_history__ANONYMOUS_s1162_37c, supernext__ANONYMOUS_s969_37d, symbolic__ANONYMOUS_s970_37e, ts__ANONYMOUS_s971_37f);
+                        r_381 = r_s84_382;
+                        assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:262: Array out of bounds
+                        int _pac_sc_s2018;
+                        if((key__ANONYMOUS_s967_37a[l1_374]) >= r_381)/*lseg_header.skh:262*/
+                        {
+                          assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:262: Array out of bounds
+                          _pac_sc_s2018 = key__ANONYMOUS_s967_37a[l1_374];
+                        }
+                        else
+                        {
+                          _pac_sc_s2018 = r_381;
+                        }
+                        _out_377 = _pac_sc_s2018;
+                        return;
+                      }
+                      else
+                      {
+                        assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:264: Array out of bounds
+                        if(l2_375 == (supernext__ANONYMOUS_s969_37d[l1_374]))/*lseg_header.skh:264*/
+                        {
+                          int _out_s86_383;
+                          maxseg_history@ANONYMOUS(l1_374, ts__ANONYMOUS_s971_37f, _out_s86_383, p_history__ANONYMOUS_s1162_37c, ts__ANONYMOUS_s971_37f);
+                          _out_377 = _out_s86_383;
+                          return;
+                        }
+                        else
+                        {
+                          assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:265: Array out of bounds
+                          if(0 == (supernext__ANONYMOUS_s969_37d[l1_374]))/*lseg_header.skh:265*/
+                          {
+                            _out_377 = -1;
+                            return;
+                          }
+                          else
+                          {
+                            bit _pac_sc_s2019;
+                            {
+                              assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:266: Array out of bounds
+                              _pac_sc_s2019 = 0 < (supernext__ANONYMOUS_s969_37d[l1_374]);
+                              if(_pac_sc_s2019)/*lseg_header.skh:266*/
+                              {
+                                assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:266: Array out of bounds
+                                _pac_sc_s2019 = (supernext__ANONYMOUS_s969_37d[l1_374]) < 5;
+                              }
+                            }
+                            if(_pac_sc_s2019)/*lseg_header.skh:266*/
+                            {
+                              int p1_384;
+                              int p1_s88_385;
+                              maxseg_history@ANONYMOUS(l1_374, ts__ANONYMOUS_s971_37f, p1_s88_385, p_history__ANONYMOUS_s1162_37c, ts__ANONYMOUS_s971_37f);
+                              p1_384 = p1_s88_385;
+                              int p2_386;
+                              int p2_s90_387;
+                              int l1_374_s1910;
+                              assert ((l1_374 >= 0) && (l1_374 < 5)); //lseg_header.skh:268: Array out of bounds
+                              l1_374_s1910 = supernext__ANONYMOUS_s969_37d[l1_374];
+                              int bnd_376_s1911;
+                              bnd_376_s1911 = bnd_376 - 1;
+                              maxseg_recursive@ANONYMOUS(l1_374_s1910, l2_375, bnd_376_s1911, p2_s90_387, active__ANONYMOUS_s966_378, history__ANONYMOUS_s1741_379, key__ANONYMOUS_s967_37a, next__ANONYMOUS_s968_37b, p_history__ANONYMOUS_s1162_37c, supernext__ANONYMOUS_s969_37d, symbolic__ANONYMOUS_s970_37e, ts__ANONYMOUS_s971_37f);
+                              p2_386 = p2_s90_387;
+                              _out_377 = (p1_384 >= p2_386 ? p1_384 : p2_386);
+                              return;
+                            }
+                            else
+                            {
+                              _out_377 = -1;
+                              return;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*lseg_header.skh:21*/
+
+uninterp void min (int l, int t, ref int _out)/*lseg_header.skh:21*/
+/*lseg_header.skh:173*/
+
+void min_comp (int l_2c0, ref int _out_2c1, ref global bit[5] active__ANONYMOUS_s1357_2c2, ref global bit[4 * 5] history__ANONYMOUS_s1317_2c3, ref global int[5] key__ANONYMOUS_s1358_2c4, ref global int[5] next__ANONYMOUS_s1359_2c5, ref global bit[4 * 5] p_history__ANONYMOUS_s1662_2c6, ref global int[5] supernext__ANONYMOUS_s1360_2c7, ref global bit[5] symbolic__ANONYMOUS_s1361_2c8, ref global int ts__ANONYMOUS_s1318_2c9)/*lseg_header.skh:173*/
+{
+  {
+    {
+      _out_2c1 = 0;
+      int _out_s441_2ca;
+      min_recursive@ANONYMOUS(l_2c0, 4, _out_s441_2ca, active__ANONYMOUS_s1357_2c2, history__ANONYMOUS_s1317_2c3, key__ANONYMOUS_s1358_2c4, next__ANONYMOUS_s1359_2c5, p_history__ANONYMOUS_s1662_2c6, supernext__ANONYMOUS_s1360_2c7, symbolic__ANONYMOUS_s1361_2c8, ts__ANONYMOUS_s1318_2c9);
+      _out_2c1 = _out_s441_2ca;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:182*/
+
+void min_history (int l_3dc, int ts_0_3dd, ref int _out_3de, ref global bit[4 * 5] history__ANONYMOUS_s863_3df, ref global int ts__ANONYMOUS_s864_3e0)/*lseg_header.skh:182*/
+{
+  {
+    {
+      _out_3de = 0;
+      int ts_3e1;
+      ts_3e1 = ts_0_3dd;
+      bit __sa6_3e2;
+      bit _pac_sc_s2027;
+      {
+        _pac_sc_s2027 = ts_3e1 > 0;
+        if(_pac_sc_s2027)/*lseg_header.skh:183*/
+        {
+          assert ((l_3dc >= 0) && (l_3dc < 5)); //lseg_header.skh:183: Array out of bounds
+          assert ((ts_3e1 >= 0) && (ts_3e1 < 4)); //lseg_header.skh:183: Array out of bounds
+          _pac_sc_s2027 = history__ANONYMOUS_s863_3df[(4 * l_3dc) + ts_3e1];
+        }
+      }
+      __sa6_3e2 = _pac_sc_s2027;
+      while(__sa6_3e2)
+      {
+        int uo_s18_3e4;
+        uo_s18_3e4 = ts_3e1;
+        ts_3e1 = ts_3e1 - 1;
+        uo_s18_3e4;
+        bit _pac_sc_s2028;
+        {
+          _pac_sc_s2028 = ts_3e1 > 0;
+          if(_pac_sc_s2028)/*lseg_header.skh:183*/
+          {
+            assert ((l_3dc >= 0) && (l_3dc < 5)); //lseg_header.skh:183: Array out of bounds
+            assert ((ts_3e1 >= 0) && (ts_3e1 < 4)); //lseg_header.skh:183: Array out of bounds
+            _pac_sc_s2028 = history__ANONYMOUS_s863_3df[(4 * l_3dc) + ts_3e1];
+          }
+        }
+        __sa6_3e2 = _pac_sc_s2028;
+      }
+      int _out_s110_3e5;
+      min(l_3dc, ts_3e1, _out_s110_3e5);
+      _out_3de = _out_s110_3e5;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:178*/
+
+void min_recursive (int l_3a5, int bnd_3a6, ref int _out_3a7, ref global bit[5] active__ANONYMOUS_s1749_3a8, ref global bit[4 * 5] history__ANONYMOUS_s1489_3a9, ref global int[5] key__ANONYMOUS_s1750_3aa, ref global int[5] next__ANONYMOUS_s1751_3ab, ref global bit[4 * 5] p_history__ANONYMOUS_s1652_3ac, ref global int[5] supernext__ANONYMOUS_s1752_3ad, ref global bit[5] symbolic__ANONYMOUS_s1753_3ae, ref global int ts__ANONYMOUS_s1490_3af)/*lseg_header.skh:178*/
+{
+  {
+    {
+      _out_3a7 = 0;
+      int _out_s324_3b0;
+      minseg_recursive@ANONYMOUS(l_3a5, 0, bnd_3a6, _out_s324_3b0, active__ANONYMOUS_s1749_3a8, history__ANONYMOUS_s1489_3a9, key__ANONYMOUS_s1750_3aa, next__ANONYMOUS_s1751_3ab, p_history__ANONYMOUS_s1652_3ac, supernext__ANONYMOUS_s1752_3ad, symbolic__ANONYMOUS_s1753_3ae, ts__ANONYMOUS_s1490_3af);
+      _out_3a7 = _out_s324_3b0;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:25*/
+
+uninterp void minseg (int l1, int t, ref int _out)/*lseg_header.skh:25*/
+/*lseg_header.skh:187*/
+
+void minseg_comp (int l1_27c, int l2_27d, ref int _out_27e, ref global bit[5] active__ANONYMOUS_s1509_27f, ref global bit[4 * 5] history__ANONYMOUS_s1510_280, ref global int[5] key__ANONYMOUS_s1511_281, ref global int[5] next__ANONYMOUS_s1512_282, ref global bit[4 * 5] p_history__ANONYMOUS_s1690_283, ref global int[5] supernext__ANONYMOUS_s1513_284, ref global bit[5] symbolic__ANONYMOUS_s1514_285, ref global int ts__ANONYMOUS_s1515_286)/*lseg_header.skh:187*/
+{
+  {
+    {
+      _out_27e = 0;
+      int _out_s96_287;
+      minseg_recursive@ANONYMOUS(l1_27c, l2_27d, 4, _out_s96_287, active__ANONYMOUS_s1509_27f, history__ANONYMOUS_s1510_280, key__ANONYMOUS_s1511_281, next__ANONYMOUS_s1512_282, p_history__ANONYMOUS_s1690_283, supernext__ANONYMOUS_s1513_284, symbolic__ANONYMOUS_s1514_285, ts__ANONYMOUS_s1515_286);
+      _out_27e = _out_s96_287;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:222*/
+
+void minseg_history (int l1_3e6, int ts_0_3e7, ref int _out_3e8, ref global bit[4 * 5] p_history__ANONYMOUS_s986_3e9, ref global int ts__ANONYMOUS_s987_3ea)/*lseg_header.skh:222*/
+{
+  {
+    {
+      _out_3e8 = 0;
+      int ts_3eb;
+      ts_3eb = ts_0_3e7;
+      bit __sa7_3ec;
+      bit _pac_sc_s2029;
+      {
+        _pac_sc_s2029 = ts_3eb > 0;
+        if(_pac_sc_s2029)/*lseg_header.skh:223*/
+        {
+          assert ((l1_3e6 >= 0) && (l1_3e6 < 5)); //lseg_header.skh:223: Array out of bounds
+          assert ((ts_3eb >= 0) && (ts_3eb < 4)); //lseg_header.skh:223: Array out of bounds
+          _pac_sc_s2029 = p_history__ANONYMOUS_s986_3e9[(4 * l1_3e6) + ts_3eb];
+        }
+      }
+      __sa7_3ec = _pac_sc_s2029;
+      while(__sa7_3ec)
+      {
+        int uo_s17_3ee;
+        uo_s17_3ee = ts_3eb;
+        ts_3eb = ts_3eb - 1;
+        uo_s17_3ee;
+        bit _pac_sc_s2030;
+        {
+          _pac_sc_s2030 = ts_3eb > 0;
+          if(_pac_sc_s2030)/*lseg_header.skh:223*/
+          {
+            assert ((l1_3e6 >= 0) && (l1_3e6 < 5)); //lseg_header.skh:223: Array out of bounds
+            assert ((ts_3eb >= 0) && (ts_3eb < 4)); //lseg_header.skh:223: Array out of bounds
+            _pac_sc_s2030 = p_history__ANONYMOUS_s986_3e9[(4 * l1_3e6) + ts_3eb];
+          }
+        }
+        __sa7_3ec = _pac_sc_s2030;
+      }
+      int _out_s108_3ef;
+      minseg(l1_3e6, ts_3eb, _out_s108_3ef);
+      _out_3e8 = _out_s108_3ef;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:1178*/
+
+void minseg_preserve_inv (int val_30b, int v1_30c, int v2_30d, int v3_30e, int v4_30f, bit single_310, ref bit _out_311, ref global bit[5] active__ANONYMOUS_s1612_312, ref global bit[4 * 5] history__ANONYMOUS_s1622_313, ref global int[5] key__ANONYMOUS_s1623_314, ref global int[6] locvars__ANONYMOUS_s976_315, ref global int[5] next__ANONYMOUS_s1613_316, ref global bit[4 * 5] p_history__ANONYMOUS_s1474_317, ref global int[5] supernext__ANONYMOUS_s1614_318, ref global bit[5] symbolic__ANONYMOUS_s1615_319, ref global int ts__ANONYMOUS_s1475_31a)/*lseg_header.skh:1178*/
+{
+  {
+    {
+      _out_311 = 0;
+      assert ((v1_30c > 0) && (v1_30c < 6)); //Assert at lseg_header.skh:1179 (4047199439658923919)
+      assert ((v3_30e >= 0) && (v3_30e < 6)); //Assert at lseg_header.skh:1180 (-8785089960453003821)
+      bit _pac_sc_s1986;
+      {
+        bit _pac_sc_s1987;
+        {
+          bit _pac_sc_s1988;
+          {
+            assert ((v1_30c >= 0) && (v1_30c < 6)); //lseg_header.skh:1181: Array out of bounds
+            _pac_sc_s1988 = (locvars__ANONYMOUS_s976_315[v1_30c]) >= 0;
+            if(_pac_sc_s1988)/*lseg_header.skh:1181*/
+            {
+              assert ((v1_30c >= 0) && (v1_30c < 6)); //lseg_header.skh:1181: Array out of bounds
+              _pac_sc_s1988 = (locvars__ANONYMOUS_s976_315[v1_30c]) < 5;
+            }
+          }
+          _pac_sc_s1987 = _pac_sc_s1988;
+          if(_pac_sc_s1987)/*lseg_header.skh:1181*/
+          {
+            assert ((v3_30e >= 0) && (v3_30e < 6)); //lseg_header.skh:1181: Array out of bounds
+            _pac_sc_s1987 = (locvars__ANONYMOUS_s976_315[v3_30e]) >= 0;
+          }
+        }
+        _pac_sc_s1986 = _pac_sc_s1987;
+        if(_pac_sc_s1986)/*lseg_header.skh:1181*/
+        {
+          assert ((v3_30e >= 0) && (v3_30e < 6)); //lseg_header.skh:1181: Array out of bounds
+          _pac_sc_s1986 = (locvars__ANONYMOUS_s976_315[v3_30e]) <= 5;
+        }
+      }
+      if(!(_pac_sc_s1986))/*lseg_header.skh:1181*/
+      {
+        _out_311 = 0;
+        return;
+      }
+      else
+      {
+        if(single_310)/*lseg_header.skh:1182*/
+        {
+          bit _pac_sc_s374_31b;
+          bit _pac_sc_s374_s376_31c;
+          int t1_347_s1868;
+          assert ((v1_30c >= 0) && (v1_30c < 6)); //lseg_header.skh:1183: Array out of bounds
+          t1_347_s1868 = locvars__ANONYMOUS_s976_315[v1_30c];
+          int t2_348_s1869;
+          assert ((v3_30e >= 0) && (v3_30e < 6)); //lseg_header.skh:1183: Array out of bounds
+          t2_348_s1869 = locvars__ANONYMOUS_s976_315[v3_30e];
+          p_treeness@ANONYMOUS(t1_347_s1868, t2_348_s1869, _pac_sc_s374_s376_31c, active__ANONYMOUS_s1612_312, next__ANONYMOUS_s1613_316, supernext__ANONYMOUS_s1614_318, symbolic__ANONYMOUS_s1615_319);
+          _pac_sc_s374_31b = _pac_sc_s374_s376_31c;
+          if(_pac_sc_s374_31b)/*lseg_header.skh:1183*/
+          {
+            int _pac_sc_s374_s378_31d;
+            int l1_27c_s1870;
+            assert ((v1_30c >= 0) && (v1_30c < 6)); //lseg_header.skh:1183: Array out of bounds
+            l1_27c_s1870 = locvars__ANONYMOUS_s976_315[v1_30c];
+            int l2_27d_s1871;
+            assert ((v3_30e >= 0) && (v3_30e < 6)); //lseg_header.skh:1183: Array out of bounds
+            l2_27d_s1871 = locvars__ANONYMOUS_s976_315[v3_30e];
+            minseg_comp@ANONYMOUS(l1_27c_s1870, l2_27d_s1871, _pac_sc_s374_s378_31d, active__ANONYMOUS_s1612_312, history__ANONYMOUS_s1622_313, key__ANONYMOUS_s1623_314, next__ANONYMOUS_s1613_316, p_history__ANONYMOUS_s1474_317, supernext__ANONYMOUS_s1614_318, symbolic__ANONYMOUS_s1615_319, ts__ANONYMOUS_s1475_31a);
+            _pac_sc_s374_31b = _pac_sc_s374_s378_31d == val_30b;
+          }
+          _out_311 = _pac_sc_s374_31b;
+          return;
+        }
+        else
+        {
+          assert (v1_30c < v2_30d); //Assert at lseg_header.skh:1187 (-3382223411777475153)
+          assert ((v2_30d > 0) && (v2_30d < 6)); //Assert at lseg_header.skh:1188 (5666093046528683405)
+          assert ((v4_30f >= 0) && (v4_30f < 6)); //Assert at lseg_header.skh:1189 (1376737238919581439)
+          bit _pac_sc_s1989;
+          {
+            bit _pac_sc_s1990;
+            {
+              bit _pac_sc_s1991;
+              {
+                assert ((v2_30d >= 0) && (v2_30d < 6)); //lseg_header.skh:1190: Array out of bounds
+                _pac_sc_s1991 = (locvars__ANONYMOUS_s976_315[v2_30d]) >= 0;
+                if(_pac_sc_s1991)/*lseg_header.skh:1190*/
+                {
+                  assert ((v2_30d >= 0) && (v2_30d < 6)); //lseg_header.skh:1190: Array out of bounds
+                  _pac_sc_s1991 = (locvars__ANONYMOUS_s976_315[v2_30d]) < 5;
+                }
+              }
+              _pac_sc_s1990 = _pac_sc_s1991;
+              if(_pac_sc_s1990)/*lseg_header.skh:1190*/
+              {
+                assert ((v4_30f >= 0) && (v4_30f < 6)); //lseg_header.skh:1191: Array out of bounds
+                _pac_sc_s1990 = (locvars__ANONYMOUS_s976_315[v4_30f]) >= 0;
+              }
+            }
+            _pac_sc_s1989 = _pac_sc_s1990;
+            if(_pac_sc_s1989)/*lseg_header.skh:1190*/
+            {
+              assert ((v4_30f >= 0) && (v4_30f < 6)); //lseg_header.skh:1191: Array out of bounds
+              _pac_sc_s1989 = (locvars__ANONYMOUS_s976_315[v4_30f]) < 5;
+            }
+          }
+          if(!(_pac_sc_s1989))/*lseg_header.skh:1190*/
+          {
+            _out_311 = 0;
+            return;
+          }
+          else
+          {
+            bit _pac_sc_s379_31e;
+            bit _pac_sc_s379_s381_31f;
+            int t1_347_s1872;
+            assert ((v1_30c >= 0) && (v1_30c < 6)); //lseg_header.skh:1192: Array out of bounds
+            t1_347_s1872 = locvars__ANONYMOUS_s976_315[v1_30c];
+            int t2_348_s1873;
+            assert ((v3_30e >= 0) && (v3_30e < 6)); //lseg_header.skh:1192: Array out of bounds
+            t2_348_s1873 = locvars__ANONYMOUS_s976_315[v3_30e];
+            p_treeness@ANONYMOUS(t1_347_s1872, t2_348_s1873, _pac_sc_s379_s381_31f, active__ANONYMOUS_s1612_312, next__ANONYMOUS_s1613_316, supernext__ANONYMOUS_s1614_318, symbolic__ANONYMOUS_s1615_319);
+            _pac_sc_s379_31e = _pac_sc_s379_s381_31f;
+            if(_pac_sc_s379_31e)/*lseg_header.skh:1192*/
+            {
+              bit _pac_sc_s379_s383_320;
+              int t1_347_s1874;
+              assert ((v2_30d >= 0) && (v2_30d < 6)); //lseg_header.skh:1192: Array out of bounds
+              t1_347_s1874 = locvars__ANONYMOUS_s976_315[v2_30d];
+              int t2_348_s1875;
+              assert ((v4_30f >= 0) && (v4_30f < 6)); //lseg_header.skh:1192: Array out of bounds
+              t2_348_s1875 = locvars__ANONYMOUS_s976_315[v4_30f];
+              p_treeness@ANONYMOUS(t1_347_s1874, t2_348_s1875, _pac_sc_s379_s383_320, active__ANONYMOUS_s1612_312, next__ANONYMOUS_s1613_316, supernext__ANONYMOUS_s1614_318, symbolic__ANONYMOUS_s1615_319);
+              _pac_sc_s379_31e = _pac_sc_s379_s383_320;
+            }
+            if(_pac_sc_s379_31e)/*lseg_header.skh:1192*/
+            {
+              int m1_321;
+              bit m1_s385_322;
+              int t1_347_s1876;
+              assert ((v1_30c >= 0) && (v1_30c < 6)); //lseg_header.skh:1193: Array out of bounds
+              t1_347_s1876 = locvars__ANONYMOUS_s976_315[v1_30c];
+              int t2_348_s1877;
+              assert ((v3_30e >= 0) && (v3_30e < 6)); //lseg_header.skh:1193: Array out of bounds
+              t2_348_s1877 = locvars__ANONYMOUS_s976_315[v3_30e];
+              p_treeness@ANONYMOUS(t1_347_s1876, t2_348_s1877, m1_s385_322, active__ANONYMOUS_s1612_312, next__ANONYMOUS_s1613_316, supernext__ANONYMOUS_s1614_318, symbolic__ANONYMOUS_s1615_319);
+              int _pac_sc_s386_323;
+              if(m1_s385_322)/*lseg_header.skh:1193*/
+              {
+                int m1_s388_324;
+                int l1_27c_s1878;
+                assert ((v1_30c >= 0) && (v1_30c < 6)); //lseg_header.skh:1193: Array out of bounds
+                l1_27c_s1878 = locvars__ANONYMOUS_s976_315[v1_30c];
+                int l2_27d_s1879;
+                assert ((v3_30e >= 0) && (v3_30e < 6)); //lseg_header.skh:1193: Array out of bounds
+                l2_27d_s1879 = locvars__ANONYMOUS_s976_315[v3_30e];
+                minseg_comp@ANONYMOUS(l1_27c_s1878, l2_27d_s1879, m1_s388_324, active__ANONYMOUS_s1612_312, history__ANONYMOUS_s1622_313, key__ANONYMOUS_s1623_314, next__ANONYMOUS_s1613_316, p_history__ANONYMOUS_s1474_317, supernext__ANONYMOUS_s1614_318, symbolic__ANONYMOUS_s1615_319, ts__ANONYMOUS_s1475_31a);
+                _pac_sc_s386_323 = m1_s388_324;
+              }
+              else
+              {
+                _pac_sc_s386_323 = 7;
+              }
+              m1_321 = _pac_sc_s386_323;
+              int m2_325;
+              bit m2_s390_326;
+              int t1_347_s1880;
+              assert ((v2_30d >= 0) && (v2_30d < 6)); //lseg_header.skh:1194: Array out of bounds
+              t1_347_s1880 = locvars__ANONYMOUS_s976_315[v2_30d];
+              int t2_348_s1881;
+              assert ((v4_30f >= 0) && (v4_30f < 6)); //lseg_header.skh:1194: Array out of bounds
+              t2_348_s1881 = locvars__ANONYMOUS_s976_315[v4_30f];
+              p_treeness@ANONYMOUS(t1_347_s1880, t2_348_s1881, m2_s390_326, active__ANONYMOUS_s1612_312, next__ANONYMOUS_s1613_316, supernext__ANONYMOUS_s1614_318, symbolic__ANONYMOUS_s1615_319);
+              int _pac_sc_s391_327;
+              if(m2_s390_326)/*lseg_header.skh:1194*/
+              {
+                int m2_s393_328;
+                int l1_27c_s1882;
+                assert ((v2_30d >= 0) && (v2_30d < 6)); //lseg_header.skh:1194: Array out of bounds
+                l1_27c_s1882 = locvars__ANONYMOUS_s976_315[v2_30d];
+                int l2_27d_s1883;
+                assert ((v4_30f >= 0) && (v4_30f < 6)); //lseg_header.skh:1194: Array out of bounds
+                l2_27d_s1883 = locvars__ANONYMOUS_s976_315[v4_30f];
+                minseg_comp@ANONYMOUS(l1_27c_s1882, l2_27d_s1883, m2_s393_328, active__ANONYMOUS_s1612_312, history__ANONYMOUS_s1622_313, key__ANONYMOUS_s1623_314, next__ANONYMOUS_s1613_316, p_history__ANONYMOUS_s1474_317, supernext__ANONYMOUS_s1614_318, symbolic__ANONYMOUS_s1615_319, ts__ANONYMOUS_s1475_31a);
+                _pac_sc_s391_327 = m2_s393_328;
+              }
+              else
+              {
+                _pac_sc_s391_327 = 7;
+              }
+              m2_325 = _pac_sc_s391_327;
+              _out_311 = ((m1_321 <= m2_325 ? m1_321 : m2_325)) == val_30b;
+              return;
+            }
+            else
+            {
+              _out_311 = 0;
+              return;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*lseg_header.skh:192*/
+
+void minseg_recursive (int l1_360, int l2_361, int bnd_362, ref int _out_363, ref global bit[5] active__ANONYMOUS_s783_364, ref global bit[4 * 5] history__ANONYMOUS_s1299_365, ref global int[5] key__ANONYMOUS_s784_366, ref global int[5] next__ANONYMOUS_s785_367, ref global bit[4 * 5] p_history__ANONYMOUS_s1705_368, ref global int[5] supernext__ANONYMOUS_s786_369, ref global bit[5] symbolic__ANONYMOUS_s787_36a, ref global int ts__ANONYMOUS_s788_36b)/*lseg_header.skh:192*/
+{
+  {
+    {
+      _out_363 = 0;
+      if((l1_360 < 0) || (l1_360 >= 5))/*lseg_header.skh:193*/
+      {
+        _out_363 = 7;
+        return;
+      }
+      else
+      {
+        assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:194: Array out of bounds
+        if(!(active__ANONYMOUS_s783_364[l1_360]))/*lseg_header.skh:194*/
+        {
+          _out_363 = 7;
+          return;
+        }
+        else
+        {
+          if(l1_360 == l2_361)/*lseg_header.skh:196*/
+          {
+            bit _pac_sc_s2003;
+            {
+              _pac_sc_s2003 = l1_360 == 0;
+              if(!(_pac_sc_s2003))/*lseg_header.skh:196*/
+              {
+                assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:196: Array out of bounds
+                _pac_sc_s2003 = (next__ANONYMOUS_s785_367[l1_360]) != l1_360;
+              }
+            }
+            int _pac_sc_s2004;
+            if(_pac_sc_s2003)/*lseg_header.skh:196*/
+            {
+              _pac_sc_s2004 = 7;
+            }
+            else
+            {
+              assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:196: Array out of bounds
+              _pac_sc_s2004 = key__ANONYMOUS_s784_366[l1_360];
+            }
+            _out_363 = _pac_sc_s2004;
+            return;
+          }
+          else
+          {
+            if(l1_360 == 0)/*lseg_header.skh:198*/
+            {
+              _out_363 = 7;
+              return;
+            }
+            else
+            {
+              if(bnd_362 < 0)/*lseg_header.skh:199*/
+              {
+                _out_363 = -1;
+                return;
+              }
+              else
+              {
+                assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:201: Array out of bounds
+                if(symbolic__ANONYMOUS_s787_36a[l1_360])/*lseg_header.skh:201*/
+                {
+                  if(l2_361 == 0)/*lseg_header.skh:202*/
+                  {
+                    int _out_s98_36c;
+                    min_history@ANONYMOUS(l1_360, ts__ANONYMOUS_s788_36b, _out_s98_36c, history__ANONYMOUS_s1299_365, ts__ANONYMOUS_s788_36b);
+                    _out_363 = _out_s98_36c;
+                    return;
+                  }
+                  else
+                  {
+                    _out_363 = -1;
+                    return;
+                  }
+                }
+                else
+                {
+                  assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:205: Array out of bounds
+                  if(l2_361 == (next__ANONYMOUS_s785_367[l1_360]))/*lseg_header.skh:205*/
+                  {
+                    bit _pac_sc_s2005;
+                    {
+                      bit _pac_sc_s2006;
+                      {
+                        _pac_sc_s2006 = l2_361 == 0;
+                        if(!(_pac_sc_s2006))/*lseg_header.skh:205*/
+                        {
+                          assert ((l2_361 >= 0) && (l2_361 < 5)); //lseg_header.skh:205: Array out of bounds
+                          _pac_sc_s2006 = (next__ANONYMOUS_s785_367[l2_361]) != l2_361;
+                        }
+                      }
+                      _pac_sc_s2005 = _pac_sc_s2006;
+                      if(!(_pac_sc_s2005))/*lseg_header.skh:205*/
+                      {
+                        assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:205: Array out of bounds
+                        assert ((l2_361 >= 0) && (l2_361 < 5)); //lseg_header.skh:205: Array out of bounds
+                        _pac_sc_s2005 = (key__ANONYMOUS_s784_366[l1_360]) <= (key__ANONYMOUS_s784_366[l2_361]);
+                      }
+                    }
+                    int _pac_sc_s2007;
+                    if(_pac_sc_s2005)/*lseg_header.skh:205*/
+                    {
+                      assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:205: Array out of bounds
+                      _pac_sc_s2007 = key__ANONYMOUS_s784_366[l1_360];
+                    }
+                    else
+                    {
+                      assert ((l2_361 >= 0) && (l2_361 < 5)); //lseg_header.skh:205: Array out of bounds
+                      _pac_sc_s2007 = key__ANONYMOUS_s784_366[l2_361];
+                    }
+                    _out_363 = _pac_sc_s2007;
+                    return;
+                  }
+                  else
+                  {
+                    assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:206: Array out of bounds
+                    if(0 == (next__ANONYMOUS_s785_367[l1_360]))/*lseg_header.skh:206*/
+                    {
+                      _out_363 = -1;
+                      return;
+                    }
+                    else
+                    {
+                      bit _pac_sc_s2008;
+                      {
+                        assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:207: Array out of bounds
+                        _pac_sc_s2008 = 0 < (next__ANONYMOUS_s785_367[l1_360]);
+                        if(_pac_sc_s2008)/*lseg_header.skh:207*/
+                        {
+                          assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:207: Array out of bounds
+                          _pac_sc_s2008 = (next__ANONYMOUS_s785_367[l1_360]) < 5;
+                        }
+                      }
+                      if(_pac_sc_s2008)/*lseg_header.skh:207*/
+                      {
+                        int r_36d;
+                        int r_s100_36e;
+                        int l1_360_s1904;
+                        assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:208: Array out of bounds
+                        l1_360_s1904 = next__ANONYMOUS_s785_367[l1_360];
+                        int bnd_362_s1905;
+                        bnd_362_s1905 = bnd_362 - 1;
+                        minseg_recursive@ANONYMOUS(l1_360_s1904, l2_361, bnd_362_s1905, r_s100_36e, active__ANONYMOUS_s783_364, history__ANONYMOUS_s1299_365, key__ANONYMOUS_s784_366, next__ANONYMOUS_s785_367, p_history__ANONYMOUS_s1705_368, supernext__ANONYMOUS_s786_369, symbolic__ANONYMOUS_s787_36a, ts__ANONYMOUS_s788_36b);
+                        r_36d = r_s100_36e;
+                        assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:209: Array out of bounds
+                        int _pac_sc_s2009;
+                        if((key__ANONYMOUS_s784_366[l1_360]) <= r_36d)/*lseg_header.skh:209*/
+                        {
+                          assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:209: Array out of bounds
+                          _pac_sc_s2009 = key__ANONYMOUS_s784_366[l1_360];
+                        }
+                        else
+                        {
+                          _pac_sc_s2009 = r_36d;
+                        }
+                        _out_363 = _pac_sc_s2009;
+                        return;
+                      }
+                      else
+                      {
+                        assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:211: Array out of bounds
+                        if(l2_361 == (supernext__ANONYMOUS_s786_369[l1_360]))/*lseg_header.skh:211*/
+                        {
+                          int _out_s102_36f;
+                          minseg_history@ANONYMOUS(l1_360, ts__ANONYMOUS_s788_36b, _out_s102_36f, p_history__ANONYMOUS_s1705_368, ts__ANONYMOUS_s788_36b);
+                          _out_363 = _out_s102_36f;
+                          return;
+                        }
+                        else
+                        {
+                          assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:212: Array out of bounds
+                          if(0 == (supernext__ANONYMOUS_s786_369[l1_360]))/*lseg_header.skh:212*/
+                          {
+                            _out_363 = -1;
+                            return;
+                          }
+                          else
+                          {
+                            bit _pac_sc_s2010;
+                            {
+                              assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:213: Array out of bounds
+                              _pac_sc_s2010 = 0 < (supernext__ANONYMOUS_s786_369[l1_360]);
+                              if(_pac_sc_s2010)/*lseg_header.skh:213*/
+                              {
+                                assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:213: Array out of bounds
+                                _pac_sc_s2010 = (supernext__ANONYMOUS_s786_369[l1_360]) < 5;
+                              }
+                            }
+                            if(_pac_sc_s2010)/*lseg_header.skh:213*/
+                            {
+                              int p1_370;
+                              int p1_s104_371;
+                              minseg_history@ANONYMOUS(l1_360, ts__ANONYMOUS_s788_36b, p1_s104_371, p_history__ANONYMOUS_s1705_368, ts__ANONYMOUS_s788_36b);
+                              p1_370 = p1_s104_371;
+                              int p2_372;
+                              int p2_s106_373;
+                              int l1_360_s1906;
+                              assert ((l1_360 >= 0) && (l1_360 < 5)); //lseg_header.skh:215: Array out of bounds
+                              l1_360_s1906 = supernext__ANONYMOUS_s786_369[l1_360];
+                              int bnd_362_s1907;
+                              bnd_362_s1907 = bnd_362 - 1;
+                              minseg_recursive@ANONYMOUS(l1_360_s1906, l2_361, bnd_362_s1907, p2_s106_373, active__ANONYMOUS_s783_364, history__ANONYMOUS_s1299_365, key__ANONYMOUS_s784_366, next__ANONYMOUS_s785_367, p_history__ANONYMOUS_s1705_368, supernext__ANONYMOUS_s786_369, symbolic__ANONYMOUS_s787_36a, ts__ANONYMOUS_s788_36b);
+                              p2_372 = p2_s106_373;
+                              _out_363 = (p1_370 <= p2_372 ? p1_370 : p2_372);
+                              return;
+                            }
+                            else
+                            {
+                              _out_363 = -1;
+                              return;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*lseg_header.skh:341*/
+
+void p_treeness (int t1_347, int t2_348, ref bit _out_349, ref global bit[5] active__ANONYMOUS_s1758_34a, ref global int[5] next__ANONYMOUS_s1759_34b, ref global int[5] supernext__ANONYMOUS_s1760_34c, ref global bit[5] symbolic__ANONYMOUS_s1761_34d)/*lseg_header.skh:341*/
+{
+  {
+    {
+      _out_349 = 0;
+      bit[5] visited_34e;
+      {
+        for(int __sa2048 = 0; __sa2048 < 5; __sa2048 = __sa2048 + 1)/*Canonical*/
+        {
+          visited_34e[__sa2048] = 0;
+        }
+      }
+      bit _out_s130_34f;
+      check_p_treeness@ANONYMOUS(t1_347, t2_348, visited_34e, 4, _out_s130_34f, active__ANONYMOUS_s1758_34a, next__ANONYMOUS_s1759_34b, supernext__ANONYMOUS_s1760_34c, symbolic__ANONYMOUS_s1761_34d);
+      _out_349 = _out_s130_34f;
+      return;
+    }
+  }
+}
+/*list/test.sk:28*/
+
+void post_cond_test (int r_19d, int x_19e, int y_19f, ref int old_lenseg_x_y_1a0, ref int old_minseg_x_y_1a1, ref int old_maxseg_x_y_1a2, ref bit _out_1a3, ref global bit[5] active__ANONYMOUS_s1585_1a4, ref global bit[4 * 5] history__ANONYMOUS_s1586_1a5, ref global int[5] key__ANONYMOUS_s1671_1a6, ref global int[6] locvars__ANONYMOUS_s796_1a7, ref global int[5] next__ANONYMOUS_s1587_1a8, ref global bit[4 * 5] p_history__ANONYMOUS_s1566_1a9, ref global int[5] supernext__ANONYMOUS_s1588_1aa, ref global bit[5] symbolic__ANONYMOUS_s1589_1ab, ref global int ts__ANONYMOUS_s1567_1ac)/*list/test.sk:28*/
+{
+  {
+    {
+      _out_1a3 = 0;
+      bit _pac_sc_s65_1ad;
+      bit _pac_sc_s66_1ae;
+      bit _pac_sc_s67_1af;
+      bit _pac_sc_s67_s69_1b0;
+      lseg_inv@ANONYMOUS(r_19d, x_19e, _pac_sc_s67_s69_1b0, active__ANONYMOUS_s1585_1a4, locvars__ANONYMOUS_s796_1a7, next__ANONYMOUS_s1587_1a8, supernext__ANONYMOUS_s1588_1aa, symbolic__ANONYMOUS_s1589_1ab);
+      _pac_sc_s67_1af = _pac_sc_s67_s69_1b0;
+      if(_pac_sc_s67_1af)/*list/test.sk:29*/
+      {
+        bit _pac_sc_s67_s71_1b1;
+        locvar_eq@ANONYMOUS(r_19d, y_19f, _pac_sc_s67_s71_1b1, locvars__ANONYMOUS_s796_1a7);
+        _pac_sc_s67_1af = _pac_sc_s67_s71_1b1;
+      }
+      _pac_sc_s66_1ae = _pac_sc_s67_1af;
+      if(_pac_sc_s66_1ae)/*list/test.sk:29*/
+      {
+        int _pac_sc_s66_s73_1b2;
+        int l1_271_s1805;
+        assert ((r_19d >= 0) && (r_19d < 6)); //list/test.sk:29: Array out of bounds
+        l1_271_s1805 = locvars__ANONYMOUS_s796_1a7[r_19d];
+        int l2_272_s1806;
+        assert ((x_19e >= 0) && (x_19e < 6)); //list/test.sk:29: Array out of bounds
+        l2_272_s1806 = locvars__ANONYMOUS_s796_1a7[x_19e];
+        lenseg_comp@ANONYMOUS(l1_271_s1805, l2_272_s1806, _pac_sc_s66_s73_1b2, active__ANONYMOUS_s1585_1a4, history__ANONYMOUS_s1586_1a5, next__ANONYMOUS_s1587_1a8, p_history__ANONYMOUS_s1566_1a9, supernext__ANONYMOUS_s1588_1aa, symbolic__ANONYMOUS_s1589_1ab, ts__ANONYMOUS_s1567_1ac);
+        _pac_sc_s66_1ae = _pac_sc_s66_s73_1b2 == old_lenseg_x_y_1a0;
+      }
+      _pac_sc_s65_1ad = _pac_sc_s66_1ae;
+      if(_pac_sc_s65_1ad)/*list/test.sk:29*/
+      {
+        bit _pac_sc_s74_1b3;
+        int _pac_sc_s74_s76_1b4;
+        int l1_27c_s1807;
+        assert ((r_19d >= 0) && (r_19d < 6)); //list/test.sk:29: Array out of bounds
+        l1_27c_s1807 = locvars__ANONYMOUS_s796_1a7[r_19d];
+        int l2_27d_s1808;
+        assert ((x_19e >= 0) && (x_19e < 6)); //list/test.sk:29: Array out of bounds
+        l2_27d_s1808 = locvars__ANONYMOUS_s796_1a7[x_19e];
+        minseg_comp@ANONYMOUS(l1_27c_s1807, l2_27d_s1808, _pac_sc_s74_s76_1b4, active__ANONYMOUS_s1585_1a4, history__ANONYMOUS_s1586_1a5, key__ANONYMOUS_s1671_1a6, next__ANONYMOUS_s1587_1a8, p_history__ANONYMOUS_s1566_1a9, supernext__ANONYMOUS_s1588_1aa, symbolic__ANONYMOUS_s1589_1ab, ts__ANONYMOUS_s1567_1ac);
+        _pac_sc_s74_1b3 = _pac_sc_s74_s76_1b4 == old_minseg_x_y_1a1;
+        if(_pac_sc_s74_1b3)/*list/test.sk:29*/
+        {
+          int _pac_sc_s74_s78_1b5;
+          int l1_288_s1809;
+          assert ((r_19d >= 0) && (r_19d < 6)); //list/test.sk:29: Array out of bounds
+          l1_288_s1809 = locvars__ANONYMOUS_s796_1a7[r_19d];
+          int l2_289_s1810;
+          assert ((x_19e >= 0) && (x_19e < 6)); //list/test.sk:29: Array out of bounds
+          l2_289_s1810 = locvars__ANONYMOUS_s796_1a7[x_19e];
+          maxseg_comp@ANONYMOUS(l1_288_s1809, l2_289_s1810, _pac_sc_s74_s78_1b5, active__ANONYMOUS_s1585_1a4, history__ANONYMOUS_s1586_1a5, key__ANONYMOUS_s1671_1a6, next__ANONYMOUS_s1587_1a8, p_history__ANONYMOUS_s1566_1a9, supernext__ANONYMOUS_s1588_1aa, symbolic__ANONYMOUS_s1589_1ab, ts__ANONYMOUS_s1567_1ac);
+          _pac_sc_s74_1b3 = _pac_sc_s74_s78_1b5 == old_maxseg_x_y_1a2;
+        }
+        _pac_sc_s65_1ad = _pac_sc_s74_1b3;
+      }
+      _out_1a3 = _pac_sc_s65_1ad;
+      return;
+    }
+  }
+}
+/*list/test.sk:24*/
+
+void pre_cond_test (int x_220, int y_221, ref bit _out_222, ref global bit[5] active__ANONYMOUS_s1745_223, ref global int[6] locvars__ANONYMOUS_s1542_224, ref global int[5] next__ANONYMOUS_s1746_225, ref global int[5] supernext__ANONYMOUS_s1747_226, ref global bit[5] symbolic__ANONYMOUS_s1748_227)/*list/test.sk:24*/
+{
+  {
+    {
+      _out_222 = 0;
+      bit _out_s563_228;
+      lseg_inv@ANONYMOUS(x_220, y_221, _out_s563_228, active__ANONYMOUS_s1745_223, locvars__ANONYMOUS_s1542_224, next__ANONYMOUS_s1746_225, supernext__ANONYMOUS_s1747_226, symbolic__ANONYMOUS_s1748_227);
+      _out_222 = _out_s563_228;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:1026*/
+
+void ranking_decreases (int rec_2dd, int v_2de, int v2_2df, ref bit _out_2e0, ref global bit[5] active__ANONYMOUS_s1056_2e1, ref global bit[4 * 5] history__ANONYMOUS_s1316_2e2, ref global int[5] key__ANONYMOUS_s1057_2e3, ref global int[6] locvars__ANONYMOUS_s900_2e4, ref global int[5] next__ANONYMOUS_s1058_2e5, ref global bit[4 * 5] p_history__ANONYMOUS_s1375_2e6, ref global int ranking__ANONYMOUS_s901_2e7, ref global int[5] supernext__ANONYMOUS_s1059_2e8, ref global bit[5] symbolic__ANONYMOUS_s1060_2e9, ref global int ts__ANONYMOUS_s1061_2ea)/*lseg_header.skh:1026*/
+{
+  {
+    {
+      _out_2e0 = 0;
+      assert ((v_2de > 0) && (v_2de < 6)); //Assert at lseg_header.skh:1027 (6767167952693803225)
+      assert ((v2_2df > 0) && (v2_2df < 6)); //Assert at lseg_header.skh:1028 (-4420150065965478066)
+      int new_ranking_2eb;
+      new_ranking_2eb = -1;
+      if(((rec_2dd == 1) || (rec_2dd == 2)) || (rec_2dd == 3))/*lseg_header.skh:1030*/
+      {
+        bit _pac_sc_s1977;
+        {
+          assert ((v_2de >= 0) && (v_2de < 6)); //lseg_header.skh:1031: Array out of bounds
+          _pac_sc_s1977 = (locvars__ANONYMOUS_s900_2e4[v_2de]) >= 0;
+          if(_pac_sc_s1977)/*lseg_header.skh:1031*/
+          {
+            assert ((v_2de >= 0) && (v_2de < 6)); //lseg_header.skh:1031: Array out of bounds
+            _pac_sc_s1977 = (locvars__ANONYMOUS_s900_2e4[v_2de]) < 5;
+          }
+        }
+        if(!(_pac_sc_s1977))/*lseg_header.skh:1031*/
+        {
+          _out_2e0 = ranking__ANONYMOUS_s901_2e7 == 0;
+          return;
+        }
+        else
+        {
+          if(rec_2dd == 1)/*lseg_header.skh:1033*/
+          {
+            int new_ranking_s502_2ec;
+            int l_2b6_s1847;
+            assert ((v_2de >= 0) && (v_2de < 6)); //lseg_header.skh:1033: Array out of bounds
+            l_2b6_s1847 = locvars__ANONYMOUS_s900_2e4[v_2de];
+            len_comp@ANONYMOUS(l_2b6_s1847, new_ranking_s502_2ec, active__ANONYMOUS_s1056_2e1, history__ANONYMOUS_s1316_2e2, next__ANONYMOUS_s1058_2e5, p_history__ANONYMOUS_s1375_2e6, supernext__ANONYMOUS_s1059_2e8, symbolic__ANONYMOUS_s1060_2e9, ts__ANONYMOUS_s1061_2ea);
+            new_ranking_2eb = new_ranking_s502_2ec;
+          }
+          else
+          {
+            if(rec_2dd == 2)/*lseg_header.skh:1034*/
+            {
+              int new_ranking_s504_2ed;
+              int l_2cb_s1848;
+              assert ((v_2de >= 0) && (v_2de < 6)); //lseg_header.skh:1034: Array out of bounds
+              l_2cb_s1848 = locvars__ANONYMOUS_s900_2e4[v_2de];
+              max_comp@ANONYMOUS(l_2cb_s1848, new_ranking_s504_2ed, active__ANONYMOUS_s1056_2e1, history__ANONYMOUS_s1316_2e2, key__ANONYMOUS_s1057_2e3, next__ANONYMOUS_s1058_2e5, p_history__ANONYMOUS_s1375_2e6, supernext__ANONYMOUS_s1059_2e8, symbolic__ANONYMOUS_s1060_2e9, ts__ANONYMOUS_s1061_2ea);
+              new_ranking_2eb = new_ranking_s504_2ed;
+            }
+            else
+            {
+              if(rec_2dd == 3)/*lseg_header.skh:1035*/
+              {
+                int new_ranking_s506_2ee;
+                int l_2c0_s1849;
+                assert ((v_2de >= 0) && (v_2de < 6)); //lseg_header.skh:1035: Array out of bounds
+                l_2c0_s1849 = locvars__ANONYMOUS_s900_2e4[v_2de];
+                min_comp@ANONYMOUS(l_2c0_s1849, new_ranking_s506_2ee, active__ANONYMOUS_s1056_2e1, history__ANONYMOUS_s1316_2e2, key__ANONYMOUS_s1057_2e3, next__ANONYMOUS_s1058_2e5, p_history__ANONYMOUS_s1375_2e6, supernext__ANONYMOUS_s1059_2e8, symbolic__ANONYMOUS_s1060_2e9, ts__ANONYMOUS_s1061_2ea);
+                new_ranking_2eb = new_ranking_s506_2ee;
+              }
+            }
+          }
+        }
+      }
+      else
+      {
+        if(((rec_2dd == 5) || (rec_2dd == 6)) || (rec_2dd == 7))/*lseg_header.skh:1037*/
+        {
+          bit _pac_sc_s1978;
+          {
+            assert ((v_2de >= 0) && (v_2de < 6)); //lseg_header.skh:1038: Array out of bounds
+            _pac_sc_s1978 = (locvars__ANONYMOUS_s900_2e4[v_2de]) >= 0;
+            if(_pac_sc_s1978)/*lseg_header.skh:1038*/
+            {
+              assert ((v_2de >= 0) && (v_2de < 6)); //lseg_header.skh:1038: Array out of bounds
+              _pac_sc_s1978 = (locvars__ANONYMOUS_s900_2e4[v_2de]) < 5;
+            }
+          }
+          if(!(_pac_sc_s1978))/*lseg_header.skh:1038*/
+          {
+            _out_2e0 = ranking__ANONYMOUS_s901_2e7 == 0;
+            return;
+          }
+          else
+          {
+            bit _pac_sc_s1979;
+            {
+              assert ((v2_2df >= 0) && (v2_2df < 6)); //lseg_header.skh:1039: Array out of bounds
+              _pac_sc_s1979 = (locvars__ANONYMOUS_s900_2e4[v2_2df]) >= 0;
+              if(_pac_sc_s1979)/*lseg_header.skh:1039*/
+              {
+                assert ((v2_2df >= 0) && (v2_2df < 6)); //lseg_header.skh:1039: Array out of bounds
+                _pac_sc_s1979 = (locvars__ANONYMOUS_s900_2e4[v2_2df]) < 5;
+              }
+            }
+            if(!(_pac_sc_s1979))/*lseg_header.skh:1039*/
+            {
+              _out_2e0 = ranking__ANONYMOUS_s901_2e7 == 0;
+              return;
+            }
+            else
+            {
+              if(rec_2dd == 5)/*lseg_header.skh:1041*/
+              {
+                int new_ranking_s508_2ef;
+                int l1_271_s1850;
+                assert ((v_2de >= 0) && (v_2de < 6)); //lseg_header.skh:1041: Array out of bounds
+                l1_271_s1850 = locvars__ANONYMOUS_s900_2e4[v_2de];
+                int l2_272_s1851;
+                assert ((v2_2df >= 0) && (v2_2df < 6)); //lseg_header.skh:1041: Array out of bounds
+                l2_272_s1851 = locvars__ANONYMOUS_s900_2e4[v2_2df];
+                lenseg_comp@ANONYMOUS(l1_271_s1850, l2_272_s1851, new_ranking_s508_2ef, active__ANONYMOUS_s1056_2e1, history__ANONYMOUS_s1316_2e2, next__ANONYMOUS_s1058_2e5, p_history__ANONYMOUS_s1375_2e6, supernext__ANONYMOUS_s1059_2e8, symbolic__ANONYMOUS_s1060_2e9, ts__ANONYMOUS_s1061_2ea);
+                new_ranking_2eb = new_ranking_s508_2ef;
+              }
+              else
+              {
+                if(rec_2dd == 6)/*lseg_header.skh:1042*/
+                {
+                  int new_ranking_s510_2f0;
+                  int l1_288_s1852;
+                  assert ((v_2de >= 0) && (v_2de < 6)); //lseg_header.skh:1042: Array out of bounds
+                  l1_288_s1852 = locvars__ANONYMOUS_s900_2e4[v_2de];
+                  int l2_289_s1853;
+                  assert ((v2_2df >= 0) && (v2_2df < 6)); //lseg_header.skh:1042: Array out of bounds
+                  l2_289_s1853 = locvars__ANONYMOUS_s900_2e4[v2_2df];
+                  maxseg_comp@ANONYMOUS(l1_288_s1852, l2_289_s1853, new_ranking_s510_2f0, active__ANONYMOUS_s1056_2e1, history__ANONYMOUS_s1316_2e2, key__ANONYMOUS_s1057_2e3, next__ANONYMOUS_s1058_2e5, p_history__ANONYMOUS_s1375_2e6, supernext__ANONYMOUS_s1059_2e8, symbolic__ANONYMOUS_s1060_2e9, ts__ANONYMOUS_s1061_2ea);
+                  new_ranking_2eb = new_ranking_s510_2f0;
+                }
+                else
+                {
+                  if(rec_2dd == 7)/*lseg_header.skh:1043*/
+                  {
+                    int new_ranking_s512_2f1;
+                    int l1_27c_s1854;
+                    assert ((v_2de >= 0) && (v_2de < 6)); //lseg_header.skh:1043: Array out of bounds
+                    l1_27c_s1854 = locvars__ANONYMOUS_s900_2e4[v_2de];
+                    int l2_27d_s1855;
+                    assert ((v2_2df >= 0) && (v2_2df < 6)); //lseg_header.skh:1043: Array out of bounds
+                    l2_27d_s1855 = locvars__ANONYMOUS_s900_2e4[v2_2df];
+                    minseg_comp@ANONYMOUS(l1_27c_s1854, l2_27d_s1855, new_ranking_s512_2f1, active__ANONYMOUS_s1056_2e1, history__ANONYMOUS_s1316_2e2, key__ANONYMOUS_s1057_2e3, next__ANONYMOUS_s1058_2e5, p_history__ANONYMOUS_s1375_2e6, supernext__ANONYMOUS_s1059_2e8, symbolic__ANONYMOUS_s1060_2e9, ts__ANONYMOUS_s1061_2ea);
+                    new_ranking_2eb = new_ranking_s512_2f1;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      _out_2e0 = (ranking__ANONYMOUS_s901_2e7 > new_ranking_2eb) && (new_ranking_2eb >= 0);
+      return;
+    }
+  }
+}
+/*lseg_header.skh:1006*/
+
+void ranking_snapshot (int rec_294, int v_295, int v2_296, ref global bit[5] active__ANONYMOUS_s1577_297, ref global bit[4 * 5] history__ANONYMOUS_s1248_298, ref global int[5] key__ANONYMOUS_s1608_299, ref global int[6] locvars__ANONYMOUS_s781_29a, ref global int[5] next__ANONYMOUS_s1578_29b, ref global bit[4 * 5] p_history__ANONYMOUS_s1516_29c, ref global int ranking__ANONYMOUS_s782_29d, ref global int[5] supernext__ANONYMOUS_s1579_29e, ref global bit[5] symbolic__ANONYMOUS_s1580_29f, ref global int ts__ANONYMOUS_s1249_2a0)/*lseg_header.skh:1006*/
+{
+  {
+    {
+      assert ((v_295 > 0) && (v_295 < 6)); //Assert at lseg_header.skh:1007 (-8723303239220174842)
+      assert ((v2_296 > 0) && (v2_296 < 6)); //Assert at lseg_header.skh:1008 (9031398208527464188)
+      if(((rec_294 == 1) || (rec_294 == 2)) || (rec_294 == 3))/*lseg_header.skh:1009*/
+      {
+        bit _pac_sc_s1973;
+        {
+          assert ((v_295 >= 0) && (v_295 < 6)); //lseg_header.skh:1010: Array out of bounds
+          _pac_sc_s1973 = (locvars__ANONYMOUS_s781_29a[v_295]) >= 0;
+          if(_pac_sc_s1973)/*lseg_header.skh:1010*/
+          {
+            assert ((v_295 >= 0) && (v_295 < 6)); //lseg_header.skh:1010: Array out of bounds
+            _pac_sc_s1973 = (locvars__ANONYMOUS_s781_29a[v_295]) < 5;
+          }
+        }
+        if(!(_pac_sc_s1973))/*lseg_header.skh:1010*/
+        {
+          return;
+        }
+        else
+        {
+          bit _out_s530_2a1;
+          int t_388_s1835;
+          assert ((v_295 >= 0) && (v_295 < 6)); //lseg_header.skh:1011: Array out of bounds
+          t_388_s1835 = locvars__ANONYMOUS_s781_29a[v_295];
+          treeness@ANONYMOUS(t_388_s1835, _out_s530_2a1, active__ANONYMOUS_s1577_297, next__ANONYMOUS_s1578_29b, supernext__ANONYMOUS_s1579_29e, symbolic__ANONYMOUS_s1580_29f);
+          if(!(_out_s530_2a1))/*lseg_header.skh:1011*/
+          {
+            return;
+          }
+          else
+          {
+            if(rec_294 == 1)/*lseg_header.skh:1012*/
+            {
+              int ranking_s532_2a2;
+              int l_2b6_s1836;
+              assert ((v_295 >= 0) && (v_295 < 6)); //lseg_header.skh:1012: Array out of bounds
+              l_2b6_s1836 = locvars__ANONYMOUS_s781_29a[v_295];
+              len_comp@ANONYMOUS(l_2b6_s1836, ranking_s532_2a2, active__ANONYMOUS_s1577_297, history__ANONYMOUS_s1248_298, next__ANONYMOUS_s1578_29b, p_history__ANONYMOUS_s1516_29c, supernext__ANONYMOUS_s1579_29e, symbolic__ANONYMOUS_s1580_29f, ts__ANONYMOUS_s1249_2a0);
+              ranking__ANONYMOUS_s782_29d = ranking_s532_2a2;
+            }
+            else
+            {
+              if(rec_294 == 2)/*lseg_header.skh:1013*/
+              {
+                int ranking_s534_2a3;
+                int l_2cb_s1837;
+                assert ((v_295 >= 0) && (v_295 < 6)); //lseg_header.skh:1013: Array out of bounds
+                l_2cb_s1837 = locvars__ANONYMOUS_s781_29a[v_295];
+                max_comp@ANONYMOUS(l_2cb_s1837, ranking_s534_2a3, active__ANONYMOUS_s1577_297, history__ANONYMOUS_s1248_298, key__ANONYMOUS_s1608_299, next__ANONYMOUS_s1578_29b, p_history__ANONYMOUS_s1516_29c, supernext__ANONYMOUS_s1579_29e, symbolic__ANONYMOUS_s1580_29f, ts__ANONYMOUS_s1249_2a0);
+                ranking__ANONYMOUS_s782_29d = ranking_s534_2a3;
+              }
+              else
+              {
+                if(rec_294 == 3)/*lseg_header.skh:1014*/
+                {
+                  int ranking_s536_2a4;
+                  int l_2c0_s1838;
+                  assert ((v_295 >= 0) && (v_295 < 6)); //lseg_header.skh:1014: Array out of bounds
+                  l_2c0_s1838 = locvars__ANONYMOUS_s781_29a[v_295];
+                  min_comp@ANONYMOUS(l_2c0_s1838, ranking_s536_2a4, active__ANONYMOUS_s1577_297, history__ANONYMOUS_s1248_298, key__ANONYMOUS_s1608_299, next__ANONYMOUS_s1578_29b, p_history__ANONYMOUS_s1516_29c, supernext__ANONYMOUS_s1579_29e, symbolic__ANONYMOUS_s1580_29f, ts__ANONYMOUS_s1249_2a0);
+                  ranking__ANONYMOUS_s782_29d = ranking_s536_2a4;
+                }
+              }
+            }
+          }
+        }
+      }
+      else
+      {
+        if(((rec_294 == 5) || (rec_294 == 6)) || (rec_294 == 7))/*lseg_header.skh:1016*/
+        {
+          bit _pac_sc_s1974;
+          {
+            assert ((v_295 >= 0) && (v_295 < 6)); //lseg_header.skh:1017: Array out of bounds
+            _pac_sc_s1974 = (locvars__ANONYMOUS_s781_29a[v_295]) >= 0;
+            if(_pac_sc_s1974)/*lseg_header.skh:1017*/
+            {
+              assert ((v_295 >= 0) && (v_295 < 6)); //lseg_header.skh:1017: Array out of bounds
+              _pac_sc_s1974 = (locvars__ANONYMOUS_s781_29a[v_295]) < 5;
+            }
+          }
+          if(!(_pac_sc_s1974))/*lseg_header.skh:1017*/
+          {
+            return;
+          }
+          else
+          {
+            bit _pac_sc_s1975;
+            {
+              assert ((v2_296 >= 0) && (v2_296 < 6)); //lseg_header.skh:1018: Array out of bounds
+              _pac_sc_s1975 = (locvars__ANONYMOUS_s781_29a[v2_296]) >= 0;
+              if(_pac_sc_s1975)/*lseg_header.skh:1018*/
+              {
+                assert ((v2_296 >= 0) && (v2_296 < 6)); //lseg_header.skh:1018: Array out of bounds
+                _pac_sc_s1975 = (locvars__ANONYMOUS_s781_29a[v2_296]) < 5;
+              }
+            }
+            if(!(_pac_sc_s1975))/*lseg_header.skh:1018*/
+            {
+              return;
+            }
+            else
+            {
+              bit _out_s538_2a5;
+              int t1_347_s1839;
+              assert ((v_295 >= 0) && (v_295 < 6)); //lseg_header.skh:1019: Array out of bounds
+              t1_347_s1839 = locvars__ANONYMOUS_s781_29a[v_295];
+              int t2_348_s1840;
+              assert ((v2_296 >= 0) && (v2_296 < 6)); //lseg_header.skh:1019: Array out of bounds
+              t2_348_s1840 = locvars__ANONYMOUS_s781_29a[v2_296];
+              p_treeness@ANONYMOUS(t1_347_s1839, t2_348_s1840, _out_s538_2a5, active__ANONYMOUS_s1577_297, next__ANONYMOUS_s1578_29b, supernext__ANONYMOUS_s1579_29e, symbolic__ANONYMOUS_s1580_29f);
+              if(!(_out_s538_2a5))/*lseg_header.skh:1019*/
+              {
+                return;
+              }
+            }
+          }
+          if(rec_294 == 5)/*lseg_header.skh:1020*/
+          {
+            int ranking_s540_2a6;
+            int l1_271_s1841;
+            assert ((v_295 >= 0) && (v_295 < 6)); //lseg_header.skh:1020: Array out of bounds
+            l1_271_s1841 = locvars__ANONYMOUS_s781_29a[v_295];
+            int l2_272_s1842;
+            assert ((v2_296 >= 0) && (v2_296 < 6)); //lseg_header.skh:1020: Array out of bounds
+            l2_272_s1842 = locvars__ANONYMOUS_s781_29a[v2_296];
+            lenseg_comp@ANONYMOUS(l1_271_s1841, l2_272_s1842, ranking_s540_2a6, active__ANONYMOUS_s1577_297, history__ANONYMOUS_s1248_298, next__ANONYMOUS_s1578_29b, p_history__ANONYMOUS_s1516_29c, supernext__ANONYMOUS_s1579_29e, symbolic__ANONYMOUS_s1580_29f, ts__ANONYMOUS_s1249_2a0);
+            ranking__ANONYMOUS_s782_29d = ranking_s540_2a6;
+          }
+          else
+          {
+            if(rec_294 == 6)/*lseg_header.skh:1021*/
+            {
+              int ranking_s542_2a7;
+              int l1_288_s1843;
+              assert ((v_295 >= 0) && (v_295 < 6)); //lseg_header.skh:1021: Array out of bounds
+              l1_288_s1843 = locvars__ANONYMOUS_s781_29a[v_295];
+              int l2_289_s1844;
+              assert ((v2_296 >= 0) && (v2_296 < 6)); //lseg_header.skh:1021: Array out of bounds
+              l2_289_s1844 = locvars__ANONYMOUS_s781_29a[v2_296];
+              maxseg_comp@ANONYMOUS(l1_288_s1843, l2_289_s1844, ranking_s542_2a7, active__ANONYMOUS_s1577_297, history__ANONYMOUS_s1248_298, key__ANONYMOUS_s1608_299, next__ANONYMOUS_s1578_29b, p_history__ANONYMOUS_s1516_29c, supernext__ANONYMOUS_s1579_29e, symbolic__ANONYMOUS_s1580_29f, ts__ANONYMOUS_s1249_2a0);
+              ranking__ANONYMOUS_s782_29d = ranking_s542_2a7;
+            }
+            else
+            {
+              if(rec_294 == 7)/*lseg_header.skh:1022*/
+              {
+                int ranking_s544_2a8;
+                int l1_27c_s1845;
+                assert ((v_295 >= 0) && (v_295 < 6)); //lseg_header.skh:1022: Array out of bounds
+                l1_27c_s1845 = locvars__ANONYMOUS_s781_29a[v_295];
+                int l2_27d_s1846;
+                assert ((v2_296 >= 0) && (v2_296 < 6)); //lseg_header.skh:1022: Array out of bounds
+                l2_27d_s1846 = locvars__ANONYMOUS_s781_29a[v2_296];
+                minseg_comp@ANONYMOUS(l1_27c_s1845, l2_27d_s1846, ranking_s544_2a8, active__ANONYMOUS_s1577_297, history__ANONYMOUS_s1248_298, key__ANONYMOUS_s1608_299, next__ANONYMOUS_s1578_29b, p_history__ANONYMOUS_s1516_29c, supernext__ANONYMOUS_s1579_29e, symbolic__ANONYMOUS_s1580_29f, ts__ANONYMOUS_s1249_2a0);
+                ranking__ANONYMOUS_s782_29d = ranking_s544_2a8;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*aux.skh:96*/
+
+void ret_loc (int v_19b, ref global int ret__ANONYMOUS_s799_19c)/*aux.skh:96*/
+{
+  {
+    {
+      assert (v_19b >= 0); //Assert at aux.skh:97 (8486406993859199314)
+      assert (v_19b < 6); //Assert at aux.skh:98 (3991554223663299057)
+      ret__ANONYMOUS_s799_19c = v_19b;
+    }
+  }
+}
+/*lseg_header.skh:18*/
+
+uninterp void sll (int l, int t, ref bit _out)/*lseg_header.skh:18*/
+/*lseg_header.skh:30*/
+
+void sll_comp (int l_2ab, ref bit _out_2ac, ref global bit[5] active__ANONYMOUS_s1624_2ad, ref global bit[4 * 5] history__ANONYMOUS_s1598_2ae, ref global int[5] key__ANONYMOUS_s1625_2af, ref global int[5] next__ANONYMOUS_s1626_2b0, ref global bit[4 * 5] p_history__ANONYMOUS_s1187_2b1, ref global int[5] supernext__ANONYMOUS_s1627_2b2, ref global bit[5] symbolic__ANONYMOUS_s1628_2b3, ref global int ts__ANONYMOUS_s1188_2b4)/*lseg_header.skh:30*/
+{
+  {
+    {
+      _out_2ac = 0;
+      bit _out_s305_2b5;
+      sll_recursive@ANONYMOUS(l_2ab, 4, _out_s305_2b5, active__ANONYMOUS_s1624_2ad, history__ANONYMOUS_s1598_2ae, key__ANONYMOUS_s1625_2af, next__ANONYMOUS_s1626_2b0, p_history__ANONYMOUS_s1187_2b1, supernext__ANONYMOUS_s1627_2b2, symbolic__ANONYMOUS_s1628_2b3, ts__ANONYMOUS_s1188_2b4);
+      _out_2ac = _out_s305_2b5;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:50*/
+
+void sll_history (int l_404, int ts_0_405, ref bit _out_406, ref global bit[4 * 5] history__ANONYMOUS_s821_407, ref global int ts__ANONYMOUS_s822_408)/*lseg_header.skh:50*/
+{
+  {
+    {
+      _out_406 = 0;
+      int ts_409;
+      ts_409 = ts_0_405;
+      bit __sa0_40a;
+      bit _pac_sc_s2035;
+      {
+        _pac_sc_s2035 = ts_409 > 0;
+        if(_pac_sc_s2035)/*lseg_header.skh:51*/
+        {
+          assert ((l_404 >= 0) && (l_404 < 5)); //lseg_header.skh:51: Array out of bounds
+          assert ((ts_409 >= 0) && (ts_409 < 4)); //lseg_header.skh:51: Array out of bounds
+          _pac_sc_s2035 = history__ANONYMOUS_s821_407[(4 * l_404) + ts_409];
+        }
+      }
+      __sa0_40a = _pac_sc_s2035;
+      while(__sa0_40a)
+      {
+        int uo_s24_40c;
+        uo_s24_40c = ts_409;
+        ts_409 = ts_409 - 1;
+        uo_s24_40c;
+        bit _pac_sc_s2036;
+        {
+          _pac_sc_s2036 = ts_409 > 0;
+          if(_pac_sc_s2036)/*lseg_header.skh:51*/
+          {
+            assert ((l_404 >= 0) && (l_404 < 5)); //lseg_header.skh:51: Array out of bounds
+            assert ((ts_409 >= 0) && (ts_409 < 4)); //lseg_header.skh:51: Array out of bounds
+            _pac_sc_s2036 = history__ANONYMOUS_s821_407[(4 * l_404) + ts_409];
+          }
+        }
+        __sa0_40a = _pac_sc_s2036;
+      }
+      bit _out_s326_40d;
+      sll(l_404, ts_409, _out_s326_40d);
+      _out_406 = _out_s326_40d;
+      return;
+    }
+  }
+}
+/*lseg_header.skh:35*/
+
+void sll_recursive (int l_390, int bnd_391, ref bit _out_392, ref global bit[5] active__ANONYMOUS_s906_393, ref global bit[4 * 5] history__ANONYMOUS_s1597_394, ref global int[5] key__ANONYMOUS_s907_395, ref global int[5] next__ANONYMOUS_s908_396, ref global bit[4 * 5] p_history__ANONYMOUS_s1282_397, ref global int[5] supernext__ANONYMOUS_s909_398, ref global bit[5] symbolic__ANONYMOUS_s910_399, ref global int ts__ANONYMOUS_s911_39a)/*lseg_header.skh:35*/
+{
+  {
+    {
+      _out_392 = 0;
+      if((l_390 < 0) || (l_390 >= 5))/*lseg_header.skh:36*/
+      {
+        _out_392 = 0;
+        return;
+      }
+      assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:37: Array out of bounds
+      if(!(active__ANONYMOUS_s906_393[l_390]))/*lseg_header.skh:37*/
+      {
+        _out_392 = 0;
+        return;
+      }
+      if(l_390 == 0)/*lseg_header.skh:38*/
+      {
+        _out_392 = 1;
+        return;
+      }
+      if(bnd_391 < 0)/*lseg_header.skh:39*/
+      {
+        _out_392 = 0;
+        return;
+      }
+      else
+      {
+        assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:41: Array out of bounds
+        if(symbolic__ANONYMOUS_s910_399[l_390])/*lseg_header.skh:41*/
+        {
+          bit _out_s307_39b;
+          sll_history@ANONYMOUS(l_390, ts__ANONYMOUS_s911_39a, _out_s307_39b, history__ANONYMOUS_s1597_394, ts__ANONYMOUS_s911_39a);
+          _out_392 = _out_s307_39b;
+          return;
+        }
+        else
+        {
+          assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:42: Array out of bounds
+          if(0 == (next__ANONYMOUS_s908_396[l_390]))/*lseg_header.skh:42*/
+          {
+            _out_392 = 1;
+            return;
+          }
+          else
+          {
+            bit _pac_sc_s2020;
+            {
+              assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:43: Array out of bounds
+              _pac_sc_s2020 = 0 < (next__ANONYMOUS_s908_396[l_390]);
+              if(_pac_sc_s2020)/*lseg_header.skh:43*/
+              {
+                assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:43: Array out of bounds
+                _pac_sc_s2020 = (next__ANONYMOUS_s908_396[l_390]) < 5;
+              }
+            }
+            if(_pac_sc_s2020)/*lseg_header.skh:43*/
+            {
+              bit _pac_sc_s308_39c;
+              bit _pac_sc_s308_s310_39d;
+              int l_390_s1912;
+              assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:43: Array out of bounds
+              l_390_s1912 = next__ANONYMOUS_s908_396[l_390];
+              int bnd_391_s1913;
+              bnd_391_s1913 = bnd_391 - 1;
+              sll_recursive@ANONYMOUS(l_390_s1912, bnd_391_s1913, _pac_sc_s308_s310_39d, active__ANONYMOUS_s906_393, history__ANONYMOUS_s1597_394, key__ANONYMOUS_s907_395, next__ANONYMOUS_s908_396, p_history__ANONYMOUS_s1282_397, supernext__ANONYMOUS_s909_398, symbolic__ANONYMOUS_s910_399, ts__ANONYMOUS_s911_39a);
+              _pac_sc_s308_39c = _pac_sc_s308_s310_39d;
+              if(_pac_sc_s308_39c)/*lseg_header.skh:43*/
+              {
+                int _pac_sc_s308_s312_39e;
+                int l_3a5_s1914;
+                assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:43: Array out of bounds
+                l_3a5_s1914 = next__ANONYMOUS_s908_396[l_390];
+                int bnd_3a6_s1915;
+                bnd_3a6_s1915 = bnd_391 - 1;
+                min_recursive@ANONYMOUS(l_3a5_s1914, bnd_3a6_s1915, _pac_sc_s308_s312_39e, active__ANONYMOUS_s906_393, history__ANONYMOUS_s1597_394, key__ANONYMOUS_s907_395, next__ANONYMOUS_s908_396, p_history__ANONYMOUS_s1282_397, supernext__ANONYMOUS_s909_398, symbolic__ANONYMOUS_s910_399, ts__ANONYMOUS_s911_39a);
+                assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:43: Array out of bounds
+                _pac_sc_s308_39c = (key__ANONYMOUS_s907_395[l_390]) <= _pac_sc_s308_s312_39e;
+              }
+              _out_392 = _pac_sc_s308_39c;
+              return;
+            }
+            else
+            {
+              assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:44: Array out of bounds
+              if(0 == (supernext__ANONYMOUS_s909_398[l_390]))/*lseg_header.skh:44*/
+              {
+                _out_392 = 1;
+                return;
+              }
+              else
+              {
+                bit _pac_sc_s2021;
+                {
+                  assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:45: Array out of bounds
+                  _pac_sc_s2021 = 0 < (supernext__ANONYMOUS_s909_398[l_390]);
+                  if(_pac_sc_s2021)/*lseg_header.skh:45*/
+                  {
+                    assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:45: Array out of bounds
+                    _pac_sc_s2021 = (supernext__ANONYMOUS_s909_398[l_390]) < 5;
+                  }
+                }
+                if(_pac_sc_s2021)/*lseg_header.skh:45*/
+                {
+                  bit _pac_sc_s313_39f;
+                  bit _pac_sc_s314_3a0;
+                  bit _pac_sc_s314_s316_3a1;
+                  sllseg_history@ANONYMOUS(l_390, ts__ANONYMOUS_s911_39a, _pac_sc_s314_s316_3a1, p_history__ANONYMOUS_s1282_397, ts__ANONYMOUS_s911_39a);
+                  _pac_sc_s314_3a0 = _pac_sc_s314_s316_3a1;
+                  if(_pac_sc_s314_3a0)/*lseg_header.skh:45*/
+                  {
+                    bit _pac_sc_s314_s318_3a2;
+                    int l_390_s1916;
+                    assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:45: Array out of bounds
+                    l_390_s1916 = supernext__ANONYMOUS_s909_398[l_390];
+                    int bnd_391_s1917;
+                    bnd_391_s1917 = bnd_391 - 1;
+                    sll_recursive@ANONYMOUS(l_390_s1916, bnd_391_s1917, _pac_sc_s314_s318_3a2, active__ANONYMOUS_s906_393, history__ANONYMOUS_s1597_394, key__ANONYMOUS_s907_395, next__ANONYMOUS_s908_396, p_history__ANONYMOUS_s1282_397, supernext__ANONYMOUS_s909_398, symbolic__ANONYMOUS_s910_399, ts__ANONYMOUS_s911_39a);
+                    _pac_sc_s314_3a0 = _pac_sc_s314_s318_3a2;
+                  }
+                  _pac_sc_s313_39f = _pac_sc_s314_3a0;
+                  if(_pac_sc_s313_39f)/*lseg_header.skh:45*/
+                  {
+                    int _pac_sc_s313_s320_3a3;
+                    maxseg_history@ANONYMOUS(l_390, ts__ANONYMOUS_s911_39a, _pac_sc_s313_s320_3a3, p_history__ANONYMOUS_s1282_397, ts__ANONYMOUS_s911_39a);
+                    int _pac_sc_s313_s322_3a4;
+                    int l_3a5_s1918;
+                    assert ((l_390 >= 0) && (l_390 < 5)); //lseg_header.skh:45: Array out of bounds
+                    l_3a5_s1918 = supernext__ANONYMOUS_s909_398[l_390];
+                    int bnd_3a6_s1919;
+                    bnd_3a6_s1919 = bnd_391 - 1;
+                    min_recursive@ANONYMOUS(l_3a5_s1918, bnd_3a6_s1919, _pac_sc_s313_s322_3a4, active__ANONYMOUS_s906_393, history__ANONYMOUS_s1597_394, key__ANONYMOUS_s907_395, next__ANONYMOUS_s908_396, p_history__ANONYMOUS_s1282_397, supernext__ANONYMOUS_s909_398, symbolic__ANONYMOUS_s910_399, ts__ANONYMOUS_s911_39a);
+                    _pac_sc_s313_39f = _pac_sc_s313_s320_3a3 <= _pac_sc_s313_s322_3a4;
+                  }
+                  _out_392 = _pac_sc_s313_39f;
+                  return;
+                }
+                else
+                {
+                  _out_392 = 0;
+                  return;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*lseg_header.skh:23*/
+
+uninterp void sllseg (int l1, int t, ref bit _out)/*lseg_header.skh:23*/
+/*lseg_header.skh:75*/
+
+void sllseg_history (int l1_40e, int ts_0_40f, ref bit _out_410, ref global bit[4 * 5] p_history__ANONYMOUS_s838_411, ref global int ts__ANONYMOUS_s839_412)/*lseg_header.skh:75*/
+{
+  {
+    {
+      _out_410 = 0;
+      int ts_413;
+      ts_413 = ts_0_40f;
+      bit __sa1_414;
+      bit _pac_sc_s2037;
+      {
+        _pac_sc_s2037 = ts_413 > 0;
+        if(_pac_sc_s2037)/*lseg_header.skh:76*/
+        {
+          assert ((l1_40e >= 0) && (l1_40e < 5)); //lseg_header.skh:76: Array out of bounds
+          assert ((ts_413 >= 0) && (ts_413 < 4)); //lseg_header.skh:76: Array out of bounds
+          _pac_sc_s2037 = p_history__ANONYMOUS_s838_411[(4 * l1_40e) + ts_413];
+        }
+      }
+      __sa1_414 = _pac_sc_s2037;
+      while(__sa1_414)
+      {
+        int uo_s22_416;
+        uo_s22_416 = ts_413;
+        ts_413 = ts_413 - 1;
+        uo_s22_416;
+        bit _pac_sc_s2038;
+        {
+          _pac_sc_s2038 = ts_413 > 0;
+          if(_pac_sc_s2038)/*lseg_header.skh:76*/
+          {
+            assert ((l1_40e >= 0) && (l1_40e < 5)); //lseg_header.skh:76: Array out of bounds
+            assert ((ts_413 >= 0) && (ts_413 < 4)); //lseg_header.skh:76: Array out of bounds
+            _pac_sc_s2038 = p_history__ANONYMOUS_s838_411[(4 * l1_40e) + ts_413];
+          }
+        }
+        __sa1_414 = _pac_sc_s2038;
+      }
+      bit _out_s250_417;
+      sllseg(l1_40e, ts_413, _out_s250_417);
+      _out_410 = _out_s250_417;
+      return;
+    }
+  }
+}
+/*list/test.sk:18*/
+
+void snapshot_test (int x_229, int y_22a, ref int osll_22b, ref int olenseg_22c, ref int ominseg_22d, ref int omaxseg_22e, ref global bit[5] active__ANONYMOUS_s1253_22f, ref global bit[4 * 5] history__ANONYMOUS_s1370_230, ref global int[5] key__ANONYMOUS_s1254_231, ref global int[6] locvars__ANONYMOUS_s850_232, ref global int[5] next__ANONYMOUS_s1255_233, ref global bit[4 * 5] p_history__ANONYMOUS_s1304_234, ref global int[5] supernext__ANONYMOUS_s1256_235, ref global bit[5] symbolic__ANONYMOUS_s1257_236, ref global int ts__ANONYMOUS_s1258_237)/*list/test.sk:18*/
+{
+  {
+    {
+      int olenseg_s557_238;
+      int l1_271_s1827;
+      assert ((x_229 >= 0) && (x_229 < 6)); //list/test.sk:19: Array out of bounds
+      l1_271_s1827 = locvars__ANONYMOUS_s850_232[x_229];
+      int l2_272_s1828;
+      assert ((y_22a >= 0) && (y_22a < 6)); //list/test.sk:19: Array out of bounds
+      l2_272_s1828 = locvars__ANONYMOUS_s850_232[y_22a];
+      lenseg_comp@ANONYMOUS(l1_271_s1827, l2_272_s1828, olenseg_s557_238, active__ANONYMOUS_s1253_22f, history__ANONYMOUS_s1370_230, next__ANONYMOUS_s1255_233, p_history__ANONYMOUS_s1304_234, supernext__ANONYMOUS_s1256_235, symbolic__ANONYMOUS_s1257_236, ts__ANONYMOUS_s1258_237);
+      olenseg_22c = olenseg_s557_238;
+      int ominseg_s559_239;
+      int l1_27c_s1829;
+      assert ((x_229 >= 0) && (x_229 < 6)); //list/test.sk:20: Array out of bounds
+      l1_27c_s1829 = locvars__ANONYMOUS_s850_232[x_229];
+      int l2_27d_s1830;
+      assert ((y_22a >= 0) && (y_22a < 6)); //list/test.sk:20: Array out of bounds
+      l2_27d_s1830 = locvars__ANONYMOUS_s850_232[y_22a];
+      minseg_comp@ANONYMOUS(l1_27c_s1829, l2_27d_s1830, ominseg_s559_239, active__ANONYMOUS_s1253_22f, history__ANONYMOUS_s1370_230, key__ANONYMOUS_s1254_231, next__ANONYMOUS_s1255_233, p_history__ANONYMOUS_s1304_234, supernext__ANONYMOUS_s1256_235, symbolic__ANONYMOUS_s1257_236, ts__ANONYMOUS_s1258_237);
+      ominseg_22d = ominseg_s559_239;
+      int omaxseg_s561_23a;
+      int l1_288_s1831;
+      assert ((x_229 >= 0) && (x_229 < 6)); //list/test.sk:21: Array out of bounds
+      l1_288_s1831 = locvars__ANONYMOUS_s850_232[x_229];
+      int l2_289_s1832;
+      assert ((y_22a >= 0) && (y_22a < 6)); //list/test.sk:21: Array out of bounds
+      l2_289_s1832 = locvars__ANONYMOUS_s850_232[y_22a];
+      maxseg_comp@ANONYMOUS(l1_288_s1831, l2_289_s1832, omaxseg_s561_23a, active__ANONYMOUS_s1253_22f, history__ANONYMOUS_s1370_230, key__ANONYMOUS_s1254_231, next__ANONYMOUS_s1255_233, p_history__ANONYMOUS_s1304_234, supernext__ANONYMOUS_s1256_235, symbolic__ANONYMOUS_s1257_236, ts__ANONYMOUS_s1258_237);
+      omaxseg_22e = omaxseg_s561_23a;
+    }
+  }
+}
+/*lseg_header.skh:306*/
+
+void treeness (int t_388, ref bit _out_389, ref global bit[5] active__ANONYMOUS_s1783_38a, ref global int[5] next__ANONYMOUS_s1784_38b, ref global int[5] supernext__ANONYMOUS_s1785_38c, ref global bit[5] symbolic__ANONYMOUS_s1786_38d)/*lseg_header.skh:306*/
+{
+  {
+    {
+      _out_389 = 0;
+      bit[5] visited_38e;
+      {
+        for(int __sa2049 = 0; __sa2049 < 5; __sa2049 = __sa2049 + 1)/*Canonical*/
+        {
+          visited_38e[__sa2049] = 0;
+        }
+      }
+      bit _out_s298_38f;
+      check_p_treeness@ANONYMOUS(t_388, 0, visited_38e, 4, _out_s298_38f, active__ANONYMOUS_s1783_38a, next__ANONYMOUS_s1784_38b, supernext__ANONYMOUS_s1785_38c, symbolic__ANONYMOUS_s1786_38d);
+      _out_389 = _out_s298_38f;
+      return;
+    }
+  }
+}
+/* END PACKAGE ANONYMOUS*/
+------------------------------
+
+[SATBackend] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[SATBackend] MAX LOOP UNROLLING = 4
+[SATBackend] MAX FUNC INLINING  = 8
+estimated size of after_loop_test__Wrapper
+stmt cnt: 4
+callee glblInit_ts__ANONYMOUS_s1804 : 1
+callee glblInit_ret__ANONYMOUS_s1802 : 1
+callee glblInit_error_flag__ANONYMOUS_s1788 : 1
+callee after_loop_test0 : 63
+
+estimated size of iterate_test__Wrapper
+stmt cnt: 4
+callee glblInit_ts__ANONYMOUS_s1804 : 1
+callee glblInit_ranking__ANONYMOUS_s1800 : 1
+callee glblInit_malloc_budget__ANONYMOUS_s1794 : 1
+callee glblInit_fake_unfold__ANONYMOUS_s1790 : 1
+callee glblInit_error_flag__ANONYMOUS_s1788 : 1
+callee iterate_test0 : 67
+
+estimated size of before_loop_test__Wrapper
+stmt cnt: 0
+callee glblInit_ts__ANONYMOUS_s1804 : 1
+callee glblInit_error_flag__ANONYMOUS_s1788 : 1
+callee before_loop_test0 : 47
+
+[SATBackend] After prog.accept(partialEval)
+[SATBackend] OFILE = null
+    [0;32m[1484669129.2610 - DEBUG] executing ~/tools/sketch-1.7.2/sketch-backend/src/SketchSolver/cegis --bnd-inbits 3 --boundmode CALLNAME --verbosity 10 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 8 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /home/waghon/.sketch/tmp/test.sk/solution0-0 /home/waghon/.sketch/tmp/test.sk/input0.tmp[0m
+[SATBackend] Launching: ~/tools/sketch-1.7.2/sketch-backend/src/SketchSolver/cegis --bnd-inbits 3 --boundmode CALLNAME --verbosity 10 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 8 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /home/waghon/.sketch/tmp/test.sk/solution0-0 /home/waghon/.sketch/tmp/test.sk/input0.tmp 
+starting command line: [~/tools/sketch-1.7.2/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 3, --boundmode, CALLNAME, --verbosity, 10, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 8, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /home/waghon/.sketch/tmp/test.sk/solution0-0, /home/waghon/.sketch/tmp/test.sk/input0.tmp]
+    [0;31m[1484669129.3050 - ERROR] [SKETCH] Sketch Not Resolved Error: nullThe sketch could not be resolved.[0m
+    [0;32m[1484669129.3060 - DEBUG] [SKETCH] stack trace written to file: /home/waghon/.sketch/tmp/stacktrace.txt[0m
+    [0;32m[1484669129.3061 - DEBUG] Backend solver input file at /home/waghon/.sketch/tmp/test.sk/input0.tmp[0m
+Total time = 1038

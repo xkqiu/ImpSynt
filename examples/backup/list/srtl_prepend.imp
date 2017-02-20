@@ -1,0 +1,16 @@
+
+loc srtl_prepend(loc x, int k)
+requires sll^(x) & (k <= min^(x))
+ensures ( sll^(resultloc) & (len^(resultloc) i= (old(len^(x)) + 1)) )
+	& ( (min^(resultloc) i= ((old(k) < old(min^(x))) ? old(k) : old(min^(x)))) & (max^(resultloc) i= ((old(max^(x)) < old(k)) ? old(k) : old(max^(x)))) )
+{
+	/*
+	loc v1 := malloc();
+	v1.next := x;
+	v1.key := k;
+	return v1;
+	*/
+    loc ??? := new;
+    return ???;
+}
+
