@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 #include "vops.h"
-#include "myTest.h"
+#include "rise4funTemp.h"
 namespace ANONYMOUS{
 
 void list_find_min_rec__Wrapper(int* llocvars/* len = 2 */, int* lintvars/* len = 2 */, int* lnext/* len = 3 */, int* lsupernext/* len = 3 */, int* lkey/* len = 3 */, bool* lsymbolic/* len = 3 */, bool* lactive/* len = 3 */, int ret_value, bool* new_symbolic/* len = 3 */, int* new_next/* len = 3 */, int* new_supernext/* len = 3 */, int* new_key/* len = 3 */) {
@@ -301,13 +301,15 @@ void statement0(int locrange, int intrange, int locrange2, int intrange2, bool* 
   assert ((intrange) > (0));;
   assert ((0) < (intrange));;
   assert ((0) < ((intrange + intrange2)));;
-  intVarAssign(0, 0, 7, intvars__ANONYMOUS_s987);
+  intVarAssign(0, 0, 4, intvars__ANONYMOUS_s987);
 }
 void statement1(int locrange, int intrange, int locrange2, int intrange2, bool* active__ANONYMOUS_s1072/* len = 4 */, bool& error_flag__ANONYMOUS_s1135, int& fake_unfold__ANONYMOUS_s1559, bool* history__ANONYMOUS_s950/* len = 4 * 4 */, int* intvars__ANONYMOUS_s1408/* len = 2 */, int* key__ANONYMOUS_s1073/* len = 4 */, int* left__ANONYMOUS_s1668/* len = 4 */, int* locvars__ANONYMOUS_s1074/* len = 3 */, int& malloc_budget__ANONYMOUS_s1075, int* next__ANONYMOUS_s1076/* len = 4 */, bool* p_history__ANONYMOUS_s1136/* len = 4 * 4 */, int* right__ANONYMOUS_s1669/* len = 4 */, int* supernext__ANONYMOUS_s1137/* len = 4 */, bool* symbolic__ANONYMOUS_s1077/* len = 4 */, int& ts__ANONYMOUS_s951) {
   assert ((0) < (locrange));;
-  assert ((0) < ((locrange + locrange2)));;
-  assert ((locrange) > (0));;
-  malloc(1, active__ANONYMOUS_s1072, error_flag__ANONYMOUS_s1135, key__ANONYMOUS_s1073, locvars__ANONYMOUS_s1074, malloc_budget__ANONYMOUS_s1075, next__ANONYMOUS_s1076, symbolic__ANONYMOUS_s1077);
+  assert ((1) < ((locrange + locrange2)));;
+  assert ((intrange) > (0));;
+  assert ((0) < (intrange));;
+  assert ((0) < ((intrange + intrange2)));;
+  intVarAssign(0, 0, 7, intvars__ANONYMOUS_s1408);
 }
 void statement2(int locrange, int intrange, int locrange2, int intrange2, bool* active__ANONYMOUS_s1117/* len = 4 */, bool& error_flag__ANONYMOUS_s966, int& fake_unfold__ANONYMOUS_s1118, bool* history__ANONYMOUS_s1472/* len = 4 * 4 */, int* intvars__ANONYMOUS_s1119/* len = 2 */, int* key__ANONYMOUS_s1120/* len = 4 */, int* left__ANONYMOUS_s1216/* len = 4 */, int* locvars__ANONYMOUS_s1121/* len = 3 */, int& malloc_budget__ANONYMOUS_s1377, int* next__ANONYMOUS_s1217/* len = 4 */, bool* p_history__ANONYMOUS_s1017/* len = 4 * 4 */, int* right__ANONYMOUS_s1218/* len = 4 */, int* supernext__ANONYMOUS_s1473/* len = 4 */, bool* symbolic__ANONYMOUS_s1122/* len = 4 */, int& ts__ANONYMOUS_s1018) {
   assert ((0) < (locrange));;
@@ -430,9 +432,9 @@ void basic_cond1(int locrange, int intrange, bool& _out, bool* active__ANONYMOUS
     }
     res_s208 = _pac_sc_s211;
   } else {
-    assert ((5) < ((locrange + 1)));;
+    assert ((3) < ((locrange + 1)));;
     bool  _out_s219=0;
-    locvar_eq(2, 5, _out_s219, locvars__ANONYMOUS_s1471);
+    locvar_eq(2, 3, _out_s219, locvars__ANONYMOUS_s1471);
     res_s208 = _out_s219;
   }
   _out = res_s208;
@@ -569,31 +571,6 @@ void intVarAssign(int c1, int c2, int c3, int* intvars__ANONYMOUS_s830/* len = 2
       }
     }
   }
-}
-void malloc(int c, bool* active__ANONYMOUS_s923/* len = 4 */, bool& error_flag__ANONYMOUS_s1557, int* key__ANONYMOUS_s924/* len = 4 */, int* locvars__ANONYMOUS_s925/* len = 3 */, int& malloc_budget__ANONYMOUS_s926, int* next__ANONYMOUS_s927/* len = 4 */, bool* symbolic__ANONYMOUS_s928/* len = 4 */) {
-  assert ((c) > (0));;
-  assert ((c) < (3));;
-  assert ((malloc_budget__ANONYMOUS_s926) >= (1));;
-  assumePre((malloc_budget__ANONYMOUS_s926) >= (1), error_flag__ANONYMOUS_s1557);
-  if ((malloc_budget__ANONYMOUS_s926) < (1)) {
-    return;
-  }
-  malloc_budget__ANONYMOUS_s926 = malloc_budget__ANONYMOUS_s926 - 1;
-  bool  __sa13=(active__ANONYMOUS_s923[1]);
-  int  l=1;
-  while (__sa13) {
-    l = l + 1;
-    __sa13 = ((l) < (4)) && (active__ANONYMOUS_s923[l]);
-  }
-  assumePre((l) < (4), error_flag__ANONYMOUS_s1557);
-  if ((l) >= (4)) {
-    return;
-  }
-  (next__ANONYMOUS_s927[l]) = 0;
-  (key__ANONYMOUS_s924[l]) = 0;
-  (symbolic__ANONYMOUS_s928[l]) = 0;
-  (active__ANONYMOUS_s923[l]) = 1;
-  (locvars__ANONYMOUS_s925[c]) = l;
 }
 void locderef2var(int c1, int c2, bool* active__ANONYMOUS_s800/* len = 4 */, bool& error_flag__ANONYMOUS_s980, bool* history__ANONYMOUS_s1424/* len = 4 * 4 */, int* key__ANONYMOUS_s974/* len = 4 */, int* locvars__ANONYMOUS_s801/* len = 3 */, int& malloc_budget__ANONYMOUS_s802, int* next__ANONYMOUS_s803/* len = 4 */, bool* p_history__ANONYMOUS_s1091/* len = 4 * 4 */, int* supernext__ANONYMOUS_s975/* len = 4 */, bool* symbolic__ANONYMOUS_s804/* len = 4 */, int& ts__ANONYMOUS_s805) {
   assert ((c1) > (0));;

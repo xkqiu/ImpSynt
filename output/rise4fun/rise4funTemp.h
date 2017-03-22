@@ -1,5 +1,5 @@
-#ifndef MYTEST_H
-#define MYTEST_H
+#ifndef RISE4FUNTEMP_H
+#define RISE4FUNTEMP_H
 
 #include <cstring>
 
@@ -47,8 +47,8 @@ extern void lenseg_comp(int l1, int l2, int& _out, bool* active__ANONYMOUS_s1503
 extern void maxseg_comp(int l1, int l2, int& _out, bool* active__ANONYMOUS_s1320/* len = 4 */, bool* history__ANONYMOUS_s1321/* len = 4 * 4 */, int* key__ANONYMOUS_s1322/* len = 4 */, int* next__ANONYMOUS_s1323/* len = 4 */, bool* p_history__ANONYMOUS_s1324/* len = 4 * 4 */, int* supernext__ANONYMOUS_s1325/* len = 4 */, bool* symbolic__ANONYMOUS_s1326/* len = 4 */, int& ts__ANONYMOUS_s1327);
 extern void minseg_comp(int l1, int l2, int& _out, bool* active__ANONYMOUS_s1479/* len = 4 */, bool* history__ANONYMOUS_s1615/* len = 4 * 4 */, int* key__ANONYMOUS_s1480/* len = 4 */, int* next__ANONYMOUS_s1481/* len = 4 */, bool* p_history__ANONYMOUS_s1664/* len = 4 * 4 */, int* supernext__ANONYMOUS_s1482/* len = 4 */, bool* symbolic__ANONYMOUS_s1483/* len = 4 */, int& ts__ANONYMOUS_s1484);
 extern void locvar_eq(int c1, int c2, bool& _out, int* locvars__ANONYMOUS_s758/* len = 3 */);
-extern void intVarAssign(int c1, int c2, int c3, int* intvars__ANONYMOUS_s830/* len = 2 */);
 extern void malloc(int c, bool* active__ANONYMOUS_s923/* len = 4 */, bool& error_flag__ANONYMOUS_s1557, int* key__ANONYMOUS_s924/* len = 4 */, int* locvars__ANONYMOUS_s925/* len = 3 */, int& malloc_budget__ANONYMOUS_s926, int* next__ANONYMOUS_s927/* len = 4 */, bool* symbolic__ANONYMOUS_s928/* len = 4 */);
+extern void intVarAssign(int c1, int c2, int c3, int* intvars__ANONYMOUS_s830/* len = 2 */);
 extern void locderef2var(int c1, int c2, bool* active__ANONYMOUS_s800/* len = 4 */, bool& error_flag__ANONYMOUS_s980, bool* history__ANONYMOUS_s1424/* len = 4 * 4 */, int* key__ANONYMOUS_s974/* len = 4 */, int* locvars__ANONYMOUS_s801/* len = 3 */, int& malloc_budget__ANONYMOUS_s802, int* next__ANONYMOUS_s803/* len = 4 */, bool* p_history__ANONYMOUS_s1091/* len = 4 * 4 */, int* supernext__ANONYMOUS_s975/* len = 4 */, bool* symbolic__ANONYMOUS_s804/* len = 4 */, int& ts__ANONYMOUS_s805);
 extern void havoc(int r, bool* new_symbolic/* len = 3 */, int* new_next/* len = 3 */, int* new_supernext/* len = 3 */, int* new_key/* len = 3 */, int& _out, bool* active__ANONYMOUS_s894/* len = 4 */, bool* history__ANONYMOUS_s1303/* len = 4 * 4 */, int* key__ANONYMOUS_s895/* len = 4 */, int* next__ANONYMOUS_s896/* len = 4 */, bool* p_history__ANONYMOUS_s1304/* len = 4 * 4 */, int* supernext__ANONYMOUS_s897/* len = 4 */, bool* symbolic__ANONYMOUS_s898/* len = 4 */, int& ts__ANONYMOUS_s899);
 extern void assumePre(bool b, bool& error_flag__ANONYMOUS_s797);

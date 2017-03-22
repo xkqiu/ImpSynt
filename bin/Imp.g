@@ -646,7 +646,8 @@ WS
   ;
   
 COMMENT
-    :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
+    :   '#pragma option' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
+    |   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
     |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
     ;
 

@@ -20,7 +20,7 @@
   "Samples": [
     {
       "Name": "myTest",
-      "Source":"myTest# 4 3 2 1 # \r\nint list_find_min_rec(loc x)\r\nrequires tree^(x)\r\nensures tree^(x) & (resultint i= old(min^(x)))\r\n{\r\n    if (cond(1)) {\r\n       statement(2);\r\n    }\r\n    else {\r\n\tstatement(1);\r\n        int ?? := list_find_min_rec(???);\r\n        if (cond(1)) statement(1);\r\n    }\r\n    return i_0;\r\n}"
+      "Source":"#pragma option 4 3 2 1  \r\nint list_find_min_rec(loc x)\r\nrequires tree^(x)\r\nensures tree^(x) & (resultint i= old(min^(x)))\r\n{\r\n    if (cond(1)) {\r\n       statement(2);\r\n    }\r\n    else {\r\n\tstatement(1);\r\n        int ?? := list_find_min_rec(???);\r\n        if (cond(1)) statement(1);\r\n    }\r\n    return i_0;\r\n}"
     }
   ],
   "Tutorials": [

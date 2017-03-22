@@ -1,7 +1,6 @@
 package socket;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -10,8 +9,6 @@ import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import javax.xml.transform.Source;
-import javax.xml.ws.Response;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -20,7 +17,7 @@ import com.sun.net.httpserver.HttpServer;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class Test {
+public class MyServer {
 
     public static void main(String[] args) throws Exception {
         HttpServer server = HttpServer.create(new InetSocketAddress(8085), 10);
@@ -33,7 +30,7 @@ public class Test {
     static class MyHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange t) throws IOException {
-        	String response= new String(Files.readAllBytes(Paths.get("/home/waghon/workspace/MyServer/src/socket/metadata")));
+        	String response= new String(Files.readAllBytes(Paths.get("/home/waghon/IdeaProjects/rise4fun/src/socket/metadata")));
             //String response = "This is the response"; 
             //System.out.println(response);
         	t.sendResponseHeaders(200, response.getBytes().length);
@@ -64,18 +61,18 @@ public class Test {
             String inString = (String) inJsonObject.get("Source");
             System.out.println(inString);
             String fileName, paraments, fileContent;
-            String strSplit[]=inString.split("#");
-            fileName=strSplit[0];
-            paraments=strSplit[1];
-            fileContent=strSplit[2];
+            //String strSplit[]=inString.split("#");
+            fileName="rise4funTemp";
+            //paraments=strSplit[1];
+            //fileContent=strSplit[2];
             System.out.println(fileName);
-            System.out.println(paraments);
-            System.out.println(fileContent);
-            String filePath="/home/waghon/Projects/ImpSynt/examples/list/"+fileName+".imp";
+            //System.out.println(paraments);
+            System.out.println(inString);
+            String filePath="/home/waghon/Projects/ImpSynt/examples/rise4fun/"+fileName+".imp";
             PrintWriter fileOut = new PrintWriter(filePath);   
-            fileOut.print(fileContent);
+            fileOut.print(inString);
             fileOut.close(); // 关闭数据流  
-            String myCommand="java -jar /home/waghon/Projects/ImpSynt/NaturalSynthesis.jar list " + fileName + paraments;
+            String myCommand="java -jar /home/waghon/Projects/ImpSynt/NaturalSynthesis.jar rise4fun " + fileName;
             System.out.println(myCommand);
             File execPath = new File("/home/waghon/Projects/ImpSynt/");
             try {
@@ -85,7 +82,7 @@ public class Test {
 				e.printStackTrace();
 			}
             System.out.println("done");
-            String result = new String(Files.readAllBytes(Paths.get("/home/waghon/Projects/ImpSynt/output/list/"+fileName+".imp")));
+            String result = new String(Files.readAllBytes(Paths.get("/home/waghon/Projects/ImpSynt/output/rise4fun/"+fileName+".imp")));
         	//String response= new String(Files.readAllBytes(Paths.get("/home/waghon/workspace/MyServer/src/socket/run")));
         	//JSONObject outJsonObject=JSONObject.fromObject(response);
         	
@@ -104,8 +101,8 @@ public class Test {
         	t.sendResponseHeaders(200, response.getBytes().length);
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
-            //is.close();
-            //os.close();
+            is.close();
+            os.close();
         }
     }
 

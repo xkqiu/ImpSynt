@@ -1223,7 +1223,17 @@ public class NaturalSynthesis {
 	public static void main(String[] args) throws Exception {
 		if (args[0].equals("tree")) sig = "bst";
 		else sig = "lseg";
-		
+	
+		//to read the parameters form file
+		Scanner inputFileToGetParameter = new Scanner(new File("examples//" + args[0] + "//" + args[1] + ".imp"));
+		inputFileToGetParameter.next();//ignore "#pragma"
+		inputFileToGetParameter.next();//ignore "opition"
+		String[] argsFromFile = new String[4];
+		for(int i=0;i<4;i++){//read for parameters
+			argsFromFile[i]=inputFileToGetParameter.next();
+		}
+		inputFileToGetParameter.close();
+
         ANTLRFileStream in = new ANTLRFileStream("examples//" + args[0] + "//" + args[1] + ".imp");
         ImpLexer lexer = new ImpLexer(in);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -1234,9 +1244,9 @@ public class NaturalSynthesis {
         ImpSynt.program_return pr = is.program();
         
 
-        i_init = Integer.valueOf(args[4]);
-    	l_init = Integer.valueOf(args[3]);
-    	bnd = Integer.valueOf(args[2]);
+        i_init = Integer.valueOf(argsFromFile[2]);
+    	l_init = Integer.valueOf(argsFromFile[1]);
+    	bnd = Integer.valueOf(argsFromFile[0]);
         
         writer = new PrintWriter("sk//" + args[0] + "//" + args[1] + ".sk");
         
@@ -1250,10 +1260,10 @@ public class NaturalSynthesis {
         		+ "int TIMESIZE = 4;\n"
         		+ "int BOUND = " + (sig.equals("bst") ? 2 : (bnd-1)) + ";\n"
         		+ "int INTMAX = 7;\n" // + (int)(Math.pow(2, i_init+2) - 1) + ";\n"
-        		+ "int HEAPSIZE = " + args[2] + ";\n"
-        		+ "int LOCVARSIZE = " + args[3] + ";\n"
-        		+ "int INTVARSIZE = " + ((i_init == 0) ? "1" : args[4]) + ";\n"
-        		+ "int MBUDGET = " + args[5] + ";\n\n"
+        		+ "int HEAPSIZE = " + argsFromFile[0] + ";\n"
+        		+ "int LOCVARSIZE = " + argsFromFile[1] + ";\n"
+        		+ "int INTVARSIZE = " + ((i_init == 0) ? "1" : argsFromFile[2]) + ";\n"
+        		+ "int MBUDGET = " + argsFromFile[3] + ";\n\n"
         		+ "include \"header/" + sig + "_header.skh\";\n");
         
         //snapshots of int vars, len, min, max at every call site

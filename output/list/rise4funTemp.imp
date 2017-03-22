@@ -5,8 +5,8 @@ ensures tree^(x) & (resultint i= old(min^(x)))
     if (x == nil) {
        statement(2);
     }
-    else {
-	loc l_1 := nil;
+    else {  
+	0, 0, 4, intvars__ANONYMOUS_s987);;
         int i_0 := list_find_min_rec(l_1);
         if (x.key < i_0) int i_0 := 7;
     }
