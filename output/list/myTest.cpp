@@ -298,16 +298,18 @@ void basic_cond0(int locrange, int intrange, bool& _out, bool* active__ANONYMOUS
 void statement0(int locrange, int intrange, int locrange2, int intrange2, bool* active__ANONYMOUS_s985/* len = 4 */, bool& error_flag__ANONYMOUS_s1047, int& fake_unfold__ANONYMOUS_s986, bool* history__ANONYMOUS_s1111/* len = 4 * 4 */, int* intvars__ANONYMOUS_s987/* len = 2 */, int* key__ANONYMOUS_s988/* len = 4 */, int* left__ANONYMOUS_s1662/* len = 4 */, int* locvars__ANONYMOUS_s989/* len = 3 */, int& malloc_budget__ANONYMOUS_s1236, int* next__ANONYMOUS_s1126/* len = 4 */, bool* p_history__ANONYMOUS_s1248/* len = 4 * 4 */, int* right__ANONYMOUS_s1663/* len = 4 */, int* supernext__ANONYMOUS_s1127/* len = 4 */, bool* symbolic__ANONYMOUS_s990/* len = 4 */, int& ts__ANONYMOUS_s991) {
   assert ((0) < (locrange));;
   assert ((1) < ((locrange + locrange2)));;
-  assert ((intrange) > (0));;
-  assert ((0) < (intrange));;
+  assert (((locrange + locrange2)) > (0));;
+  assert (((intrange + intrange2)) > (0));;
   assert ((0) < ((intrange + intrange2)));;
-  intVarAssign(0, 0, 7, intvars__ANONYMOUS_s987);
+  intMutate(2, 0, active__ANONYMOUS_s985, error_flag__ANONYMOUS_s1047, fake_unfold__ANONYMOUS_s986, history__ANONYMOUS_s1111, intvars__ANONYMOUS_s987, key__ANONYMOUS_s988, locvars__ANONYMOUS_s989, next__ANONYMOUS_s1126, p_history__ANONYMOUS_s1248, symbolic__ANONYMOUS_s990, ts__ANONYMOUS_s991);
 }
 void statement1(int locrange, int intrange, int locrange2, int intrange2, bool* active__ANONYMOUS_s1072/* len = 4 */, bool& error_flag__ANONYMOUS_s1135, int& fake_unfold__ANONYMOUS_s1559, bool* history__ANONYMOUS_s950/* len = 4 * 4 */, int* intvars__ANONYMOUS_s1408/* len = 2 */, int* key__ANONYMOUS_s1073/* len = 4 */, int* left__ANONYMOUS_s1668/* len = 4 */, int* locvars__ANONYMOUS_s1074/* len = 3 */, int& malloc_budget__ANONYMOUS_s1075, int* next__ANONYMOUS_s1076/* len = 4 */, bool* p_history__ANONYMOUS_s1136/* len = 4 * 4 */, int* right__ANONYMOUS_s1669/* len = 4 */, int* supernext__ANONYMOUS_s1137/* len = 4 */, bool* symbolic__ANONYMOUS_s1077/* len = 4 */, int& ts__ANONYMOUS_s951) {
   assert ((0) < (locrange));;
-  assert ((0) < ((locrange + locrange2)));;
-  assert ((locrange) > (0));;
-  malloc(1, active__ANONYMOUS_s1072, error_flag__ANONYMOUS_s1135, key__ANONYMOUS_s1073, locvars__ANONYMOUS_s1074, malloc_budget__ANONYMOUS_s1075, next__ANONYMOUS_s1076, symbolic__ANONYMOUS_s1077);
+  assert ((1) < ((locrange + locrange2)));;
+  assert ((intrange) > (0));;
+  assert ((0) < (intrange));;
+  assert ((1) < ((intrange + intrange2)));;
+  intVarAssign(0, 1, 7, intvars__ANONYMOUS_s1408);
 }
 void statement2(int locrange, int intrange, int locrange2, int intrange2, bool* active__ANONYMOUS_s1117/* len = 4 */, bool& error_flag__ANONYMOUS_s966, int& fake_unfold__ANONYMOUS_s1118, bool* history__ANONYMOUS_s1472/* len = 4 * 4 */, int* intvars__ANONYMOUS_s1119/* len = 2 */, int* key__ANONYMOUS_s1120/* len = 4 */, int* left__ANONYMOUS_s1216/* len = 4 */, int* locvars__ANONYMOUS_s1121/* len = 3 */, int& malloc_budget__ANONYMOUS_s1377, int* next__ANONYMOUS_s1217/* len = 4 */, bool* p_history__ANONYMOUS_s1017/* len = 4 * 4 */, int* right__ANONYMOUS_s1218/* len = 4 */, int* supernext__ANONYMOUS_s1473/* len = 4 */, bool* symbolic__ANONYMOUS_s1122/* len = 4 */, int& ts__ANONYMOUS_s1018) {
   assert ((0) < (locrange));;
@@ -430,9 +432,9 @@ void basic_cond1(int locrange, int intrange, bool& _out, bool* active__ANONYMOUS
     }
     res_s208 = _pac_sc_s211;
   } else {
-    assert ((5) < ((locrange + 1)));;
+    assert ((4) < ((locrange + 1)));;
     bool  _out_s219=0;
-    locvar_eq(2, 5, _out_s219, locvars__ANONYMOUS_s1471);
+    locvar_eq(2, 4, _out_s219, locvars__ANONYMOUS_s1471);
     res_s208 = _out_s219;
   }
   _out = res_s208;
@@ -545,6 +547,31 @@ void locvar_eq(int c1, int c2, bool& _out, int* locvars__ANONYMOUS_s758/* len = 
   _out = ((locvars__ANONYMOUS_s758[c1])) == ((locvars__ANONYMOUS_s758[c2]));
   return;
 }
+void intMutate(int c1, int c2, bool* active__ANONYMOUS_s778/* len = 4 */, bool& error_flag__ANONYMOUS_s1595, int& fake_unfold__ANONYMOUS_s779, bool* history__ANONYMOUS_s1202/* len = 4 * 4 */, int* intvars__ANONYMOUS_s780/* len = 2 */, int* key__ANONYMOUS_s781/* len = 4 */, int* locvars__ANONYMOUS_s782/* len = 3 */, int* next__ANONYMOUS_s1203/* len = 4 */, bool* p_history__ANONYMOUS_s1204/* len = 4 * 4 */, bool* symbolic__ANONYMOUS_s783/* len = 4 */, int& ts__ANONYMOUS_s784) {
+  assert ((c1) > (0));;
+  assert ((c1) < (3));;
+  assert ((c2) >= (0));;
+  assert ((c2) < (2));;
+  int  df=(locvars__ANONYMOUS_s782[c1]);
+  assumePre((df) >= (0), error_flag__ANONYMOUS_s1595);
+  assumePre((df) < (4), error_flag__ANONYMOUS_s1595);
+  if (((df) < (0)) || ((df) >= (4))) {
+    return;
+  }
+  if ((df) == (0)) {
+    return;
+  }
+  if (!((active__ANONYMOUS_s778[df]))) {
+    return;
+  }
+  if ((symbolic__ANONYMOUS_s783[df]) && ((fake_unfold__ANONYMOUS_s779) != (df))) {
+    return;
+  }
+  int  k=(intvars__ANONYMOUS_s780[c2]);
+  ts__ANONYMOUS_s784 = ts__ANONYMOUS_s784 + 1;
+  (key__ANONYMOUS_s781[df]) = k;
+  connect_defs(active__ANONYMOUS_s778, history__ANONYMOUS_s1202, next__ANONYMOUS_s1203, p_history__ANONYMOUS_s1204, symbolic__ANONYMOUS_s783, ts__ANONYMOUS_s784);
+}
 void intVarAssign(int c1, int c2, int c3, int* intvars__ANONYMOUS_s830/* len = 2 */) {
   assert ((c1) >= (0));;
   assert ((c1) < (2));;
@@ -569,31 +596,6 @@ void intVarAssign(int c1, int c2, int c3, int* intvars__ANONYMOUS_s830/* len = 2
       }
     }
   }
-}
-void malloc(int c, bool* active__ANONYMOUS_s923/* len = 4 */, bool& error_flag__ANONYMOUS_s1557, int* key__ANONYMOUS_s924/* len = 4 */, int* locvars__ANONYMOUS_s925/* len = 3 */, int& malloc_budget__ANONYMOUS_s926, int* next__ANONYMOUS_s927/* len = 4 */, bool* symbolic__ANONYMOUS_s928/* len = 4 */) {
-  assert ((c) > (0));;
-  assert ((c) < (3));;
-  assert ((malloc_budget__ANONYMOUS_s926) >= (1));;
-  assumePre((malloc_budget__ANONYMOUS_s926) >= (1), error_flag__ANONYMOUS_s1557);
-  if ((malloc_budget__ANONYMOUS_s926) < (1)) {
-    return;
-  }
-  malloc_budget__ANONYMOUS_s926 = malloc_budget__ANONYMOUS_s926 - 1;
-  bool  __sa13=(active__ANONYMOUS_s923[1]);
-  int  l=1;
-  while (__sa13) {
-    l = l + 1;
-    __sa13 = ((l) < (4)) && (active__ANONYMOUS_s923[l]);
-  }
-  assumePre((l) < (4), error_flag__ANONYMOUS_s1557);
-  if ((l) >= (4)) {
-    return;
-  }
-  (next__ANONYMOUS_s927[l]) = 0;
-  (key__ANONYMOUS_s924[l]) = 0;
-  (symbolic__ANONYMOUS_s928[l]) = 0;
-  (active__ANONYMOUS_s923[l]) = 1;
-  (locvars__ANONYMOUS_s925[c]) = l;
 }
 void locderef2var(int c1, int c2, bool* active__ANONYMOUS_s800/* len = 4 */, bool& error_flag__ANONYMOUS_s980, bool* history__ANONYMOUS_s1424/* len = 4 * 4 */, int* key__ANONYMOUS_s974/* len = 4 */, int* locvars__ANONYMOUS_s801/* len = 3 */, int& malloc_budget__ANONYMOUS_s802, int* next__ANONYMOUS_s803/* len = 4 */, bool* p_history__ANONYMOUS_s1091/* len = 4 * 4 */, int* supernext__ANONYMOUS_s975/* len = 4 */, bool* symbolic__ANONYMOUS_s804/* len = 4 */, int& ts__ANONYMOUS_s805) {
   assert ((c1) > (0));;
@@ -1197,6 +1199,26 @@ void minseg_recursive(int l1, int l2, int bnd, int& _out, bool* active__ANONYMOU
     }
   }
 }
+void connect_defs(bool* active__ANONYMOUS_s728/* len = 4 */, bool* history__ANONYMOUS_s729/* len = 4 * 4 */, int* next__ANONYMOUS_s730/* len = 4 */, bool* p_history__ANONYMOUS_s731/* len = 4 * 4 */, bool* symbolic__ANONYMOUS_s732/* len = 4 */, int& ts__ANONYMOUS_s733) {
+  for (int  i=0;(i) < (4);i = i + 1){
+    if ((active__ANONYMOUS_s728[i])) {
+      if ((symbolic__ANONYMOUS_s732[i])) {
+        assert (((i) >= (0)) && ((i) < (4)));;
+        assert (((ts__ANONYMOUS_s733) >= (0)) && ((ts__ANONYMOUS_s733) < (4)));;
+        (history__ANONYMOUS_s729[(4 * i) + ts__ANONYMOUS_s733]) = 1;
+        assert (((i) >= (0)) && ((i) < (4)));;
+        assert (((ts__ANONYMOUS_s733) >= (0)) && ((ts__ANONYMOUS_s733) < (4)));;
+        (p_history__ANONYMOUS_s731[(4 * i) + ts__ANONYMOUS_s733]) = 1;
+      } else {
+        if ((((next__ANONYMOUS_s730[i])) < (0)) || (((next__ANONYMOUS_s730[i])) >= (4))) {
+          assert (((i) >= (0)) && ((i) < (4)));;
+          assert (((ts__ANONYMOUS_s733) >= (0)) && ((ts__ANONYMOUS_s733) < (4)));;
+          (p_history__ANONYMOUS_s731[(4 * i) + ts__ANONYMOUS_s733]) = 1;
+        }
+      }
+    }
+  }
+}
 void sll_comp(int l, bool& _out, bool* active__ANONYMOUS_s1585/* len = 4 */, bool* history__ANONYMOUS_s1581/* len = 4 * 4 */, int* key__ANONYMOUS_s1586/* len = 4 */, int* next__ANONYMOUS_s1587/* len = 4 */, bool* p_history__ANONYMOUS_s1431/* len = 4 * 4 */, int* supernext__ANONYMOUS_s1588/* len = 4 */, bool* symbolic__ANONYMOUS_s1589/* len = 4 */, int& ts__ANONYMOUS_s1432) {
   _out = 0;
   bool  _out_s165=0;
@@ -1219,26 +1241,6 @@ void compute_reach(int init, int stop, bool* reach/* len = 4 */, bool* active__A
     updated = 0;
     update_reach(updated, reach, stop, active__ANONYMOUS_s735, next__ANONYMOUS_s1428, supernext__ANONYMOUS_s1429, symbolic__ANONYMOUS_s1430);
     __sa1684 = updated;
-  }
-}
-void connect_defs(bool* active__ANONYMOUS_s728/* len = 4 */, bool* history__ANONYMOUS_s729/* len = 4 * 4 */, int* next__ANONYMOUS_s730/* len = 4 */, bool* p_history__ANONYMOUS_s731/* len = 4 * 4 */, bool* symbolic__ANONYMOUS_s732/* len = 4 */, int& ts__ANONYMOUS_s733) {
-  for (int  i=0;(i) < (4);i = i + 1){
-    if ((active__ANONYMOUS_s728[i])) {
-      if ((symbolic__ANONYMOUS_s732[i])) {
-        assert (((i) >= (0)) && ((i) < (4)));;
-        assert (((ts__ANONYMOUS_s733) >= (0)) && ((ts__ANONYMOUS_s733) < (4)));;
-        (history__ANONYMOUS_s729[(4 * i) + ts__ANONYMOUS_s733]) = 1;
-        assert (((i) >= (0)) && ((i) < (4)));;
-        assert (((ts__ANONYMOUS_s733) >= (0)) && ((ts__ANONYMOUS_s733) < (4)));;
-        (p_history__ANONYMOUS_s731[(4 * i) + ts__ANONYMOUS_s733]) = 1;
-      } else {
-        if ((((next__ANONYMOUS_s730[i])) < (0)) || (((next__ANONYMOUS_s730[i])) >= (4))) {
-          assert (((i) >= (0)) && ((i) < (4)));;
-          assert (((ts__ANONYMOUS_s733) >= (0)) && ((ts__ANONYMOUS_s733) < (4)));;
-          (p_history__ANONYMOUS_s731[(4 * i) + ts__ANONYMOUS_s733]) = 1;
-        }
-      }
-    }
   }
 }
 void len_history(int l, int ts_0, int& _out, bool* history__ANONYMOUS_s868/* len = 4 * 4 */, int& ts__ANONYMOUS_s869) {

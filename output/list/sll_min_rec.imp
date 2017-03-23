@@ -6,9 +6,9 @@ ensures tree^(x) & (resultint i= old(min^(x)))
        statement(2);
     }
     else {
-	loc l_1 := nil;
+	int i_0 := 7;
         int i_0 := list_find_min_rec(l_1);
-        if (x.key < i_0) int i_0 := 7;
+        if (x.key < i_0) x.next := l_1;
     }
     return i_0;
 }

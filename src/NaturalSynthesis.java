@@ -1226,11 +1226,26 @@ public class NaturalSynthesis {
 	
 		//to read the parameters form file
 		Scanner inputFileToGetParameter = new Scanner(new File("examples//" + args[0] + "//" + args[1] + ".imp"));
-		inputFileToGetParameter.next();//ignore "#pragma"
-		inputFileToGetParameter.next();//ignore "opition"
 		String[] argsFromFile = new String[4];
-		for(int i=0;i<4;i++){//read for parameters
-			argsFromFile[i]=inputFileToGetParameter.next();
+		if(inputFileToGetParameter.hasNext()&&inputFileToGetParameter.next().equals("#pragma")
+				&&inputFileToGetParameter.hasNext()&&inputFileToGetParameter.next().equals("option")){
+			//System.out.println("have parameters");
+			// read the parameters form file
+			int i=0;
+			for(i=0;i<4&&inputFileToGetParameter.hasNext();i++){//read for parameters
+				argsFromFile[i]=inputFileToGetParameter.next();
+			}
+			if(i!=4){// do not have 4 parameters
+				System.out.println("Do not have enough parameters");
+				return;
+			}
+		}
+		else{//set the default parameters here
+			//System.out.println("set to default parameters");
+			argsFromFile[0]="4";
+			argsFromFile[1]="3";
+			argsFromFile[2]="2";
+			argsFromFile[3]="1";
 		}
 		inputFileToGetParameter.close();
 
