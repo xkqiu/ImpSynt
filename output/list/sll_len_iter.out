@@ -1,7 +1,0 @@
-SKETCH version 1.7.2
-Benchmark = list/sll_len_iter.sk
-    [0;32m[1484670529.0740 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
-list/sll_len_iter.sk:33:37: unexpected token: ;
-    [0;31m[1484670529.2810 - ERROR] [SKETCH] Program Parse Error: could not parse program[0m
-    [0;32m[1484670529.2811 - DEBUG] [SKETCH] stack trace written to file: /home/waghon/.sketch/tmp/stacktrace.txt[0m
-Total time = 263

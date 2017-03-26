@@ -1,4 +1,4 @@
-pragma options "--slv-simiters 10 --bnd-inbits 3 --bnd-inline-amnt 4 --bnd-unroll-amnt 2 ";
+pragma options "--slv-simiters 4 --bnd-inbits 3 --bnd-inline-amnt 6 --bnd-unroll-amnt 2 ";
 
 int TIMESIZE = 4;
 int BOUND = 2;
@@ -12,7 +12,8 @@ include "header/lseg_header.skh";
 
 int old_k, old_sll, old_len, old_min, old_max, old_size, old_height, old_lenseg, old_minseg, old_maxseg;
 
-int rank_func_srtl_prepend = {| LEN | LENSEG |}; //len, min or max
+int rank_func_srtl_prepend = 
+LEN;
 
 void snapshot_srtl_prepend(int x, int k, ref int ok, ref int osll, ref int olen, ref int omin, ref int omax) {
 	olen = len_comp(locvars[x]);
