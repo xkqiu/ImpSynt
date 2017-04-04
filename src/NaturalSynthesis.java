@@ -861,6 +861,13 @@ public class NaturalSynthesis {
 				+ (l_init-locAux-1) + ", " + (i_init-intAux) + ")");
 			i++;
 		}
+		if (mutate_loc > 0) {
+			//10 for DISJ
+			writer.println("\n\t && predicate(10, "
+				+ locAux + ", " + intAux + ", "
+				+ (l_init-locAux-1) + ", " + (i_init-intAux) + ")");
+			i++;
+		}
 		String any_pred = "\n\t && any_pred("
 				+ locAux + ", " + intAux + ", "
 				+ (l_init-locAux-1) + ", " + (i_init-intAux) + ")";
@@ -1377,7 +1384,7 @@ public class NaturalSynthesis {
         	LinkedList<String> local_loc_ags = new LinkedList<String>();
         	LinkedList<String> local_int_ags = new LinkedList<String>();
         	
-        	writer.println("int rank_func_" + m + " = ");
+        	writer.print("int rank_func_" + m + " = ");
         	if (sig.equals("bst")) writer.println("SIZE");
         	else if (is.preRecs.get(m).contains("sll") || is.preRecs.get(m).contains("rll")) {
         		if (is.preRecs.get(m).contains("sllseg") || is.preRecs.get(m).contains("rllseg"))
@@ -1839,12 +1846,21 @@ public class NaturalSynthesis {
 			String left = decodeLocVar(num, prg, loc_count, "iterate_" + name);
 			guard = "sll^(" + left + ") ";
 		}
+		else if (subst.contains("rsllseg_inv")) {
+			String subst2 = strip(subst, "rsllseg_inv");
+			String[] params = subst2.split(", ");
+			int num = Integer.parseInt(params[0]);
+			String left = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			num = Integer.parseInt(params[1]);
+			String right = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			guard = "rsllseg^(" + left + ", " + right + ") ";
+		}
 		else if (subst.contains("sllseg_inv")) {
 			String subst2 = strip(subst, "sllseg_inv");
 			String[] params = subst2.split(", ");
 			int num = Integer.parseInt(params[0]);
 			String left = decodeLocVar(num, prg, loc_count, "iterate_" + name);
-			num = Integer.parseInt(params[0]);
+			num = Integer.parseInt(params[1]);
 			String right = decodeLocVar(num, prg, loc_count, "iterate_" + name);
 			guard = "sllseg^(" + left + ", " + right + ") ";
 		}
@@ -1853,9 +1869,13 @@ public class NaturalSynthesis {
 			String[] params = subst2.split(", ");
 			int num = Integer.parseInt(params[0]);
 			String left = decodeLocVar(num, prg, loc_count, "iterate_" + name);
-			num = Integer.parseInt(params[0]);
+			num = Integer.parseInt(params[1]);
 			String right = decodeLocVar(num, prg, loc_count, "iterate_" + name);
-			guard = "disjoint^(" + left + ", " + right + ") ";
+			num = Integer.parseInt(params[2]);
+			String lefttail = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			num = Integer.parseInt(params[3]);
+			String righttail = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			guard = "disjoint^(" + left + ", " + right + ", " + lefttail + ", " + righttail + ") ";
 		}
 		else if (subst.contains("minseg_preserve_inv")) {
 			String subst2 = strip(subst, "minseg_preserve_inv");
@@ -1979,9 +1999,10 @@ public class NaturalSynthesis {
 			subst = strip(subst, "locderef2var");
 			String[] params = subst.split(", ");
 			System.out.println(params[1] + too);
-			int num = (params[1].equals("to")) ? too : Integer.parseInt(params[1]);
-			String deref = decodeLocVar(Integer.parseInt(params[0]), prg, loc_count, name + i);
-			String to = decodeLocVar(num, prg, loc_count, name + i);
+			int num = (params[0].equals("to")) ? too : Integer.parseInt(params[0]);
+			int num2 = (params[1].equals("to")) ? too : Integer.parseInt(params[1]);
+			String deref = decodeLocVar(num, prg, loc_count, name + i);
+			String to = decodeLocVar(num2, prg, loc_count, name + i);
 			if (to.startsWith("l_")) guard += "loc ";
 			return guard + to + " := " + deref + ".next";
 		}
