@@ -1631,7 +1631,7 @@ public class NaturalSynthesis {
         	String[] auxs = threeArgs.split(",");
         	int locAux = Integer.valueOf(auxs[0].trim()).intValue();
         	int intAux = Integer.valueOf(auxs[1].trim()).intValue();
-        	String replace = decodeLoop(is.mtds.iterator().next(), text, locAux, intAux, count++, sk_text, l_init, i_init);
+        	String replace = decodeLoop(false, is.mtds.iterator().next(), text, locAux, intAux, count++, sk_text, l_init, i_init);
         	prg = prg.replaceFirst(replaced, replace);
         	//System.out.println(prg);
         }
@@ -1644,7 +1644,7 @@ public class NaturalSynthesis {
         	String[] auxs = threeArgs.split(",");
         	int locAux = Integer.valueOf(auxs[0].trim()).intValue();
         	int intAux = Integer.valueOf(auxs[1].trim()).intValue();
-        	String replace = decodeLoop(is.mtds.iterator().next(), text, locAux, intAux, count++, sk_text, l_init, i_init);
+        	String replace = decodeLoop(true, is.mtds.iterator().next(), text, locAux, intAux, count++, sk_text, l_init, i_init);
         	prg = prg.replaceFirst(replaced, replace);
         	//System.out.println(prg);
         }
@@ -2025,7 +2025,8 @@ public class NaturalSynthesis {
 		else if (subst.contains("locMutate")) {
 			subst = strip(subst, "locMutate");
 			String[] params = subst.split(", ");
-			String derefed = decodeLocVar(Integer.parseInt(params[0]), prg, loc_count, name + i);
+			int num = (params[0].equals("v")) ? too : Integer.parseInt(params[1]);
+			String derefed = decodeLocVar(num, prg, loc_count, name + i);
 			String newval = decodeLocVar(Integer.parseInt(params[1]), prg, loc_count, name + i);
 			return derefed + ".next := " + newval;
 		}
@@ -2057,7 +2058,11 @@ public class NaturalSynthesis {
 		return decodeCommand("update_locvar", text, i, to, prg, loc_count, int_count);
 	}
 	
-	public static String decodeLoop(String pname, String text, int lAux, int iAux, int i, String prg, int loc_count, int int_count) {
+	public static String decodeMutateLoc(String text, int i, int to, String prg, int loc_count, int int_count) {
+		return decodeCommand("mutate_locvar", text, i, to, prg, loc_count, int_count);
+	}
+	
+	public static String decodeLoop(boolean simple, String pname, String text, int lAux, int iAux, int i, String prg, int loc_count, int int_count) {
 		String beforeLoop = "\t";
 		for (int l = 0; l < update_int_before_loop; l++) {
 			beforeLoop += decodeUpdateInt(text, l, l, prg, loc_count, int_count) + ";\n\t";
@@ -2076,6 +2081,11 @@ public class NaturalSynthesis {
 		}
 		for (int l = update_loc_before_loop; l < update_loc; l++) {
 			lp += "\t\t" + decodeUpdateLoc(text, l, l-update_loc_before_loop+1,  prg, loc_count, int_count) + ";\n";
+		}
+		if (!simple) {
+			String p = strip(text, "mutate_locvar0").split(", ")[0];
+			int v = Integer.parseInt(p);
+			lp += "\t\t" + decodeMutateLoc(text, 0, v,  prg, loc_count, int_count) + ";\n";
 		}
 		lp += "\t}";
 		
