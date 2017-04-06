@@ -1781,7 +1781,11 @@ public class NaturalSynthesis {
 	
 	public static String decodeCond(String text, int i, String prg, int loc_count, int int_count) {
 		//return decodeBoolExp("basic_cond", text, i, prg, loc_count, int_count);
-		int idx = text.indexOf("void basic_cond" + i + "(");
+		int idx;
+		if (text.contains("void basic_cond" + i + "("))
+			idx = text.indexOf("void basic_cond" + i + "(");
+		else
+			idx = text.indexOf("void cond" + i + "(");
 		String subst = text.substring(idx).split("return;")[0];
 		if (subst.contains("basic_branch_cond" + i)) {
 			String[] params = strip(subst, "basic_branch_cond" + i).split(", ");
