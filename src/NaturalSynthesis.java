@@ -791,7 +791,9 @@ public class NaturalSynthesis {
 		writer.println("int rank_var_aux_" + m + " = " + gen_non_zero(l_init - locAux - 1, locAux) + ";\n");
 		
 		//assuming not the last loop-related variable, which is usually used in loop condition
-		writer.println("int mutate_var_" + m + " = " + gen_non_zero(locAux > 0 ? locAux-1 : l_init-1) + ";");
+		int mutate_range = locAux > 0 ? locAux-1 : l_init-1;
+		if (mutate_range >= 1)
+			writer.println("int mutate_var_" + m + " = " + gen_non_zero(mutate_range) + ";");
 		
 		//preserving choices
 		if (sig.equals("bst"))
@@ -1694,7 +1696,6 @@ public class NaturalSynthesis {
 		LinkedList<Pair<String, String>> ags = findArgs(prg, key);
 		LinkedList<Pair<String, String>> filtered_ags = new LinkedList<Pair<String, String>>();
 		for (Pair<String, String> p : ags) if (p.getSecond().equals("int")) filtered_ags.add(p);
-		System.out.println(filtered_ags.size());
 		if (count <= n) return "ERROR";
 		else if (count-n <= filtered_ags.size()) return filtered_ags.get(count-n-1).getFirst();
 		else return "i_" + n;
@@ -1742,7 +1743,6 @@ public class NaturalSynthesis {
 					}*/
 				}
 				if (params[d].contains("intstart")) {
-					System.out.println(d + ": " + intstart);
 					params[d] = params[d].replaceAll("intstart", String.valueOf(intstart));
 					/*if (params[d].contains(" + ")) {
 						int pilot = params[d].indexOf("+");
@@ -2002,7 +2002,6 @@ public class NaturalSynthesis {
 			
 			subst = strip(subst, "locderef2var");
 			String[] params = subst.split(", ");
-			System.out.println(params[1] + too);
 			int num = (params[0].equals("to")) ? too : Integer.parseInt(params[0]);
 			int num2 = (params[1].equals("to")) ? too : Integer.parseInt(params[1]);
 			String deref = decodeLocVar(num, prg, loc_count, name + i);
@@ -2029,7 +2028,7 @@ public class NaturalSynthesis {
 		else if (subst.contains("locMutate")) {
 			subst = strip(subst, "locMutate");
 			String[] params = subst.split(", ");
-			int num = (params[0].equals("v")) ? too : Integer.parseInt(params[1]);
+			int num = (params[0].equals("v")) ? too : Integer.parseInt(params[0]);
 			String derefed = decodeLocVar(num, prg, loc_count, name + i);
 			String newval = decodeLocVar(Integer.parseInt(params[1]), prg, loc_count, name + i);
 			return derefed + ".next := " + newval;

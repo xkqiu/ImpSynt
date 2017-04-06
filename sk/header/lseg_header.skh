@@ -193,7 +193,7 @@ int minseg_recursive(int l1, int l2, int bnd) {
 	if (l1 < 0 || l1 >= HEAPSIZE) return INTMAX;
 	else if (!active[l1]) return INTMAX;
 	//workaround
-	else if (l1 == l2) return (l1 == 0 || next[l1] != l1) ? INTMAX : key[l1];
+	else if (l1 == l2) return (l1 == 0 || symbolic[l1] || next[l1] != l1) ? INTMAX : key[l1];
 	//not sure
 	else if (l1 == 0) return INTMAX;
 	else if(bnd < 0) return -1;
@@ -1246,7 +1246,7 @@ bit minseg_equal_inv(int v1, int v2, int val) {
 	assert v2>0 && v2<LOCVARSIZE;
 	if (!(locvars[v1] >= 0 && locvars[v1] < HEAPSIZE 
 	&& locvars[v2] >= 0 && locvars[v2] < HEAPSIZE)) return false;
-	int m = p_treeness(locvars[v1], locvars[v2]) ? lenseg_comp(locvars[v1], locvars[v2]) : -1;
+	int m = p_treeness(locvars[v1], locvars[v2]) ? minseg_comp(locvars[v1], locvars[v2]) : -1;
 	return m == val;
 }
 
@@ -1255,7 +1255,7 @@ bit maxseg_equal_inv(int v1, int v2, int val) {
 	assert v2>0 && v2<LOCVARSIZE;
 	if (!(locvars[v1] >= 0 && locvars[v1] < HEAPSIZE 
 	&& locvars[v2] >= 0 && locvars[v2] < HEAPSIZE)) return false;
-	int m = p_treeness(locvars[v1], locvars[v2]) ? lenseg_comp(locvars[v1], locvars[v2]) : -1;
+	int m = p_treeness(locvars[v1], locvars[v2]) ? maxseg_comp(locvars[v1], locvars[v2]) : -1;
 	return m == val;
 }
 
@@ -1273,7 +1273,7 @@ bit maxseg_leq_inv(int v1, int v2, int val) {
 	assert v2>0 && v2<LOCVARSIZE;
 	if (!(locvars[v1] >= 0 && locvars[v1] < HEAPSIZE 
 	&& locvars[v2] >= 0 && locvars[v2] < HEAPSIZE)) return false;
-	int m = p_treeness(locvars[v1], locvars[v2]) ? lenseg_comp(locvars[v1], locvars[v2]) : -1;
+	int m = p_treeness(locvars[v1], locvars[v2]) ? maxseg_comp(locvars[v1], locvars[v2]) : -1;
 	return m <= val;
 }
 
