@@ -1642,7 +1642,7 @@ public class NaturalSynthesis {
         	int start = prg.indexOf("simple-loop(");
         	int length = prg.substring(start+12).indexOf(");");
         	String threeArgs = prg.substring(start+12, start+length+12);
-        	String replaced = "loop\\(" + threeArgs + "\\);";
+        	String replaced = "simple-loop\\(" + threeArgs + "\\);";
         	String[] auxs = threeArgs.split(",");
         	int locAux = Integer.valueOf(auxs[0].trim()).intValue();
         	int intAux = Integer.valueOf(auxs[1].trim()).intValue();
@@ -1805,10 +1805,10 @@ public class NaturalSynthesis {
 			int num = (params[0].equals("to")) ? too : Integer.parseInt(params[0]);
 			String left = decodeLocVar(num, prg, loc_count, name + i);
 			String right = decodeIntVar(Integer.parseInt(params[1]), prg, loc_count, name + i);
-			String neg = subst.contains("_out = !") ? "! " : "";
+			String neg = (subst.contains("_out = !") || subst.contains(" = !(")) ? "! " : "";
 			guard = "if (" + neg + left + ".key < " + right + ") ";
 		}
-		if (subst.contains("locvar_eq")) {
+		else if (subst.contains("locvar_eq")) {
 			String subst3 = strip(subst, "locvar_eq");
 			String[] params = subst3.split(", ");
 			int num = (params[0].equals("to")) ? too : Integer.parseInt(params[0]);
@@ -1850,6 +1850,14 @@ public class NaturalSynthesis {
 			String left = decodeLocVar(num, prg, loc_count, "iterate_" + name);
 			guard = "sll^(" + left + ") ";
 		}
+		else if (subst.contains("tree_inv")) {
+			String subst2 = strip(subst, "tree_inv");
+			String[] params = subst2.split(", ");
+			int num = Integer.parseInt(params[0]);
+			System.out.println("decoding " + num);
+			String left = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			guard = "tree^(" + left + ") ";
+		}
 		else if (subst.contains("rsllseg_inv")) {
 			String subst2 = strip(subst, "rsllseg_inv");
 			String[] params = subst2.split(", ");
@@ -1867,6 +1875,17 @@ public class NaturalSynthesis {
 			num = Integer.parseInt(params[1]);
 			String right = decodeLocVar(num, prg, loc_count, "iterate_" + name);
 			guard = "sllseg^(" + left + ", " + right + ") ";
+		}
+		else if (subst.contains("minseg_equal_inv")) {
+			String subst2 = strip(subst, "minseg_equal_inv");
+			String[] params = subst2.split(", ");
+			int num = Integer.parseInt(params[0]);
+			String first = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			num = Integer.parseInt(params[1]);
+			String second = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			String val = params[2];
+			if (val.contains("intvars")) val = "i_" + val.split("\\[")[1].split("\\]")[0];
+			guard = "minseg^(" + first + ", " + second + ") == " + val;
 		}
 		else if (subst.contains("disj_inv")) {
 			String subst2 = strip(subst, "disj_inv");
@@ -2006,17 +2025,19 @@ public class NaturalSynthesis {
 			int num2 = (params[1].equals("to")) ? too : Integer.parseInt(params[1]);
 			String deref = decodeLocVar(num, prg, loc_count, name + i);
 			String to = decodeLocVar(num2, prg, loc_count, name + i);
-			if (to.startsWith("l_")) guard += "loc ";
+			if (num2 < num) guard += "loc ";
 			return guard + to + " := " + deref + ".next";
 		}
 		else if (subst.contains("intderef2var")) {
+			String guard = decodePositiveGuard(name, subst, i, too, prg, loc_count);
+			
 			subst = strip(subst, "intderef2var");
 			String[] params = subst.split(", ");
 			int num = (params[1].equals("to")) ? too : Integer.parseInt(params[1]);
 			String deref = decodeLocVar(Integer.parseInt(params[0]), prg, loc_count, name + i);
 			String to = decodeIntVar(num, prg, int_count, name + i);
-			if (to.startsWith("i_")) return "int " + to + " := " + deref + ".key";
-			else return to + " := " + deref + ".key";
+			if (guard.isEmpty()) guard += "int ";
+			return guard + to + " := " + deref + ".key";
 		}
 		else if (subst.contains("intMutate")) {
 			subst = strip(subst, "intMutate");
@@ -2092,7 +2113,7 @@ public class NaturalSynthesis {
 		}
 		lp += "\t}";
 		
-		System.out.println(beforeLoop + "\n" + lp + "\n");
+		//System.out.println(beforeLoop + "\n" + lp + "\n");
 		
 		return beforeLoop + "\n" + lp + "\n";
 	}
