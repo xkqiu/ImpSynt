@@ -28,7 +28,7 @@ ensures ( sll^(resultloc) & (len^(resultloc) i= (old(len^(x)) + 1)) )
         return ???;
     }
     else {
-        simple-loop(2, 0, 3);
+        simple-loop(3);
         loc ??? := new;
 	statement(1);
         return ???;

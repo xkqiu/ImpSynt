@@ -13,7 +13,7 @@ ensures resultint i= old(max^(x))
 	}
 	return i_0;*/
 
-    simple-loop(1, 1, 1);
+    simple-loop(1);
     return ??;
 }
 

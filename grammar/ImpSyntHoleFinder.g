@@ -212,8 +212,8 @@ mainBody
 whileLoop
     :
     ^('while' boolExp statement)
-    |   ^('loop' INT INT INT) {unknownLoops.add($whileLoop.tree); loopLocs.add(Integer.valueOf(bbSize));}
-    |   ^('simple-loop' INT INT INT) {unknownSimpleLoops.add($whileLoop.tree); loopLocs.add(Integer.valueOf(bbSize));}
+    |   ^('loop' INT) {unknownLoops.add($whileLoop.tree); loopLocs.add(Integer.valueOf(bbSize));}
+    |   ^('simple-loop' INT) {unknownSimpleLoops.add($whileLoop.tree); loopLocs.add(Integer.valueOf(bbSize));}
     ;
     
 conditional
