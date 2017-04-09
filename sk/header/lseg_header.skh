@@ -883,7 +883,7 @@ generator void update_locvar_statement(int v, int locrange) {
 		//malloc_budget--;
 
 		//should mutate gen_non_zero(locrange), but let me assume mutation is only for itself now..
-		locderef2var(v, v);
+		locderef2var(gen_non_zero(locrange), v);
 	}
 	else { //if (st_choice == LOCASSGN) {
 		assert locrange > 0;
