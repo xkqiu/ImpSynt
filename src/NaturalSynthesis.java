@@ -1654,7 +1654,7 @@ public class NaturalSynthesis {
         for (Integer t : hfinder.unknownNew) {
         	String replaced = "new";
         	String replace = decodeNew(text, count++, sk_text, l_init, i_init);
-        	prg = prg.replaceFirst(replaced, replace);
+        	prg = prg.replaceFirst(replaced+";", replace+";");
         }
         
         writer = new PrintWriter("output//" + args[0] + "//" + args[1] + ".imp");
