@@ -38,7 +38,19 @@
         <classpath refid="antlr-path"/>
     </manifestclasspath>
     <target name="init">
-        <mkdir dir="bin"/>
+		<mkdir dir="bin"/>
+		<mkdir dir="output"/>
+		<mkdir dir="output/list"/>
+		<mkdir dir="output/header"/>
+		<mkdir dir="output/tree"/>
+		<mkdir dir="output/local"/>
+		<mkdir dir="output/rise4fun"/>
+		<!--mkdir dir="sk"/>
+		<mkdir dir="sk/list"/>
+		<mkdir dir="sk/header"/>
+		<mkdir dir="sk/tree"/>
+		<mkdir dir="sk/local"/>
+		<mkdir dir="sk/rise4fun"/-->
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
                 <exclude name="**/*.java"/>
@@ -51,7 +63,9 @@
         </copy>
     </target>
     <target name="clean">
-        <delete dir="bin"/>
+		<delete dir="bin"/>
+		<delete dir="output"/>
+		<delete file="NaturalSynthesis.jar"/>
     </target>
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
