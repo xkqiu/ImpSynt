@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ "$1" = "add" ]; then
+	cp $2 $ImpSynt_HOME/examples/local/
+else
+	cd $ImpSynt_HOME
+	java -jar NaturalSynthesis.jar local $1
+fi
