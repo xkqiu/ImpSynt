@@ -45,12 +45,12 @@
 		<mkdir dir="output/tree"/>
 		<mkdir dir="output/local"/>
 		<mkdir dir="output/rise4fun"/>
-		<!--mkdir dir="sk"/>
+		<!--mkdir dir="sk"/-->
 		<mkdir dir="sk/list"/>
-		<mkdir dir="sk/header"/>
+		<!--mkdir dir="sk/header"/-->
 		<mkdir dir="sk/tree"/>
 		<mkdir dir="sk/local"/>
-		<mkdir dir="sk/rise4fun"/-->
+		<mkdir dir="sk/rise4fun"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
                 <exclude name="**/*.java"/>
@@ -65,6 +65,10 @@
     <target name="clean">
 		<delete dir="bin"/>
 		<delete dir="output"/>
+		<delete dir="sk/list"/>
+		<delete dir="sk/tree"/>
+		<delete dir="sk/rise4fun"/>
+		<delete dir="sk/local"/>
 		<delete file="NaturalSynthesis.jar"/>
     </target>
     <target depends="clean" name="cleanall"/>
