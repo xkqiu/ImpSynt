@@ -195,8 +195,8 @@ mainBody
 whileLoop
     :
     ^('while' boolExp statement)
-    |   ^('loop' INT INT INT)
-    |   ^('simple-loop' INT INT INT)
+    |   ^('loop' INT)
+    |   ^('simple-loop' INT)
     ;
     
 conditional

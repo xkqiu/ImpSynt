@@ -777,9 +777,11 @@ public class NaturalSynthesis {
 	}
 	
 	public static void encodeLoop(String n, LinkedList<Pair<String, String>> ags, LinkedList<String> loc_ags, LinkedList<String> int_ags, List<CommonTree> pre, CommonTree loopBody, List<CommonTree> post, int int_init, int loc_init) {
-		int locAux = (loopBody.getText().equals("loop") || loopBody.getText().equals("simple-loop")) ? Integer.valueOf(loopBody.getChild(0).getText()) : loc_ags.size();
-		int intAux = (loopBody.getText().equals("loop") || loopBody.getText().equals("simple-loop")) ? Integer.valueOf(loopBody.getChild(1).getText()) : int_ags.size();
-		int invSize = (loopBody.getText().equals("loop") || loopBody.getText().equals("simple-loop")) ? Integer.valueOf(loopBody.getChild(2).getText()) : loc_ags.size();
+		int locAux = loc_init - loc_ags.size() - 1;
+		int intAux = int_init - int_ags.size();
+		//int locAux = (loopBody.getText().equals("loop") || loopBody.getText().equals("simple-loop")) ? Integer.valueOf(loopBody.getChild(0).getText()) : loc_ags.size();
+		//int intAux = (loopBody.getText().equals("loop") || loopBody.getText().equals("simple-loop")) ? Integer.valueOf(loopBody.getChild(1).getText()) : int_ags.size();
+		int invSize = (loopBody.getText().equals("loop") || loopBody.getText().equals("simple-loop")) ? Integer.valueOf(loopBody.getChild(0).getText()) : loc_ags.size();
 		
 		String m = n.split("__")[0];
 		HashSet<String> recs = is.olds.get(m);
@@ -791,7 +793,9 @@ public class NaturalSynthesis {
 		writer.println("int rank_var_aux_" + m + " = " + gen_non_zero(l_init - locAux - 1, locAux) + ";\n");
 		
 		//assuming not the last loop-related variable, which is usually used in loop condition
-		writer.println("int mutate_var_" + m + " = " + gen_non_zero(locAux > 0 ? locAux-1 : l_init-1) + ";");
+		int mutate_range = locAux > 0 ? locAux-1 : l_init-1;
+		if (mutate_range >= 1)
+			writer.println("int mutate_var_" + m + " = " + gen_non_zero(mutate_range) + ";");
 		
 		//preserving choices
 		if (sig.equals("bst"))
@@ -857,6 +861,13 @@ public class NaturalSynthesis {
 		if (is.dirs.contains("next")) {
 			//2 for NEXTTO
 			writer.println("\n\t && predicate(2, "
+				+ locAux + ", " + intAux + ", "
+				+ (l_init-locAux-1) + ", " + (i_init-intAux) + ")");
+			i++;
+		}
+		if (mutate_loc > 0) {
+			//10 for DISJ
+			writer.println("\n\t && predicate(10, "
 				+ locAux + ", " + intAux + ", "
 				+ (l_init-locAux-1) + ", " + (i_init-intAux) + ")");
 			i++;
@@ -1377,7 +1388,7 @@ public class NaturalSynthesis {
         	LinkedList<String> local_loc_ags = new LinkedList<String>();
         	LinkedList<String> local_int_ags = new LinkedList<String>();
         	
-        	writer.println("int rank_func_" + m + " = ");
+        	writer.print("int rank_func_" + m + " = ");
         	if (sig.equals("bst")) writer.println("SIZE");
         	else if (is.preRecs.get(m).contains("sll") || is.preRecs.get(m).contains("rll")) {
         		if (is.preRecs.get(m).contains("sllseg") || is.preRecs.get(m).contains("rllseg"))
@@ -1623,10 +1634,10 @@ public class NaturalSynthesis {
         	int length = prg.substring(start+5).indexOf(");");
         	String threeArgs = prg.substring(start+5, start+length+5);
         	String replaced = "loop\\(" + threeArgs + "\\);";
-        	String[] auxs = threeArgs.split(",");
-        	int locAux = Integer.valueOf(auxs[0].trim()).intValue();
-        	int intAux = Integer.valueOf(auxs[1].trim()).intValue();
-        	String replace = decodeLoop(is.mtds.iterator().next(), text, locAux, intAux, count++, sk_text, l_init, i_init);
+        	//String[] auxs = threeArgs.split(",");
+        	//int locAux = Integer.valueOf(auxs[0].trim()).intValue();
+        	//int intAux = Integer.valueOf(auxs[1].trim()).intValue();
+        	String replace = decodeLoop(false, is.mtds.iterator().next(), text, count++, sk_text, l_init, i_init);
         	prg = prg.replaceFirst(replaced, replace);
         	//System.out.println(prg);
         }
@@ -1635,11 +1646,11 @@ public class NaturalSynthesis {
         	int start = prg.indexOf("simple-loop(");
         	int length = prg.substring(start+12).indexOf(");");
         	String threeArgs = prg.substring(start+12, start+length+12);
-        	String replaced = "loop\\(" + threeArgs + "\\);";
-        	String[] auxs = threeArgs.split(",");
-        	int locAux = Integer.valueOf(auxs[0].trim()).intValue();
-        	int intAux = Integer.valueOf(auxs[1].trim()).intValue();
-        	String replace = decodeLoop(is.mtds.iterator().next(), text, locAux, intAux, count++, sk_text, l_init, i_init);
+        	String replaced = "simple-loop\\(" + threeArgs + "\\);";
+        	//String[] auxs = threeArgs.split(",");
+        	//int locAux = Integer.valueOf(auxs[0].trim()).intValue();
+        	//int intAux = Integer.valueOf(auxs[1].trim()).intValue();
+        	String replace = decodeLoop(true, is.mtds.iterator().next(), text, count++, sk_text, l_init, i_init);
         	prg = prg.replaceFirst(replaced, replace);
         	//System.out.println(prg);
         }
@@ -1647,7 +1658,7 @@ public class NaturalSynthesis {
         for (Integer t : hfinder.unknownNew) {
         	String replaced = "new";
         	String replace = decodeNew(text, count++, sk_text, l_init, i_init);
-        	prg = prg.replaceFirst(replaced, replace);
+        	prg = prg.replaceFirst(replaced+";", replace+";");
         }
         
         writer = new PrintWriter("output//" + args[0] + "//" + args[1] + ".imp");
@@ -1689,7 +1700,6 @@ public class NaturalSynthesis {
 		LinkedList<Pair<String, String>> ags = findArgs(prg, key);
 		LinkedList<Pair<String, String>> filtered_ags = new LinkedList<Pair<String, String>>();
 		for (Pair<String, String> p : ags) if (p.getSecond().equals("int")) filtered_ags.add(p);
-		System.out.println(filtered_ags.size());
 		if (count <= n) return "ERROR";
 		else if (count-n <= filtered_ags.size()) return filtered_ags.get(count-n-1).getFirst();
 		else return "i_" + n;
@@ -1737,7 +1747,6 @@ public class NaturalSynthesis {
 					}*/
 				}
 				if (params[d].contains("intstart")) {
-					System.out.println(d + ": " + intstart);
 					params[d] = params[d].replaceAll("intstart", String.valueOf(intstart));
 					/*if (params[d].contains(" + ")) {
 						int pilot = params[d].indexOf("+");
@@ -1776,7 +1785,11 @@ public class NaturalSynthesis {
 	
 	public static String decodeCond(String text, int i, String prg, int loc_count, int int_count) {
 		//return decodeBoolExp("basic_cond", text, i, prg, loc_count, int_count);
-		int idx = text.indexOf("void basic_cond" + i + "(");
+		int idx;
+		if (text.contains("void basic_cond" + i + "("))
+			idx = text.indexOf("void basic_cond" + i + "(");
+		else
+			idx = text.indexOf("void cond" + i + "(");
 		String subst = text.substring(idx).split("return;")[0];
 		if (subst.contains("basic_branch_cond" + i)) {
 			String[] params = strip(subst, "basic_branch_cond" + i).split(", ");
@@ -1796,10 +1809,10 @@ public class NaturalSynthesis {
 			int num = (params[0].equals("to")) ? too : Integer.parseInt(params[0]);
 			String left = decodeLocVar(num, prg, loc_count, name + i);
 			String right = decodeIntVar(Integer.parseInt(params[1]), prg, loc_count, name + i);
-			String neg = subst.contains("_out = !") ? "! " : "";
+			String neg = (subst.contains("_out = !") || subst.contains(" = !(")) ? "! " : "";
 			guard = "if (" + neg + left + ".key < " + right + ") ";
 		}
-		if (subst.contains("locvar_eq")) {
+		else if (subst.contains("locvar_eq")) {
 			String subst3 = strip(subst, "locvar_eq");
 			String[] params = subst3.split(", ");
 			int num = (params[0].equals("to")) ? too : Integer.parseInt(params[0]);
@@ -1841,23 +1854,55 @@ public class NaturalSynthesis {
 			String left = decodeLocVar(num, prg, loc_count, "iterate_" + name);
 			guard = "sll^(" + left + ") ";
 		}
+		else if (subst.contains("tree_inv")) {
+			String subst2 = strip(subst, "tree_inv");
+			String[] params = subst2.split(", ");
+			int num = Integer.parseInt(params[0]);
+			System.out.println("decoding " + num);
+			String left = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			guard = "tree^(" + left + ") ";
+		}
+		else if (subst.contains("rsllseg_inv")) {
+			String subst2 = strip(subst, "rsllseg_inv");
+			String[] params = subst2.split(", ");
+			int num = Integer.parseInt(params[0]);
+			String left = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			num = Integer.parseInt(params[1]);
+			String right = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			guard = "rsllseg^(" + left + ", " + right + ") ";
+		}
 		else if (subst.contains("sllseg_inv")) {
 			String subst2 = strip(subst, "sllseg_inv");
 			String[] params = subst2.split(", ");
 			int num = Integer.parseInt(params[0]);
 			String left = decodeLocVar(num, prg, loc_count, "iterate_" + name);
-			num = Integer.parseInt(params[0]);
+			num = Integer.parseInt(params[1]);
 			String right = decodeLocVar(num, prg, loc_count, "iterate_" + name);
 			guard = "sllseg^(" + left + ", " + right + ") ";
+		}
+		else if (subst.contains("minseg_equal_inv")) {
+			String subst2 = strip(subst, "minseg_equal_inv");
+			String[] params = subst2.split(", ");
+			int num = Integer.parseInt(params[0]);
+			String first = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			num = Integer.parseInt(params[1]);
+			String second = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			String val = params[2];
+			if (val.contains("intvars")) val = "i_" + val.split("\\[")[1].split("\\]")[0];
+			guard = "minseg^(" + first + ", " + second + ") == " + val;
 		}
 		else if (subst.contains("disj_inv")) {
 			String subst2 = strip(subst, "disj_inv");
 			String[] params = subst2.split(", ");
 			int num = Integer.parseInt(params[0]);
 			String left = decodeLocVar(num, prg, loc_count, "iterate_" + name);
-			num = Integer.parseInt(params[0]);
+			num = Integer.parseInt(params[1]);
 			String right = decodeLocVar(num, prg, loc_count, "iterate_" + name);
-			guard = "disjoint^(" + left + ", " + right + ") ";
+			num = Integer.parseInt(params[2]);
+			String lefttail = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			num = Integer.parseInt(params[3]);
+			String righttail = decodeLocVar(num, prg, loc_count, "iterate_" + name);
+			guard = "disjoint^(" + left + ", " + right + ", " + lefttail + ", " + righttail + ") ";
 		}
 		else if (subst.contains("minseg_preserve_inv")) {
 			String subst2 = strip(subst, "minseg_preserve_inv");
@@ -1980,21 +2025,23 @@ public class NaturalSynthesis {
 			
 			subst = strip(subst, "locderef2var");
 			String[] params = subst.split(", ");
-			System.out.println(params[1] + too);
-			int num = (params[1].equals("to")) ? too : Integer.parseInt(params[1]);
-			String deref = decodeLocVar(Integer.parseInt(params[0]), prg, loc_count, name + i);
-			String to = decodeLocVar(num, prg, loc_count, name + i);
-			if (to.startsWith("l_")) guard += "loc ";
+			int num = (params[0].equals("to")) ? too : Integer.parseInt(params[0]);
+			int num2 = (params[1].equals("to")) ? too : Integer.parseInt(params[1]);
+			String deref = decodeLocVar(num, prg, loc_count, name + i);
+			String to = decodeLocVar(num2, prg, loc_count, name + i);
+			if (num2 < num) guard += "loc ";
 			return guard + to + " := " + deref + ".next";
 		}
 		else if (subst.contains("intderef2var")) {
+			String guard = decodePositiveGuard(name, subst, i, too, prg, loc_count);
+			
 			subst = strip(subst, "intderef2var");
 			String[] params = subst.split(", ");
 			int num = (params[1].equals("to")) ? too : Integer.parseInt(params[1]);
 			String deref = decodeLocVar(Integer.parseInt(params[0]), prg, loc_count, name + i);
 			String to = decodeIntVar(num, prg, int_count, name + i);
-			if (to.startsWith("i_")) return "int " + to + " := " + deref + ".key";
-			else return to + " := " + deref + ".key";
+			if (guard.isEmpty()) guard += "int ";
+			return guard + to + " := " + deref + ".key";
 		}
 		else if (subst.contains("intMutate")) {
 			subst = strip(subst, "intMutate");
@@ -2006,7 +2053,8 @@ public class NaturalSynthesis {
 		else if (subst.contains("locMutate")) {
 			subst = strip(subst, "locMutate");
 			String[] params = subst.split(", ");
-			String derefed = decodeLocVar(Integer.parseInt(params[0]), prg, loc_count, name + i);
+			int num = (params[0].equals("v")) ? too : Integer.parseInt(params[0]);
+			String derefed = decodeLocVar(num, prg, loc_count, name + i);
 			String newval = decodeLocVar(Integer.parseInt(params[1]), prg, loc_count, name + i);
 			return derefed + ".next := " + newval;
 		}
@@ -2038,7 +2086,11 @@ public class NaturalSynthesis {
 		return decodeCommand("update_locvar", text, i, to, prg, loc_count, int_count);
 	}
 	
-	public static String decodeLoop(String pname, String text, int lAux, int iAux, int i, String prg, int loc_count, int int_count) {
+	public static String decodeMutateLoc(String text, int i, int to, String prg, int loc_count, int int_count) {
+		return decodeCommand("mutate_locvar", text, i, to, prg, loc_count, int_count);
+	}
+	
+	public static String decodeLoop(boolean simple, String pname, String text, int i, String prg, int loc_count, int int_count) {
 		String beforeLoop = "\t";
 		for (int l = 0; l < update_int_before_loop; l++) {
 			beforeLoop += decodeUpdateInt(text, l, l, prg, loc_count, int_count) + ";\n\t";
@@ -2058,9 +2110,14 @@ public class NaturalSynthesis {
 		for (int l = update_loc_before_loop; l < update_loc; l++) {
 			lp += "\t\t" + decodeUpdateLoc(text, l, l-update_loc_before_loop+1,  prg, loc_count, int_count) + ";\n";
 		}
+		if (!simple) {
+			String p = strip(text, "mutate_locvar0").split(", ")[0];
+			int v = Integer.parseInt(p);
+			lp += "\t\t" + decodeMutateLoc(text, 0, v,  prg, loc_count, int_count) + ";\n";
+		}
 		lp += "\t}";
 		
-		System.out.println(beforeLoop + "\n" + lp + "\n");
+		//System.out.println(beforeLoop + "\n" + lp + "\n");
 		
 		return beforeLoop + "\n" + lp + "\n";
 	}

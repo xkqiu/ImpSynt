@@ -1,14 +1,34 @@
+#pragma option 5 4 1 1
+
 loc srtl_insert_iter(loc x, int k)
 requires sll^(x)
 ensures ( sll^(resultloc) & (len^(resultloc) i= (old(len^(x)) + 1)) )
 	& ( (min^(resultloc) i= ((old(k) < old(min^(x))) ? old(k) : old(min^(x)))) & (max^(resultloc) i= ((old(max^(x)) < old(k)) ? old(k) : old(max^(x)))) )
 {
+    /* if (x == nil) {
+        loc l_1 := Loc(key=k, next=x);
+        return l_1;
+    }
+    else {
+	loc l_1 := x;
+	loc l_2 := l_1.next;
+        while (l_2 != nil && l_2.key < k) 
+	inv: sllseg(x, l_1) && l_1.key <= i_0 && l_1.next == l_2
+	{
+	    l_1 := l_2;
+	    l_2 := l_2.next;
+        }
+        l_2 := Loc(key=k, next=l_2);
+	l_1.next := l_2;
+        return x;
+    } */
+
     if (cond(1)) {
         loc ??? := new;
         return ???;
     }
     else {
-        simple-loop(2, 0, 3);
+        simple-loop(3);
         loc ??? := new;
 	statement(1);
         return ???;

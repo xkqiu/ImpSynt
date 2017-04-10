@@ -1,3 +1,4 @@
+#pragma option 4 3 1 1
 
 loc srtl_insert_rec(loc x, int k)
 requires sll^(x)
@@ -6,7 +7,7 @@ ensures ( sll^(resultloc) & (len^(resultloc) i= (old(len^(x)) + 1)) )
 {
     if (cond(1)) {
 	loc ??? := new;
-        return ???;
+	return ???;
     }
     else {
         statement(1);
