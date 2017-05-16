@@ -34,6 +34,9 @@
             <include name="*.jar"/>
         </fileset>
     </path>
+	<path id="grammar_g">
+		<fileset dir="grammar" includes="*.g"/>
+	</path>
     <manifestclasspath property="lib" jarfile="NaturalSynthesis.jar">
         <classpath refid="antlr-path"/>
     </manifestclasspath>
@@ -51,6 +54,20 @@
 		<mkdir dir="sk/tree"/>
 		<mkdir dir="sk/local"/>
 		<mkdir dir="sk/rise4fun"/>
+		<java 
+			dir="grammar"
+			jar="grammar/../antlr/antlr-3.5.2-complete.jar" 
+			fork="true"
+			>
+			<arg line="Imp.g ImpPrinter.g ImpSynt.g ImpSyntHoleFinder.g"/>
+		</java>
+		<java 
+			dir="src"
+			jar="src/../antlr/antlr-3.5.2-complete.jar" 
+			fork="true"
+			>
+			<arg line="Eval.g Expr.g"/>
+		</java>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
                 <exclude name="**/*.java"/>
@@ -70,6 +87,18 @@
 		<delete dir="sk/rise4fun"/>
 		<delete dir="sk/local"/>
 		<delete file="NaturalSynthesis.jar"/>
+		<delete >
+			<fileset dir="grammar" includes="**/*.tokens"/>
+		</delete>
+		<delete >
+			<fileset dir="grammar" includes="**/*.java"/>
+		</delete>
+		<delete >
+			<fileset dir="src" includes="**/*.tokens"/>
+		</delete>
+		<delete >
+			<fileset dir="src" includes="**/*.java" excludes="NaturalSynthesis.java Pair.java Triple.java"/>
+		</delete>
     </target>
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
@@ -82,7 +111,7 @@
             <classpath refid="ImpSynt.classpath"/>
         </javac>
     </target>
-    <target name ="compile" description="Create a jar">
+    <target depends="build-project" name="compile" description="Create a jar">
         <jar destfile="NaturalSynthesis.jar" includes="*.class" basedir="bin">
         	<manifest>
         	    <attribute name="Main-Class" value="NaturalSynthesis"/>
