@@ -1,7 +1,17 @@
 
-
 include "header/aux.skh";
 
+#define BST 0
+#define TREE 1
+#define LEFTTO 2
+#define RIGHTTO 3
+#define MAXLEQMIN 4
+#define DISJ 5
+#define KEYLEQTO 6
+#define HEIGHTEQ 7
+#define SIZEEQ 8
+#define MAXEQ 9
+#define MINEQ 10
 
 bit bst(int l, int t);
 int height(int l, int t);
@@ -530,6 +540,11 @@ bit ranking_decreases(int rec, int v) {
 	return ranking > new_ranking && new_ranking >= 0;
 }
 
+bit tree_inv(int v) {
+	assert v>0 && v<LOCVARSIZE;
+	if (!(locvars[v] >= 0 && locvars[v] < HEAPSIZE)) return false;
+	else return treeness(locvars[v]);
+}
 
 bit height_equal_inv(int v, int val) {
 	assert v>0 && v<LOCVARSIZE;
@@ -571,6 +586,17 @@ bit bst_inv(int v) {
 	assert v>0 && v<LOCVARSIZE;
 	if (!(locvars[v] >= 0 && locvars[v] < HEAPSIZE)) return false;
 	else return treeness(locvars[v]) && bst_comp(locvars[v]);
+}
+
+bit max_leq_min_inv(int v1, int v2) {
+	assert v1>0 && v1<LOCVARSIZE;
+	assert v2>0 && v2<LOCVARSIZE;
+	if (!(locvars[v1] >= 0 && locvars[v1] < HEAPSIZE 
+	&& locvars[v2] >= 0 && locvars[v2] < HEAPSIZE)) return false;
+	return (!treeness(locvars[v1])) || (!treeness(locvars[v2]))
+			|| max_comp(locvars[v1]) <= min_comp(locvars[v2]);
+	//return (p_treeness(locvars[v1], locvars[v3])) && (p_treeness(locvars[v2], locvars[v4]))
+	//	&& maxseg_comp(locvars[v1], locvars[v3]) <= minseg_comp(locvars[v2], locvars[v4]);
 }
 
 bit disj_inv(int v1, int v2, bit asst) {
@@ -909,6 +935,74 @@ generator void create_node(int v, int locrange, int intrange) {
 	if (ghost != v) {
 		locvars[v] = locvars[ghost];
 		locvars[ghost] = temp;
+	}
+}
+
+generator bit predicate(int pred, int locrange, int intrange, int locrange2, int intrange2) {
+	assert locrange > 0;
+	int aux_loc_var = gen_non_zero(locrange);
+	if (pred == BST){
+		return bst_inv(aux_loc_var);
+	}
+	else if(pred == TREE){
+		return treeness(aux_loc_var);
+	}
+	else{
+		int aux_loc_var2 = locrange + gen_non_zero(locrange2);
+		int aux_loc_var3 = gen_non_zero(locrange);
+		int aux_loc_var4 = locrange + gen_non_zero(locrange2);
+		assert aux_loc_var < aux_loc_var2;
+		bit d = ??;
+		if(pred == LEFTTO){
+			if (d) {
+				assert aux_loc_var != aux_loc_var3;
+				return leftTo(aux_loc_var, aux_loc_var3);
+			}
+			else {
+				assert aux_loc_var2 != aux_loc_var4;
+				return leftTo(aux_loc_var2, aux_loc_var4);
+			}
+		}
+		else if(pred == RIGHTTO){
+			if (d) {
+				assert aux_loc_var != aux_loc_var3;
+				return rightTo(aux_loc_var, aux_loc_var3);
+			}
+			else {
+				assert aux_loc_var2 != aux_loc_var4;
+				return rightTo(aux_loc_var2, aux_loc_var4);
+			}
+		}
+		else if (pred == MAXLEQMIN) {
+			//assert aux_loc_var2 <= locrange;
+			assert aux_loc_var != aux_loc_var3;
+			return max_leq_min_inv(aux_loc_var, aux_loc_var3);
+		}
+		else if (pred == DISJ) {
+			//assert aux_loc_var2 <= locrange;
+			assert aux_loc_var != aux_loc_var3;
+			return disj_inv(aux_loc_var, aux_loc_var3);
+		}
+		else{
+			assert intrange+intrange2 > 0;
+			int aux_int_var = gen_all(intrange+intrange2);
+			if (pred == KEYLEQTO) {
+				return keyLeqTo(aux_loc_var, aux_int_var);
+			}
+			else if (pred == HEIGHTEQ){
+				return height_equal_inv(aux_loc_var, aux_int_var);
+			}
+			else if (pred == SIZEEQ){
+				return size_equal_inv(aux_loc_var, aux_int_var);
+			}
+			else if (pred == MAXEQ){
+				return max_equal_inv(aux_loc_var, aux_int_var);
+			}
+			else if (pred == MINEQ){
+				return min_equal_inv(aux_loc_var, aux_int_var);
+			}
+			else return false;
+		}
 	}
 }
 
