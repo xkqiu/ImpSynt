@@ -105,7 +105,7 @@
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+		<javac debug="true" debuglevel="${debuglevel}" destdir="bin" classpath="antlr/antlr-3.5.2-complete.jar" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <src path="grammar"/>
             <classpath refid="ImpSynt.classpath"/>
