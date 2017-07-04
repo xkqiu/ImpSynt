@@ -590,7 +590,8 @@ public class NaturalSynthesis {
     	//havoc
     	writer.print("\t");
     	if (is.ret_types.get(m).equals("loc")) writer.print("locvars[recret] = ");
-    	writer.print("havoc(");
+    	if (ags.size() == 1) writer.print("havoc(");
+    	else writer.print("havoc2(");
     	for (Pair<String, String> p : ags) {
     		switch (p.getSecond()) {
     			case "loc": writer.print("locvars[" + p.getFirst() + "], ");
