@@ -1259,6 +1259,9 @@ public class NaturalSynthesis {
 			argsFromFile[3]="1";
 		}
 		inputFileToGetParameter.close();
+		long startTime = System.currentTimeMillis();
+                long endTime = startTime;
+                System.out.print("encoding...   ");
 
         ANTLRFileStream in = new ANTLRFileStream("examples//" + args[0] + "//" + args[1] + ".imp");
         ImpLexer lexer = new ImpLexer(in);
@@ -1547,11 +1550,20 @@ public class NaturalSynthesis {
         }
         
         writer.close();
+	
+	//encoding phase done
+        System.out.println((System.currentTimeMillis()-endTime)/1000+"s");//endTime is the end time of the phase before
+        endTime = System.currentTimeMillis();   // update endtime
         
+
         //cleanup
         Files.deleteIfExists(new File("output//" + args[0] + "//" + args[1] + ".out").toPath());
         Files.deleteIfExists(new File("output//" + args[0] + "//" + args[1] + ".cpp").toPath());
         
+	//Systhesis start
+        System.out.print("synthesizing...       ");
+
+
         //run sketch
         //System.out.println(new File("sk").getAbsolutePath());
         //String[] command = {"/Users/xkqiu/hg/sketch-frontend/target/sketch-1.7.2-noarch-launchers/sketch", "--fe-cegis-path", "/Users/xkqiu/hg/sketch-backend/src/SketchSolver/cegis", "-p", "lowering", "-V", "10", "--fe-output-code", "--fe-output-dir", "..//output//" + args[0] + "//", args[0] + "/" + args[1] + ".sk"};
@@ -1588,6 +1600,15 @@ public class NaturalSynthesis {
         	return;
         }
         
+
+	//systhesize phase done
+        System.out.println((System.currentTimeMillis()-endTime)/1000+"s");//endTime is the end time of the phase before
+       	endTime = System.currentTimeMillis();   // update endtime
+
+
+       	//decodeing phase begins
+       	System.out.print("decoding...   ");
+
         Scanner scanner = new Scanner(cpp);
         String text = scanner.useDelimiter("\\A").next();
         //System.out.println(text);
@@ -1664,6 +1685,18 @@ public class NaturalSynthesis {
         writer = new PrintWriter("output//" + args[0] + "//" + args[1] + ".imp");
         writer.println(prg);
         writer.close();
+	
+	System.out.println((System.currentTimeMillis()-endTime)/1000+"s");//endTime is the end time of the phase before
+	endTime = System.currentTimeMillis();   // update endtime
+
+	//get total time used
+	System.out.println("total time  "+(System.currentTimeMillis()-startTime)/1000+"s");//endTime is the end time of the phase before
+	endTime = System.currentTimeMillis();   // update endtime
+
+	//file location
+	System.out.println("the output file: "+"output/" + args[0] + "/" + args[1] + ".imp");
+	System.out.println("More generated files are under "+"output/" + args[0]+"/" +"; Note their names starts with " + args[1]);
+	System.out.println();
     }
 	
 	public static String strip(String subst, String command) {
