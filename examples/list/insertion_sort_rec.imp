@@ -1,3 +1,11 @@
+#pragma option 4 3 2 1
+
+loc srtl_insert_iter(loc x, int k)
+requires sll^(x)
+ensures ( sll^(resultloc) & (len^(resultloc) i= (old(len^(x)) + 1)) )
+	& ( (min^(resultloc) i= ((old(k) < old(min^(x))) ? old(k) : old(min^(x)))) & (max^(resultloc) i= ((old(max^(x)) < old(k)) ? old(k) : old(max^(x)))) )
+
+
 loc insertion_sort(loc x)
 requires tree^(x)
 ensures ( sll^(resultloc) & (len^(resultloc) i= old(len^(x))) )
@@ -8,8 +16,8 @@ ensures ( sll^(resultloc) & (len^(resultloc) i= old(len^(x))) )
     else {
 	k0 = v2.key;
 	v1 = v2.next;
-	v1 = sort(v1);
-	v1 = ins(v1, k);
+	v1 = insertion_sort(v1);
+	v1 = srtl_insert_iter(v1, k);
 	free(v2);
 	return v1;
     }

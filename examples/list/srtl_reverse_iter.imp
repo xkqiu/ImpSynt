@@ -22,7 +22,7 @@ ensures ( (rsllseg^(resultloc, x) & (resultloc l= y)) & (lenseg^(resultloc, x) i
 	v3.next = v2;
 	return v3;
 	*/
-    loop(5);
+    loop(3, 0, 5);
     return ???;
 }
 

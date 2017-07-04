@@ -1,0 +1,21 @@
+#pragma option 4 4 4 2
+
+loc srtl_merge(loc x, loc y)
+requires ( sll^(x) & sll^(y) )
+ensures ( sll^(resultloc) & (len^(resultloc) i= (old(len^(x)) + old(len^(y)) )) )
+	& ( (min^(resultloc) i= ((old(min^(y)) < old(min^(x))) ? old(min^(y)) : old(min^(x)))) & (max^(resultloc) i= ((old(max^(x)) < old(max^(y))) ? old(max^(y)) : old(max^(x)))) )
+{
+    if (cond(1)) {
+	return ???;
+    }
+    else if (cond(1)) {
+	return ???;
+    }
+    else {
+        statement(2);
+	loc ??? := srtl_merge(???, ???);
+	statement(6);
+	return ???;
+    }
+}
+
