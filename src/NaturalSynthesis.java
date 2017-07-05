@@ -228,6 +228,7 @@ public class NaturalSynthesis {
 		switch (ct.getText()) {
 			case "SEQ": {
 				String temp = "";
+				if (ct.getChildren() == null) return temp;
 				for (Object sct : ct.getChildren())
 					temp += convertStmt((CommonTree)sct, locrange, intrange, locrange2, intrange2, unmodified, ags, loc_ags, int_ags);
 				return temp;
@@ -448,9 +449,9 @@ public class NaturalSynthesis {
 	        	call += convertStmt((CommonTree)ct.getChild(1), locrange, intrange, locrange2, intrange2, unmodified, ags, loc_ags, int_ags) + ", ";
 	        	if (is.ret_types.get(m).equals("int")) call += "ret_value, ";
 	        	if (sig.equals("bst")) 
-	        		call += "new_symbolic, new_left, new_right, new_key);\n";
+	        		call += "new_symbolic, new_left, new_right, new_key );\n";
 	        	else
-	        		call += "new_symbolic, new_next, new_supernext, new_key);\n";
+	        		call += "new_symbolic, new_next, new_supernext, new_key );\n";
 				return call;
 			}
 		}
@@ -468,43 +469,48 @@ public class NaturalSynthesis {
     		}
     	}
 		
-		if (sig.equals("bst")) {
-			if (count++ > 0) writer.print(", ");
-			else writer.print("int ");
-			writer.print("newer_bst");
+		if (is.mtds.toArray()[0].equals(m)) {
+			if (sig.equals("bst")) {
+				if (count++ > 0) writer.print(", ");
+				else writer.print("int ");
+				writer.print("newer_bst");
+			}
+			else {
+			//if (recs.contains("sll")) {
+				if (count++ > 0) writer.print(", ");
+				else writer.print("int ");
+				writer.print("newer_sll");
+			}
+			if (recs.contains("len")) {
+				if (count++ > 0) writer.print(", ");
+				else writer.print("int ");
+				writer.print("newer_len");
+			}
+	    	if (recs.contains("min")) {
+	    		if (count++ > 0) writer.print(", ");
+	    		else writer.print("int ");
+	    		writer.print("newer_min");
+	    	}
+	    	if (recs.contains("max")) {
+	    		if (count++ > 0) writer.print(", ");
+	    		else writer.print("int ");
+	    		writer.print("newer_max");
+	    	}
+	    	if (recs.contains("size")) {
+	    		if (count++ > 0) writer.print(", ");
+	    		else writer.print("int ");
+	    		writer.print("newer_size");
+	    	}
+	    	if (recs.contains("height")) {
+	    		if (count++ > 0) writer.print(", ");
+	    		else writer.print("int ");
+	    		writer.print("newer_height");
+	    	}
+	    	if (count > 0) writer.println(";\n");
+			
 		}
-		else {
-		//if (recs.contains("sll")) {
-			if (count++ > 0) writer.print(", ");
-			else writer.print("int ");
-			writer.print("newer_sll");
-		}
-		if (recs.contains("len")) {
-			if (count++ > 0) writer.print(", ");
-			else writer.print("int ");
-			writer.print("newer_len");
-		}
-    	if (recs.contains("min")) {
-    		if (count++ > 0) writer.print(", ");
-    		else writer.print("int ");
-    		writer.print("newer_min");
-    	}
-    	if (recs.contains("max")) {
-    		if (count++ > 0) writer.print(", ");
-    		else writer.print("int ");
-    		writer.print("newer_max");
-    	}
-    	if (recs.contains("size")) {
-    		if (count++ > 0) writer.print(", ");
-    		else writer.print("int ");
-    		writer.print("newer_size");
-    	}
-    	if (recs.contains("height")) {
-    		if (count++ > 0) writer.print(", ");
-    		else writer.print("int ");
-    		writer.print("newer_height");
-    	}
-    	if (count > 0) writer.println(";\n");
+		
+		
 		
 		writer.print("void rec_" + m + "(");
     	for (Pair<String, String> p : ags) {
@@ -590,7 +596,11 @@ public class NaturalSynthesis {
     	//havoc
     	writer.print("\t");
     	if (is.ret_types.get(m).equals("loc")) writer.print("locvars[recret] = ");
-    	if (ags.size() == 1) writer.print("havoc(");
+    	int locarg_num = 0;
+    	for (Pair<String, String> p : ags) {
+    		if (p.getSecond().equals("loc")) locarg_num++;
+    	}
+    	if (locarg_num == 1) writer.print("havoc(");
     	else writer.print("havoc2(");
     	for (Pair<String, String> p : ags) {
     		switch (p.getSecond()) {
@@ -1195,6 +1205,7 @@ public class NaturalSynthesis {
 		else {
 	    	int loop = -1;
 	    	if (body.getText().equals("while") || body.getText().equals("loop") || body.getText().equals("simple-loop")) loop = 0;
+	    	else if (body.getChildren() == null) return;
 	    	else if (body.getText().equals("SEQ")) {
 	    		int count = 0;
 	    		for (CommonTree c : (List<CommonTree>)body.getChildren()) {
@@ -1299,6 +1310,7 @@ public class NaturalSynthesis {
         //snapshots of int vars, len, min, max at every call site
         writer.print("int ");
         for (String m : is.mtds) {
+        	if (is.body.get(m).getChildren() == null) continue;
         	LinkedList<Pair<String, String>> ags = is.args.get(m);
         	LinkedList<String> local_loc_ags = new LinkedList<String>();
         	LinkedList<String> local_int_ags = new LinkedList<String>();
