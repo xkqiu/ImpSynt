@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -18,9 +19,12 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class MyServer {
+	protected static String ImpSynt_location = null;
 
     public static void main(String[] args) throws Exception {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8085), 10);
+        ImpSynt_location = System.getenv("ImpSynt_HOME")+"/";
+
+        HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1",8085), 10);
         server.createContext("/metadata", new MyHandler());
         server.createContext("/run", new MyRunHandler());
         server.setExecutor(null); // creates a default executor
@@ -30,7 +34,7 @@ public class MyServer {
     static class MyHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange t) throws IOException {
-        	String response= new String(Files.readAllBytes(Paths.get("/home/waghon/IdeaProjects/rise4fun/src/socket/metadata")));
+        	String response= new String(Files.readAllBytes(Paths.get(ImpSynt_location+"rise4fun/src/socket/metadata")));
             //String response = "This is the response"; 
             //System.out.println(response);
         	t.sendResponseHeaders(200, response.getBytes().length);
@@ -68,13 +72,13 @@ public class MyServer {
             System.out.println(fileName);
             //System.out.println(paraments);
             System.out.println(inString);
-            String filePath="/home/waghon/Projects/ImpSynt/examples/rise4fun/"+fileName+".imp";
+            String filePath=ImpSynt_location+"examples/rise4fun/"+fileName+".imp";
             PrintWriter fileOut = new PrintWriter(filePath);   
             fileOut.print(inString);
             fileOut.close(); // 关闭数据流  
-            String myCommand="java -jar /home/waghon/Projects/ImpSynt/NaturalSynthesis.jar rise4fun " + fileName;
+            String myCommand="java -jar "+ ImpSynt_location+"NaturalSynthesis.jar rise4fun " + fileName;
             System.out.println(myCommand);
-            File execPath = new File("/home/waghon/Projects/ImpSynt/");
+            File execPath = new File(ImpSynt_location);
             try {
 				Runtime.getRuntime().exec(myCommand,null,execPath).waitFor();
 			} catch (InterruptedException e) {
@@ -82,7 +86,7 @@ public class MyServer {
 				e.printStackTrace();
 			}
             System.out.println("done");
-            String result = new String(Files.readAllBytes(Paths.get("/home/waghon/Projects/ImpSynt/output/rise4fun/"+fileName+".imp")));
+            String result = new String(Files.readAllBytes(Paths.get(ImpSynt_location+"output/rise4fun/"+fileName+".imp")));
         	//String response= new String(Files.readAllBytes(Paths.get("/home/waghon/workspace/MyServer/src/socket/run")));
         	//JSONObject outJsonObject=JSONObject.fromObject(response);
         	
