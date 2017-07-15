@@ -11,24 +11,9 @@
     <property name="source" value="1.8"/>
     <path id="ImpSynt.classpath">
         <pathelement location="bin"/>
-        <pathelement location="/usr/local/lib/antlr-3.5.2-complete.jar"/>
-		<pathelement location="/usr/lib/jvm/java-8-oracle/lib/rt.jar"/>
+        <pathelement location="antlr/antlr-3.5.2-complete.jar"/>
+		<pathelement location="antlr/rt.jar"/>
     </path>
-    <path id="run.methodArgs two_args.classpath">
-        <pathelement location="../.metadata/.plugins/org.deved.antlride.core/antlride-runtime-1445838817715-2.1.2.201108281759.jar"/>
-        <pathelement location="../.metadata/.plugins/org.deved.antlride.core/java/ImpSynt/src/Imp/classes"/>
-        <path refid="ImpSynt.classpath"/>
-        <pathelement location="../../../../../usr/local/lib/antlr-3.5.2-complete.jar"/>
-    </path>
-    <path id="run.methodArgs two_args.bootclasspath"/>
-    <path id="run.program find_rec.classpath">
-        <pathelement location="../.metadata/.plugins/org.deved.antlride.core/antlride-runtime-1443673372244-2.1.2.201108281759.jar"/>
-        <pathelement location="../.metadata/.plugins/org.deved.antlride.core/java/ImpSynt/src/ImpLex/classes"/>
-        <path refid="ImpSynt.classpath"/>
-        <pathelement location="../../../../../usr/local/lib/antlr-3.5.2-complete.jar"/>
-        <pathelement location="bin"/>
-    </path>
-    <path id="run.program find_rec.bootclasspath"/>
     <path id="antlr-path">
         <fileset dir="antlr">
             <include name="*.jar"/>
