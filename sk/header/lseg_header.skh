@@ -448,6 +448,47 @@ int havoc(int r, ref bit[HEAPSIZE-1] new_symbolic, ref int[HEAPSIZE-1] new_next,
     return loc;
 }
 
+int havoc2(int r1, int r2, ref bit[HEAPSIZE-1] new_symbolic, ref int[HEAPSIZE-1] new_next, ref int[HEAPSIZE-1] new_supernext, ref int[HEAPSIZE-1] new_key) {
+	/* havoc all locations reachable from r */
+	bit[HEAPSIZE] reach = 0;
+	compute_reach(r1, 0, reach);
+	for (int idx = 1; idx < HEAPSIZE; idx++) {
+		if (reach[idx]) active[idx] = false;
+		if (!active[idx]) {
+			symbolic[idx] = new_symbolic[idx-1];
+			next[idx] = new_next[idx-1];
+			supernext[idx] = new_supernext[idx-1];
+			key[idx] = new_key[idx-1];
+		}
+	}
+
+	reach = 0;
+	compute_reach(r2, 0, reach);
+	for (int idx = 1; idx < HEAPSIZE; idx++) {
+		if (reach[idx]) active[idx] = false;
+		if (!active[idx]) {
+			symbolic[idx] = new_symbolic[idx-1];
+			next[idx] = new_next[idx-1];
+			supernext[idx] = new_supernext[idx-1];
+			key[idx] = new_key[idx-1];
+		}
+	}
+
+	int loc = 1;
+	while (loc < HEAPSIZE && (active[loc] || !symbolic[loc])) {
+    	loc++;
+    }
+    if (loc >= HEAPSIZE) return 0; //only nil can be returned
+
+    ts++;
+	connect_defs();
+
+    //nondeterministic choice
+    active[loc] = true;
+
+    return loc;
+}
+
 void locderef2var(int c1, int c2) {
 	/* pick two loc vars, then choice2 = choice.next */
 	int choice = c1;
@@ -819,7 +860,7 @@ generator void statement(int locrange, int intrange, int locrange2, int intrange
 	}
 	else if (st_choice == MALLOC) {
 		assert locrange > 0;
-		malloc(v);
+		create_node(v, locrange, intrange);
 	}
 	else if (st_choice == FREE) {
 		assert locrange+locrange2 > 0;
